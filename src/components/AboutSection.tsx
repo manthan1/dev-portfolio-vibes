@@ -51,7 +51,7 @@ export default function AboutSection() {
                   with how AI can transform businesses and simplify complex processes.
                 </p>
                 <p>
-                  As a co-founder of Maanya AI Agency, I've helped businesses leverage the power of 
+                  As a co-founder of MJ Agency, I've helped businesses leverage the power of 
                   artificial intelligence to automate workflows, optimize operations, and create unique 
                   digital experiences for their customers.
                 </p>

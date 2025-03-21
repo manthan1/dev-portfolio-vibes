@@ -13,7 +13,7 @@ interface Experience {
 const experiences: Experience[] = [
   {
     title: "Co-founder",
-    company: "Maanya AI Agency",
+    company: "MJ Agency",
     period: "2022 - Present",
     description: "Leading AI solutions development for businesses across various industries, focusing on automation, optimization, and intelligent systems.",
     achievements: [
