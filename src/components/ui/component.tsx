@@ -36,7 +36,11 @@ function Hero() {
       <div className="container mx-auto">
         <div className="flex flex-col items-center justify-center gap-8 py-20 lg:py-40">
           <div>
-            <Button variant="secondary" size="sm" className="gap-4">
+            <Button 
+              variant="secondary" 
+              size="sm" 
+              className="gap-4 hover:shadow-[0_0_15px_rgba(14,165,233,0.6)] transition-shadow duration-300"
+            >
               Read our launch article <MoveRight className="w-4 h-4" />
             </Button>
           </div>
@@ -47,7 +51,7 @@ function Hero() {
                 {titles.map((title, index) => (
                   <motion.span
                     key={index}
-                    className="absolute font-semibold"
+                    className={`absolute font-semibold ${titleNumber === index ? "text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500" : ""}`}
                     initial={{ opacity: 0, y: -100 }}
                     transition={{ type: "spring", stiffness: 50 }}
                     animate={
@@ -75,15 +79,15 @@ function Hero() {
           <div className="flex flex-row gap-3">
             <Button 
               size="lg" 
-              className="gap-4" 
+              className="gap-4 bg-transparent border border-cyan-400 text-white hover:shadow-[0_0_20px_rgba(34,211,238,0.6)] hover:bg-transparent transition-all duration-300" 
               variant="outline" 
               onClick={handleScrollTo("contact")}
             >
-              Book a Free Call <PhoneCall className="w-4 h-4" />
+              Book a Free Call <PhoneCall className="w-4 h-4 text-cyan-400" />
             </Button>
             <Button 
               size="lg" 
-              className="gap-4" 
+              className="gap-4 bg-gradient-to-r from-blue-500 to-cyan-400 hover:shadow-[0_0_20px_rgba(14,165,233,0.7)] hover:from-blue-600 hover:to-cyan-500 border-none transition-all duration-300" 
               onClick={handleScrollTo("projects")}
             >
               Our Work <MoveRight className="w-4 h-4" />
