@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
 
 interface FormData {
   name: string;
@@ -7,7 +8,7 @@ interface FormData {
   message: string;
 }
 
-interface UseGoogleSheetsSubmitReturn {
+interface UseSupabaseSubmitReturn {
   submit: (data: FormData) => Promise<void>;
   isSubmitting: boolean;
   isSuccess: boolean;
@@ -15,11 +16,15 @@ interface UseGoogleSheetsSubmitReturn {
   reset: () => void;
 }
 
+// Initialize Supabase client
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
 /**
- * A custom hook for submitting form data to Google Sheets via Google Apps Script
- * @param deploymentId The Google Apps Script deployment ID
+ * A custom hook for submitting form data to Supabase
  */
-export function useGoogleSheetsSubmit(deploymentId: string): UseGoogleSheetsSubmitReturn {
+export function useSupabaseSubmit(): UseSupabaseSubmitReturn {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -29,20 +34,22 @@ export function useGoogleSheetsSubmit(deploymentId: string): UseGoogleSheetsSubm
     setError(null);
     
     try {
-      const endpoint = `https://script.google.com/macros/s/${deploymentId}/exec`;
+      // Insert the form data into a "contact_messages" table in Supabase
+      const { error: supabaseError } = await supabase
+        .from('contact_messages')
+        .insert([
+          {
+            name: data.name,
+            email: data.email,
+            message: data.message,
+            created_at: new Date().toISOString()
+          }
+        ]);
       
-      // Using no-cors mode as Google Apps Script doesn't support CORS by default
-      await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        mode: 'no-cors',
-      });
+      if (supabaseError) {
+        throw new Error(supabaseError.message);
+      }
       
-      // Since no-cors doesn't return readable response, we assume success
-      // In production, you may want to add some verification mechanism
       setIsSuccess(true);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Unknown error occurred'));

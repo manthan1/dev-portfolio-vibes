@@ -1,4 +1,3 @@
-
 import { Copy, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 import FadeInView from "./animations/FadeInView";
@@ -7,7 +6,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useForm } from "react-hook-form";
-import { useGoogleSheetsSubmit } from "../hooks/useGoogleSheetsSubmit";
+import { useSupabaseSubmit } from "../hooks/useSupabaseSubmit";
 
 interface ContactInfo {
   icon: JSX.Element;
@@ -52,14 +51,11 @@ interface FormData {
   message: string;
 }
 
-// Replace this with your actual deployment ID after deploying the Google Apps Script
-const DEPLOYMENT_ID = "AKfycbwbfkDGqgueZSWcf2QanpcE4zIklwtGOTl3JbiugJEqwPBdHezGxtQUxu8BOtkF9Q0l";
-
 export default function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
-  const { submit, isSubmitting, isSuccess, error } = useGoogleSheetsSubmit(DEPLOYMENT_ID);
+  const { submit, isSubmitting, isSuccess, error } = useSupabaseSubmit();
   
   const onSubmit = async (data: FormData) => {
     try {
