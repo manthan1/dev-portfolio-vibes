@@ -49,14 +49,14 @@ const contactInfo: ContactInfo[] = [
 interface FormData {
   name: string;
   email: string;
+  phone: string;  // Added phone field
   message: string;
 }
 
 export default function ContactSection() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
   const { submit, isSubmitting, error } = useSupabaseSubmit();
+  const [isSubmitted, setIsSubmitted] = useState(false);
   
   const onSubmit = async (data: FormData) => {
     try {
@@ -156,6 +156,21 @@ export default function ContactSection() {
                     />
                     {errors.email && (
                       <p className="mt-1 text-sm text-destructive">{errors.email.message}</p>
+                    )}
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium mb-1">
+                      Phone (optional)
+                    </label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      {...register("phone")}
+                      className="w-full"
+                      placeholder="Your phone number"
+                    />
+                    {errors.phone && (
+                      <p className="mt-1 text-sm text-destructive">{errors.phone.message}</p>
                     )}
                   </div>
                   <div>
