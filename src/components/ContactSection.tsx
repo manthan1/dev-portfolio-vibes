@@ -1,3 +1,4 @@
+
 import { Copy, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 import FadeInView from "./animations/FadeInView";
@@ -52,7 +53,7 @@ interface FormData {
 }
 
 // Replace this with your actual deployment ID after deploying the Google Apps Script
-const DEPLOYMENT_ID = "YOUR_DEPLOYMENT_ID_HERE";
+const DEPLOYMENT_ID = "AKfycbwbfkDGqgueZSWcf2QanpcE4zIklwtGOTl3JbiugJEqwPBdHezGxtQUxu8BOtkF9Q0l";
 
 export default function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
