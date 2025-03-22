@@ -1,6 +1,8 @@
+
 import { ArrowDown } from "lucide-react";
 import FadeInView from "./animations/FadeInView";
 import { Button } from "./ui/button";
+
 export default function HeroSection() {
   return <section id="home" className="pt-32 md:pt-40 pb-16 md:pb-24 min-h-screen flex flex-col justify-center relative">
       <div className="container max-w-7xl mx-auto">
@@ -30,19 +32,27 @@ export default function HeroSection() {
             
             <FadeInView animation="fade-in" delay={600}>
               <div className="flex flex-wrap gap-4 pt-4 my-0">
-                <Button size="lg" asChild className="rounded-md">
-                  <a href="#contact" className="px-[24px] py-[12px]">Book a Free Call</a>
+                <Button size="lg" className="rounded-md">
+                  <a href="#contact" className="px-4 py-2">Book a Free Call</a>
                 </Button>
-                <a href="#projects" className="inline-flex items-center justify-center px-6 py-3 bg-secondary text-secondary-foreground font-medium rounded-md hover:bg-secondary/80 transition-colors">
-                  Our Work
-                </a>
+                <Button size="lg" variant="secondary" className="rounded-md">
+                  <a href="#projects" className="px-4 py-2">Our Work</a>
+                </Button>
               </div>
             </FadeInView>
           </div>
           
           <div className="lg:col-span-2 relative">
             <FadeInView animation="scale-in" delay={300} className="relative z-10 rounded-xl overflow-hidden aspect-[3/4] border border-border/50 shadow-xl">
-              <img src="https://images.unsplash.com/photo-1581092921461-39b10bc4abad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="AI team working on solutions" className="w-full h-full object-cover" />
+              <img 
+                src="https://images.unsplash.com/photo-1581092921461-39b10bc4abad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                alt="AI team working on solutions" 
+                className="w-full h-full object-cover" 
+                onError={(e) => {
+                  const img = e.target as HTMLImageElement;
+                  img.src = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1365&q=80";
+                }}
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent"></div>
             </FadeInView>
             
