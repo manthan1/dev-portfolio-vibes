@@ -10,18 +10,18 @@ const features = [
   },
   {
     icon: <Code className="h-5 w-5" />,
-    title: "Backend Development",
-    description: "Building robust APIs and server-side applications that power digital experiences.",
+    title: "Custom AI Solutions",
+    description: "Building tailored AI applications that solve your specific business challenges.",
   },
   {
     icon: <Server className="h-5 w-5" />,
-    title: "System Architecture",
-    description: "Designing scalable and maintainable software architectures for complex applications.",
+    title: "Smart Infrastructure",
+    description: "Designing scalable AI systems that grow with your business needs.",
   },
   {
     icon: <Zap className="h-5 w-5" />,
-    title: "Process Optimization",
-    description: "Streamlining business processes through technology integration and automation.",
+    title: "Business Optimization",
+    description: "Streamlining operations and driving efficiency through intelligent automation.",
   },
 ];
 
@@ -33,32 +33,31 @@ export default function AboutSection() {
           <div className="space-y-8">
             <FadeInView animation="fade-in">
               <div className="inline-block pill bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground mb-4">
-                <span className="font-medium">About Me</span>
+                <span className="font-medium">About Us</span>
               </div>
             </FadeInView>
             
             <FadeInView animation="fade-in">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                CSE Engineer with a passion for AI and automation
+                Your partner in AI-powered business transformation
               </h2>
             </FadeInView>
             
             <FadeInView animation="fade-in" delay={200}>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  I'm a Computer Science Engineer from NMIMS with expertise in building intelligent systems 
-                  that solve real-world problems. My journey in technology has been driven by a fascination 
-                  with how AI can transform businesses and simplify complex processes.
+                  We're not just building tools—we're building smart solutions that think, learn, and deliver results. 
+                  Whether you're a startup or a scaling enterprise, our AI-driven systems are designed to automate, 
+                  optimize, and accelerate your workflow.
                 </p>
                 <p>
-                  As a co-founder of MJ Agency, I've helped businesses leverage the power of 
-                  artificial intelligence to automate workflows, optimize operations, and create unique 
-                  digital experiences for their customers.
+                  At our agency, we combine deep technical expertise with strategic business thinking to create AI 
+                  solutions that deliver real value. Our team of specialists works closely with you to understand your 
+                  challenges and build custom AI systems that drive growth and efficiency.
                 </p>
                 <p>
-                  My approach combines technical expertise with a deep understanding of business needs, 
-                  allowing me to create solutions that not only work flawlessly but also deliver 
-                  measurable value.
+                  From chatbots and recommendation engines to predictive analytics and automation tools, our solutions 
+                  are built to enhance your business capabilities and give you a competitive edge in the digital age.
                 </p>
               </div>
             </FadeInView>

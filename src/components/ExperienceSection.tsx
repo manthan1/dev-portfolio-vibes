@@ -12,27 +12,27 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    title: "Co-founder",
+    title: "AI Agency",
     company: "MJ Agency",
     period: "2022 - Present",
-    description: "Leading AI solutions development for businesses across various industries, focusing on automation, optimization, and intelligent systems.",
+    description: "Developing cutting-edge AI solutions for businesses across various industries, focusing on automation, optimization, and intelligent systems.",
     achievements: [
       "Developed AI-powered recruitment solutions that reduced hiring time by 40%",
       "Created custom chatbots for healthcare and real estate clients",
-      "Implemented automation systems for jewelry business EMI tracking",
-      "Built AI agents for website management and Google Ads optimization"
+      "Implemented automation systems for e-commerce business operations",
+      "Built AI agents for website management and digital marketing optimization"
     ]
   },
   {
-    title: "AI/ML Intern",
-    company: "Dotkonnekt",
-    period: "2021 - 2022",
-    description: "Worked on image classification systems and analytics dashboards, gaining hands-on experience with machine learning models and backend development.",
+    title: "AI Consulting Group",
+    company: "Tech Innovators",
+    period: "2020 - 2022",
+    description: "Provided strategic AI consulting services to medium and large enterprises, helping them identify and implement AI opportunities.",
     achievements: [
-      "Developed an image classification system with 95% accuracy",
-      "Built RESTful APIs using FastAPI for data processing",
-      "Created analytics dashboards to visualize business metrics",
-      "Optimized data preprocessing workflows for ML models"
+      "Conducted AI readiness assessments for 15+ organizations",
+      "Designed AI roadmaps for business transformation initiatives",
+      "Led workshops on AI integration for executive teams",
+      "Implemented predictive analytics solutions for retail clients"
     ]
   }
 ];
@@ -44,13 +44,13 @@ export default function ExperienceSection() {
         <FadeInView animation="fade-in">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-block pill bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground mb-4">
-              <span className="font-medium">Career Path</span>
+              <span className="font-medium">Our Experience</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Professional Experience
+              AI Innovation Journey
             </h2>
             <p className="text-muted-foreground">
-              My journey in technology and AI, where I've contributed to innovative solutions and grown my expertise.
+              Our track record of delivering intelligent solutions that drive business growth and efficiency.
             </p>
           </div>
         </FadeInView>

@@ -32,7 +32,7 @@ const Index = () => {
       </main>
       <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
         <div className="container">
-          <p>© {new Date().getFullYear()} Portfolio. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} AI Agency. All rights reserved.</p>
         </div>
       </footer>
     </div>
