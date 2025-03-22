@@ -1,4 +1,3 @@
-
 import { Copy, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 import FadeInView from "./animations/FadeInView";
@@ -7,6 +6,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useForm } from "react-hook-form";
+import { useGoogleSheetsSubmit } from "../hooks/useGoogleSheetsSubmit";
 
 interface ContactInfo {
   icon: JSX.Element;
@@ -51,35 +51,24 @@ interface FormData {
   message: string;
 }
 
+// Replace this with your actual deployment ID after deploying the Google Apps Script
+const DEPLOYMENT_ID = "YOUR_DEPLOYMENT_ID_HERE";
+
 export default function ContactSection() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
+  const { submit, isSubmitting, isSuccess, error } = useGoogleSheetsSubmit(DEPLOYMENT_ID);
   
   const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true);
-    
     try {
-      // This URL should be replaced with your actual serverless function endpoint
-      // You can use services like Google Cloud Functions, AWS Lambda, or Vercel Functions
-      const response = await fetch('https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID_HERE/exec', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        mode: 'no-cors' // May be needed for Google Apps Script
-      });
-      
-      setIsSubmitted(true);
+      await submit(data);
       toast.success("Message sent successfully! I'll get back to you soon.");
       reset();
+      setIsSubmitted(true);
     } catch (error) {
       console.error('Error submitting form:', error);
       toast.error("There was an error sending your message. Please try again.");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
