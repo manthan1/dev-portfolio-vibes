@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["amazing", "new", "wonderful", "beautiful", "smart"],
+    () => ["Your Work", "Your Time", "Your Business", "Your Daily Tasks", "Your Growth"],
     []
   );
 
@@ -24,19 +24,18 @@ function Hero() {
   }, [titleNumber, titles]);
 
   return (
-    <div className="w-full">
+    <div className="w-full h-full flex items-center justify-center">
       <div className="container mx-auto">
-        <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
+        <div className="flex flex-col items-center justify-center gap-8 py-20 lg:py-40">
           <div>
             <Button variant="secondary" size="sm" className="gap-4">
               Read our launch article <MoveRight className="w-4 h-4" />
             </Button>
           </div>
-          <div className="flex gap-4 flex-col">
+          <div className="flex flex-col gap-4 items-center">
             <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
-              <span className="text-primary">This is something</span>
-              <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
-                &nbsp;
+              <span className="text-primary">The AI Agency Built to Automate</span>
+              <div className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                 {titles.map((title, index) => (
                   <motion.span
                     key={index}
@@ -58,14 +57,11 @@ function Hero() {
                     {title}
                   </motion.span>
                 ))}
-              </span>
+              </div>
             </h1>
 
             <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
-              Managing a small business today is already tough. Avoid further
-              complications by ditching outdated, tedious trade methods. Our
-              goal is to streamline SMB trade, making it easier and faster than
-              ever.
+              We build custom AI tools that automate the boring stuff — so you can focus on what actually matters.
             </p>
           </div>
           <div className="flex flex-row gap-3">
