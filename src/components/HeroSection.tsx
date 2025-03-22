@@ -45,12 +45,12 @@ export default function HeroSection() {
           <div className="lg:col-span-2 relative">
             <FadeInView animation="scale-in" delay={300} className="relative z-10 rounded-xl overflow-hidden aspect-[3/4] border border-border/50 shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1581092921461-39b10bc4abad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                alt="AI team working on solutions" 
+                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" 
+                alt="AI technology visualization" 
                 className="w-full h-full object-cover" 
                 onError={(e) => {
                   const img = e.target as HTMLImageElement;
-                  img.src = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1365&q=80";
+                  img.src = "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80";
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent"></div>
