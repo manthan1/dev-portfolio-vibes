@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["amazing", "new", "wonderful", "beautiful", "smart"],
+    () => ["Your Work", "Your Time", "Your Business", "Your Daily Tasks", "Your Growth"],
     []
   );
 
@@ -23,7 +23,7 @@ function Hero() {
   }, [titleNumber, titles]);
 
   return (
-    <div className="w-full">
+    <div className="w-full h-full flex items-center justify-center">
       <div className="container mx-auto">
         <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
           <div>
@@ -33,7 +33,7 @@ function Hero() {
           </div>
           <div className="flex gap-4 flex-col">
             <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
-              <span className="text-primary">This is something</span>
+              <span className="text-primary">The AI Agency Built to Automate</span>
               <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                 &nbsp;
                 {titles.map((title, index) => (
