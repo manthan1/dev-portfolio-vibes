@@ -23,6 +23,14 @@ function Hero() {
     return () => clearTimeout(timeoutId);
   }, [titleNumber, titles]);
 
+  const handleScrollTo = (id: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="container mx-auto">
@@ -65,11 +73,20 @@ function Hero() {
             </p>
           </div>
           <div className="flex flex-row gap-3">
-            <Button size="lg" className="gap-4" variant="outline" asChild>
-              <Link to="/#contact">Book a Free Call <PhoneCall className="w-4 h-4" /></Link>
+            <Button 
+              size="lg" 
+              className="gap-4" 
+              variant="outline" 
+              onClick={handleScrollTo("contact")}
+            >
+              Book a Free Call <PhoneCall className="w-4 h-4" />
             </Button>
-            <Button size="lg" className="gap-4" asChild>
-              <Link to="/#projects">Our Work <MoveRight className="w-4 h-4" /></Link>
+            <Button 
+              size="lg" 
+              className="gap-4" 
+              onClick={handleScrollTo("projects")}
+            >
+              Our Work <MoveRight className="w-4 h-4" />
             </Button>
           </div>
         </div>
