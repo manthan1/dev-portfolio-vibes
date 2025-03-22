@@ -32,13 +32,13 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <FadeInView animation="fade-in">
-              <div className="inline-block pill bg-primary/5 text-primary dark:bg-primary/10 dark:text-primary-foreground mb-4">
+              <div className="inline-block pill bg-primary/5 text-cyan-400 dark:bg-primary/10 dark:text-cyan-400 mb-4">
                 <span className="font-medium">About Us</span>
               </div>
             </FadeInView>
             
             <FadeInView animation="fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-cyan-400">
                 Your partner in AI-powered business transformation
               </h2>
             </FadeInView>
@@ -72,10 +72,10 @@ export default function AboutSection() {
                 className="glass p-6 rounded-xl bg-background/50 backdrop-blur-lg"
               >
                 <div className="flex flex-col gap-3">
-                  <div className="p-2 w-fit rounded-md bg-primary/5 text-primary">
+                  <div className="p-2 w-fit rounded-md bg-primary/5 text-cyan-400">
                     {feature.icon}
                   </div>
-                  <h3 className="font-semibold text-primary">{feature.title}</h3>
+                  <h3 className="font-semibold text-cyan-400">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground">
                     {feature.description}
                   </p>
