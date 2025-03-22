@@ -71,7 +71,7 @@ export default function ProjectsSection() {
             <div className="inline-block pill bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground mb-4">
               <span className="font-medium">Our Work</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 neon-text">
               Featured Projects
             </h2>
             <p className="text-muted-foreground">
@@ -89,7 +89,7 @@ export default function ProjectsSection() {
               className="group"
             >
               <Link to={`/projects/${project.id}`} className="block h-full">
-                <div className="h-full flex flex-col overflow-hidden rounded-xl border border-border/50 bg-card hover:shadow-md transition-all duration-300">
+                <div className="h-full flex flex-col overflow-hidden rounded-xl border border-cyan-400/50 hover:border-cyan-400 bg-card hover:shadow-[0_0_15px_rgba(34,211,238,0.5)] transition-all duration-300">
                   <div className="relative h-48 overflow-hidden">
                     <img
                       src={project.image}
@@ -103,7 +103,7 @@ export default function ProjectsSection() {
                             href={project.links.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 rounded-full bg-background/80 hover:bg-background text-foreground transition-colors"
+                            className="p-2 rounded-full bg-background/80 hover:bg-background text-cyan-400 transition-colors"
                             aria-label="View GitHub repository"
                             onClick={(e) => e.stopPropagation()}
                           >
@@ -115,7 +115,7 @@ export default function ProjectsSection() {
                             href={project.links.live}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 rounded-full bg-background/80 hover:bg-background text-foreground transition-colors"
+                            className="p-2 rounded-full bg-background/80 hover:bg-background text-cyan-400 transition-colors"
                             aria-label="View live project"
                             onClick={(e) => e.stopPropagation()}
                           >
@@ -126,7 +126,7 @@ export default function ProjectsSection() {
                     </div>
                   </div>
                   <div className="flex-1 p-6 flex flex-col">
-                    <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="text-lg font-semibold mb-2 text-cyan-400 transition-colors">
                       {project.title}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-4 flex-1">
@@ -136,7 +136,7 @@ export default function ProjectsSection() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="pill bg-secondary text-secondary-foreground text-[10px]"
+                          className="pill bg-cyan-400/10 text-cyan-400 text-[10px]"
                         >
                           {tag}
                         </span>

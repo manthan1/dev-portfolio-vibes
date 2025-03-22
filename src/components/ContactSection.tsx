@@ -88,7 +88,7 @@ export default function ContactSection() {
             <div className="inline-block pill bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground mb-4">
               <span className="font-medium">Get in Touch</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 neon-text">
               Let's Connect
             </h2>
             <p className="text-muted-foreground">
@@ -111,27 +111,27 @@ export default function ContactSection() {
             )}
             
             {isSubmitted ? (
-              <div className="glass p-8 rounded-xl flex flex-col items-center justify-center min-h-[400px]">
+              <div className="glass p-8 rounded-xl flex flex-col items-center justify-center min-h-[400px] neon-border">
                 <div className="text-center">
-                  <h3 className="text-xl font-semibold mb-4">Thank You!</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-cyan-400">Thank You!</h3>
                   <p className="text-muted-foreground mb-6">
                     Your message has been received. I'll get back to you as soon as possible.
                   </p>
-                  <Button onClick={() => setIsSubmitted(false)}>Send Another Message</Button>
+                  <Button onClick={() => setIsSubmitted(false)} className="neon-outline-button">Send Another Message</Button>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="glass p-8 rounded-xl">
-                <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
+              <form onSubmit={handleSubmit(onSubmit)} className="glass p-8 rounded-xl neon-border">
+                <h3 className="text-xl font-semibold mb-6 text-cyan-400">Send a Message</h3>
                 <div className="space-y-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-1">
+                    <label htmlFor="name" className="block text-sm font-medium mb-1 text-primary">
                       Name
                     </label>
                     <Input
                       id="name"
                       {...register("name", { required: "Name is required" })}
-                      className="w-full"
+                      className="w-full focus:border-cyan-400 focus:ring-cyan-400"
                       placeholder="Your name"
                     />
                     {errors.name && (
@@ -139,7 +139,7 @@ export default function ContactSection() {
                     )}
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-1">
+                    <label htmlFor="email" className="block text-sm font-medium mb-1 text-primary">
                       Email
                     </label>
                     <Input
@@ -152,7 +152,7 @@ export default function ContactSection() {
                           message: "Invalid email address"
                         }
                       })}
-                      className="w-full"
+                      className="w-full focus:border-cyan-400 focus:ring-cyan-400"
                       placeholder="Your email"
                     />
                     {errors.email && (
@@ -160,14 +160,14 @@ export default function ContactSection() {
                     )}
                   </div>
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-1">
+                    <label htmlFor="phone" className="block text-sm font-medium mb-1 text-primary">
                       Phone (optional)
                     </label>
                     <Input
                       id="phone"
                       type="tel"
                       {...register("phone")}
-                      className="w-full"
+                      className="w-full focus:border-cyan-400 focus:ring-cyan-400"
                       placeholder="Your phone number"
                     />
                     {errors.phone && (
@@ -175,14 +175,14 @@ export default function ContactSection() {
                     )}
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-1">
+                    <label htmlFor="message" className="block text-sm font-medium mb-1 text-primary">
                       Message
                     </label>
                     <Textarea
                       id="message"
                       {...register("message", { required: "Message is required" })}
                       rows={5}
-                      className="w-full resize-none"
+                      className="w-full resize-none focus:border-cyan-400 focus:ring-cyan-400"
                       placeholder="Your message"
                     />
                     {errors.message && (
@@ -192,7 +192,7 @@ export default function ContactSection() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full"
+                    className="w-full neon-button"
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
@@ -203,14 +203,14 @@ export default function ContactSection() {
 
           <div className="space-y-8">
             <FadeInView animation="fade-in-left">
-              <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
+              <h3 className="text-xl font-semibold mb-6 text-cyan-400">Contact Information</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {contactInfo.map((info) => (
                   <div
                     key={info.label}
-                    className="glass p-4 rounded-xl flex flex-col gap-2 group"
+                    className="glass p-4 rounded-xl flex flex-col gap-2 group neon-border"
                   >
-                    <div className="flex items-center gap-2 text-primary">
+                    <div className="flex items-center gap-2 text-cyan-400">
                       {info.icon}
                       <span className="text-sm font-medium">{info.label}</span>
                     </div>
@@ -220,7 +220,7 @@ export default function ContactSection() {
                           href={info.href}
                           target={info.href.startsWith("http") ? "_blank" : undefined}
                           rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="text-sm hover:text-primary transition-colors"
+                          className="text-sm hover:text-cyan-400 transition-colors"
                         >
                           {info.value}
                         </a>
@@ -231,7 +231,7 @@ export default function ContactSection() {
                         <button
                           type="button"
                           onClick={() => copyToClipboard(info.value, info.label)}
-                          className="p-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-secondary"
+                          className="p-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-secondary text-cyan-400"
                           aria-label={`Copy ${info.label}`}
                         >
                           <Copy className="h-4 w-4" />
@@ -244,8 +244,8 @@ export default function ContactSection() {
             </FadeInView>
 
             <FadeInView animation="fade-in" delay={200}>
-              <div className="glass p-6 rounded-xl">
-                <h3 className="text-lg font-semibold mb-4">
+              <div className="glass p-6 rounded-xl neon-border">
+                <h3 className="text-lg font-semibold mb-4 text-cyan-400">
                   Let's Build Something Amazing Together
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4">
@@ -255,7 +255,7 @@ export default function ContactSection() {
                 </p>
                 <p className="text-sm">
                   Based in{" "}
-                  <span className="font-medium">Mumbai, India</span> — Available for remote work worldwide
+                  <span className="font-medium text-cyan-400">Mumbai, India</span> — Available for remote work worldwide
                 </p>
               </div>
             </FadeInView>

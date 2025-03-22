@@ -38,7 +38,7 @@ export default function AboutSection() {
             </FadeInView>
             
             <FadeInView animation="fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight neon-text">
                 Your partner in AI-powered business transformation
               </h2>
             </FadeInView>
@@ -69,13 +69,13 @@ export default function AboutSection() {
                 key={feature.title} 
                 animation="scale-in" 
                 delay={150 * index}
-                className="glass p-6 rounded-xl"
+                className="glass p-6 rounded-xl neon-border"
               >
                 <div className="flex flex-col gap-3">
-                  <div className="p-2 w-fit rounded-md bg-primary/5 text-primary">
+                  <div className="p-2 w-fit rounded-md bg-primary/5 text-cyan-400">
                     {feature.icon}
                   </div>
-                  <h3 className="font-semibold">{feature.title}</h3>
+                  <h3 className="font-semibold text-cyan-400">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground">
                     {feature.description}
                   </p>
