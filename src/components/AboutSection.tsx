@@ -27,18 +27,18 @@ const features = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="bg-secondary/50">
+    <section id="about" className="bg-secondary/30">
       <div className="container max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <FadeInView animation="fade-in">
-              <div className="inline-block pill bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground mb-4">
+              <div className="inline-block pill bg-primary/5 text-primary dark:bg-primary/10 dark:text-primary-foreground mb-4">
                 <span className="font-medium">About Us</span>
               </div>
             </FadeInView>
             
             <FadeInView animation="fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight neon-text">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary">
                 Your partner in AI-powered business transformation
               </h2>
             </FadeInView>
@@ -69,13 +69,13 @@ export default function AboutSection() {
                 key={feature.title} 
                 animation="scale-in" 
                 delay={150 * index}
-                className="glass p-6 rounded-xl neon-border"
+                className="glass p-6 rounded-xl bg-background/50 backdrop-blur-lg"
               >
                 <div className="flex flex-col gap-3">
-                  <div className="p-2 w-fit rounded-md bg-primary/5 text-cyan-400">
+                  <div className="p-2 w-fit rounded-md bg-primary/5 text-primary">
                     {feature.icon}
                   </div>
-                  <h3 className="font-semibold text-cyan-400">{feature.title}</h3>
+                  <h3 className="font-semibold text-primary">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground">
                     {feature.description}
                   </p>
