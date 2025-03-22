@@ -1,5 +1,5 @@
 
-import { Hero } from "./ui/animated-hero";
+import { Hero } from "./ui/component";
 
 export default function HeroSection() {
   return (
