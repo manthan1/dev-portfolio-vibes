@@ -35,12 +35,12 @@ function Hero() {
           <div className="flex flex-col gap-4 items-center">
             <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
               <span className="text-primary">The AI Agency Built to Automate</span>
-              <div className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
+              <div className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1 h-[60px] md:h-[80px]">
                 {titles.map((title, index) => (
                   <motion.span
                     key={index}
                     className="absolute font-semibold"
-                    initial={{ opacity: 0, y: "-100" }}
+                    initial={{ opacity: 0, y: -100 }}
                     transition={{ type: "spring", stiffness: 50 }}
                     animate={
                       titleNumber === index
