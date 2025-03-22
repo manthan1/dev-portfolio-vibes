@@ -7,6 +7,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useForm } from "react-hook-form";
 import { useSupabaseSubmit } from "../hooks/useSupabaseSubmit";
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 
 interface ContactInfo {
   icon: JSX.Element;
@@ -55,7 +56,7 @@ export default function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
-  const { submit, isSubmitting, isSuccess, error } = useSupabaseSubmit();
+  const { submit, isSubmitting, isSuccess, error, isConfigured } = useSupabaseSubmit();
   
   const onSubmit = async (data: FormData) => {
     try {
@@ -65,7 +66,11 @@ export default function ContactSection() {
       setIsSubmitted(true);
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast.error("There was an error sending your message. Please try again.");
+      toast.error(
+        error instanceof Error 
+          ? error.message 
+          : "There was an error sending your message. Please try again."
+      );
     }
   };
 
@@ -93,6 +98,18 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <FadeInView animation="fade-in-right">
+            {!isConfigured && (
+              <Alert className="mb-4 border-amber-400 bg-amber-50 dark:bg-amber-900/20">
+                <AlertTitle className="text-amber-700 dark:text-amber-400">
+                  Supabase configuration missing
+                </AlertTitle>
+                <AlertDescription className="text-amber-600 dark:text-amber-300">
+                  The contact form is currently disabled because Supabase is not configured. 
+                  Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your environment variables.
+                </AlertDescription>
+              </Alert>
+            )}
+            
             {isSubmitted ? (
               <div className="glass p-8 rounded-xl flex flex-col items-center justify-center min-h-[400px]">
                 <div className="text-center">
@@ -159,11 +176,16 @@ export default function ContactSection() {
                   </div>
                   <Button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !isConfigured}
                     className="w-full"
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
+                  {!isConfigured && (
+                    <p className="text-xs text-muted-foreground text-center mt-2">
+                      Form submissions are disabled until Supabase is configured
+                    </p>
+                  )}
                 </div>
               </form>
             )}

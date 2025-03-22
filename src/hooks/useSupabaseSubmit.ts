@@ -14,12 +14,18 @@ interface UseSupabaseSubmitReturn {
   isSuccess: boolean;
   error: Error | null;
   reset: () => void;
+  isConfigured: boolean;
 }
 
-// Initialize Supabase client
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Initialize Supabase client if environment variables are available
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const isConfigured = Boolean(supabaseUrl && supabaseAnonKey);
+
+// Only create client if we have the required credentials
+const supabase = isConfigured 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
 
 /**
  * A custom hook for submitting form data to Supabase
@@ -34,6 +40,13 @@ export function useSupabaseSubmit(): UseSupabaseSubmitReturn {
     setError(null);
     
     try {
+      // Check if Supabase is configured
+      if (!isConfigured || !supabase) {
+        throw new Error(
+          "Supabase is not configured. Please add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your environment variables."
+        );
+      }
+      
       // Insert the form data into a "contact_messages" table in Supabase
       const { error: supabaseError } = await supabase
         .from('contact_messages')
@@ -70,5 +83,6 @@ export function useSupabaseSubmit(): UseSupabaseSubmitReturn {
     isSuccess,
     error,
     reset,
+    isConfigured
   };
 }
