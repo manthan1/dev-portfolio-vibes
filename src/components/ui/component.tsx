@@ -39,9 +39,9 @@ function Hero() {
             <Button 
               variant="secondary" 
               size="sm" 
-              className="gap-4 hover:shadow-[0_0_15px_rgba(14,165,233,0.6)] transition-shadow duration-300"
+              className="gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300"
             >
-              Read our launch article <MoveRight className="w-4 h-4" />
+              Read our launch article <MoveRight className="w-4 h-4 text-cyan-400" />
             </Button>
           </div>
           <div className="flex flex-col gap-4 items-center">
@@ -79,7 +79,7 @@ function Hero() {
           <div className="flex flex-row gap-3">
             <Button 
               size="lg" 
-              className="gap-4 bg-transparent border border-cyan-400 text-white hover:shadow-[0_0_20px_rgba(34,211,238,0.6)] hover:bg-transparent transition-all duration-300" 
+              className="neon-outline-button gap-4" 
               variant="outline" 
               onClick={handleScrollTo("contact")}
             >
@@ -87,7 +87,7 @@ function Hero() {
             </Button>
             <Button 
               size="lg" 
-              className="gap-4 bg-gradient-to-r from-blue-500 to-cyan-400 hover:shadow-[0_0_20px_rgba(14,165,233,0.7)] hover:from-blue-600 hover:to-cyan-500 border-none transition-all duration-300" 
+              className="neon-button gap-4" 
               onClick={handleScrollTo("projects")}
             >
               Our Work <MoveRight className="w-4 h-4" />

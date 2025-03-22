@@ -34,13 +34,13 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-full hover:bg-secondary transition-colors duration-200"
+      className="p-2 rounded-full hover:bg-secondary hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-colors duration-200"
       aria-label="Toggle theme"
     >
       {isDarkMode ? (
-        <Sun className="h-5 w-5 transition-all" />
+        <Sun className="h-5 w-5 transition-all text-cyan-400" />
       ) : (
-        <Moon className="h-5 w-5 transition-all" />
+        <Moon className="h-5 w-5 transition-all text-cyan-400" />
       )}
     </button>
   );
