@@ -3,7 +3,7 @@ import { Hero } from "./ui/component";
 
 export default function HeroSection() {
   return (
-    <section id="home" className="pt-32 md:pt-40 pb-16 md:pb-24 min-h-screen flex items-center justify-center relative">
+    <section id="home" className="pt-0 pb-0 min-h-screen flex items-center justify-center relative">
       <Hero />
     </section>
   );
