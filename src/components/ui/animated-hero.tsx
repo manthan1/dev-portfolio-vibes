@@ -1,7 +1,7 @@
 
 import { useEffect, useMemo, useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { MoveRight, PhoneCall, ChevronDown } from "lucide-react";
+import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import * as THREE from "three";
@@ -123,15 +123,6 @@ function Hero() {
               <Link to="/#projects">Our Work <MoveRight className="w-4 h-4" /></Link>
             </Button>
           </div>
-          
-          <motion.div 
-            className="absolute bottom-10 flex flex-col items-center"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-          >
-            <p className="text-sm text-muted-foreground mb-2">Scroll to See Magic</p>
-            <ChevronDown className="w-6 h-6 text-primary" />
-          </motion.div>
         </div>
       </div>
     </div>
