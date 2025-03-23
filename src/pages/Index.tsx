@@ -24,8 +24,8 @@ const Index = () => {
       <main>
         <HeroSection />
         <AboutSection />
-        <ProjectsSection />
         <OurProcessSection />
+        <ProjectsSection />
         <ContactSection />
       </main>
       <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
