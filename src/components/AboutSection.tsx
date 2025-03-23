@@ -26,7 +26,7 @@ const features = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="bg-[#1a1a1a] py-24">
+    <section id="about" className="bg-background py-24">
       <div className="container max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
@@ -60,7 +60,7 @@ export default function AboutSection() {
             {features.map((feature) => (
               <div 
                 key={feature.title}
-                className="p-6 rounded-xl bg-[#252525] border border-[#333333] shadow-lg"
+                className="p-6 rounded-xl bg-secondary border border-border/30 shadow-lg"
               >
                 <div className="flex flex-col gap-3">
                   <div className="p-2 w-fit rounded-md bg-accent/20 text-accent">

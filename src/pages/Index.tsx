@@ -24,19 +24,19 @@ const Index = () => {
       <main>
         <HeroSection />
         <div className="relative">
-          <div className="absolute left-0 right-0 h-12 bg-gradient-to-b from-background to-[#1a1a1a] z-10"></div>
+          <div className="absolute left-0 right-0 h-12 bg-gradient-to-b from-background to-background z-10"></div>
           <AboutSection />
         </div>
         <div className="relative">
-          <div className="absolute left-0 right-0 h-12 bg-gradient-to-b from-[#1a1a1a] to-[#111827] z-10"></div>
+          <div className="absolute left-0 right-0 h-12 bg-gradient-to-b from-background to-background z-10"></div>
           <OurProcessSection />
         </div>
         <div className="relative">
-          <div className="absolute left-0 right-0 h-12 bg-gradient-to-b from-[#111827] to-[#2a2a2a] z-10"></div>
+          <div className="absolute left-0 right-0 h-12 bg-gradient-to-b from-background to-background z-10"></div>
           <ProjectsSection />
         </div>
         <div className="relative">
-          <div className="absolute left-0 right-0 h-12 bg-gradient-to-b from-[#2a2a2a] to-background z-10"></div>
+          <div className="absolute left-0 right-0 h-12 bg-gradient-to-b from-background to-background z-10"></div>
           <ContactSection />
         </div>
       </main>

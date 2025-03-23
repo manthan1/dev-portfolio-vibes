@@ -63,7 +63,7 @@ export { projects };
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="bg-[#2a2a2a] py-24 border-t border-b border-accent/10">
+    <section id="projects" className="bg-background py-24 border-t border-b border-accent/10">
       <div className="container max-w-7xl mx-auto relative">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-block pill bg-accent/20 text-accent mb-4">
@@ -84,7 +84,7 @@ export default function ProjectsSection() {
               to={`/projects/${project.id}`} 
               className="block h-full group"
             >
-              <div className="h-full flex flex-col overflow-hidden rounded-xl border border-[#333333] bg-[#202020] hover:shadow-lg transition-all duration-300 group-hover:border-accent/20">
+              <div className="h-full flex flex-col overflow-hidden rounded-xl border border-border/20 bg-secondary hover:shadow-lg transition-all duration-300 group-hover:border-accent/20">
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={project.image}
