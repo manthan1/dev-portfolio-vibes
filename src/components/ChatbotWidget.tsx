@@ -62,11 +62,11 @@ function ChatbotWidget() {
         content: "Great! I'll take you to our contact form where you can schedule a free call with Manthan. Just click the link below." 
       }, {
         role: "system",
-        content: "<a href='#contact' class='text-cyan-400 underline font-medium' onclick='window.chatbotLinkClicked()'>Schedule a call with Manthan</a>"
+        content: `<a href="#contact" class="text-cyan-400 underline font-medium" onClick="event.preventDefault(); document.querySelector('#chat-contact-link').click();">Schedule a call with Manthan</a>`
       }]);
       
-      // Add a global function that can be called from the rendered HTML
-      window.chatbotLinkClicked = handleContactLinkClick;
+      // Add a hidden button that will be clicked programmatically 
+      // This avoids using window.chatbotLinkClicked which causes the TypeScript error
       return;
     }
     
@@ -96,7 +96,7 @@ function ChatbotWidget() {
             content: aiResponse 
           }, {
             role: "system",
-            content: "<a href='#contact' class='text-cyan-400 underline font-medium' onclick='window.chatbotLinkClicked()'>Schedule a call with Manthan</a>"
+            content: `<a href="#contact" class="text-cyan-400 underline font-medium" onClick="event.preventDefault(); document.querySelector('#chat-contact-link').click();">Schedule a call with Manthan</a>`
           }]);
         } else {
           setMessages(prev => [...prev, { 
@@ -130,6 +130,13 @@ function ChatbotWidget() {
   
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end">
+      {/* Hidden button for contact navigation */}
+      <button 
+        id="chat-contact-link" 
+        className="hidden" 
+        onClick={handleContactLinkClick}
+      />
+      
       {/* Chat Button */}
       {!isOpen && (
         <Button 
