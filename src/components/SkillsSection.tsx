@@ -15,27 +15,27 @@ const workflowSteps: WorkflowStep[] = [
   {
     icon: <Phone className="h-10 w-10" />,
     title: "Discovery Call",
-    description: "We start by understanding your unique business needs, challenges, and goals during a complimentary consultation.",
+    description: "Free consultation to understand needs",
   },
   {
     icon: <Brain className="h-10 w-10" />,
     title: "Problem Mapping",
-    description: "Our team analyzes your workflow, identifies bottlenecks, and creates a strategic plan for AI implementation.",
+    description: "Strategic plan for implementation",
   },
   {
     icon: <Wrench className="h-10 w-10" />,
     title: "Custom AI Dev",
-    description: "We build tailored AI solutions that integrate seamlessly with your existing systems and business processes.",
+    description: "Tailored solutions for your workflow",
   },
   {
     icon: <RefreshCw className="h-10 w-10" />,
     title: "Integration",
-    description: "Our experts ensure a smooth transition, with training and support to help your team adapt to the new tools.",
+    description: "Seamless deployment with training",
   },
   {
     icon: <Rocket className="h-10 w-10" />,
     title: "Go-Live & Support",
-    description: "We provide ongoing optimization and maintenance to ensure your AI solutions continue to deliver results.",
+    description: "Continuous optimization and maintenance",
   },
 ];
 
@@ -65,21 +65,22 @@ export default function HowWeWorkSection() {
           </div>
         </FadeInView>
 
-        <div className="relative py-8">
-          <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-8 md:gap-0 px-4 md:px-0 relative">
-            {workflowSteps.map((step, index) => (
+        <div className="relative py-8 px-4">
+          {/* First Row - 2 Steps */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 relative">
+            {workflowSteps.slice(0, 2).map((step, index) => (
               <FadeInView
                 key={index}
                 animation="scale-in"
                 delay={100 * index}
-                className="w-full md:w-1/5 relative z-10"
+                className="relative z-10"
               >
                 <div 
                   className="glass p-6 rounded-xl h-full flex flex-col relative group transition-all duration-300 
                              hover:shadow-[0_0_25px_rgba(34,211,238,0.3)] hover:bg-background/80"
                 >
                   {/* Step Number Indicator */}
-                  <div className="absolute -top-3 -right-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium">
+                  <div className="absolute -top-3 -left-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
                     {index + 1}
                   </div>
                   
@@ -95,22 +96,58 @@ export default function HowWeWorkSection() {
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-muted-foreground mb-4 flex-grow">
+                  <p className="text-muted-foreground mb-4">
                     {step.description}
                   </p>
-                  
-                  {/* Arrow connector (show between items except last one) */}
-                  {index < workflowSteps.length - 1 && (
-                    <div className="hidden md:flex absolute -right-4 top-1/2 transform -translate-y-1/2 z-20">
-                      <ArrowRight className="w-8 h-8 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500" />
-                    </div>
-                  )}
                 </div>
               </FadeInView>
             ))}
             
-            {/* Background connector line */}
-            <div className="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-cyan-400/30 to-blue-500/30 transform -translate-y-1/2 z-0"></div>
+            {/* Connector between rows */}
+            <div className="hidden md:block absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-4 z-20">
+              <div className="h-8 w-0.5 bg-gradient-to-b from-cyan-400/30 to-blue-500/30"></div>
+            </div>
+          </div>
+          
+          {/* Second Row - 3 Steps */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            {workflowSteps.slice(2).map((step, index) => (
+              <FadeInView
+                key={index + 2}
+                animation="scale-in"
+                delay={100 * (index + 2)}
+                className="relative z-10"
+              >
+                <div 
+                  className="glass p-6 rounded-xl h-full flex flex-col relative group transition-all duration-300 
+                             hover:shadow-[0_0_25px_rgba(34,211,238,0.3)] hover:bg-background/80"
+                >
+                  {/* Step Number Indicator */}
+                  <div className="absolute -top-3 -left-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
+                    {index + 3}
+                  </div>
+                  
+                  {/* Icon with gradient background */}
+                  <div className="p-3 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 w-fit mb-4 
+                                group-hover:scale-110 transition-transform duration-300">
+                    {step.icon}
+                  </div>
+                  
+                  {/* Title with gradient text */}
+                  <h3 className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                    {step.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-muted-foreground mb-4">
+                    {step.description}
+                  </p>
+                </div>
+              </FadeInView>
+            ))}
+            
+            {/* Horizontal connector for second row */}
+            <div className="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-cyan-400/30 via-blue-500/30 to-cyan-400/30 transform -translate-y-1/2 z-0"></div>
           </div>
         </div>
 
