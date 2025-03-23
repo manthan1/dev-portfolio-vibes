@@ -1,4 +1,3 @@
-
 import { Copy, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 import FadeInView from "./animations/FadeInView";
@@ -87,7 +86,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="bg-secondary/30">
+    <section id="contact" className="bg-background">
       <div className="container max-w-7xl mx-auto">
         <FadeInView animation="fade-in">
           <div className="text-center max-w-3xl mx-auto mb-16">
