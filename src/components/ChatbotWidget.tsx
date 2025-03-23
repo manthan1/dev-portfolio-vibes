@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 function ChatbotWidget() {
   const [messages, setMessages] = useState([
-    { role: "system", content: "Hi there! Need an AI solution for your business? Let me know what you're working on." }
+    { role: "system", content: "Hey there! I'm the MJ AI assistant. What kind of business are you running, and what challenges are you facing?" }
   ]);
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +25,26 @@ function ChatbotWidget() {
     }
   }, [messages, isOpen, isMinimized]);
   
+  const handleContactLinkClick = () => {
+    setIsOpen(false);
+    // Scroll to contact section
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
+  // Check if the message contains call-related keywords
+  const containsCallRequest = (message: string): boolean => {
+    const callKeywords = [
+      "set up a call", "schedule a call", "book a call", 
+      "talk to manthan", "speak with manthan", "call with manthan",
+      "consultation", "meeting", "discuss", "talk to", "speak with"
+    ];
+    const lowerCaseMessage = message.toLowerCase();
+    return callKeywords.some(keyword => lowerCaseMessage.includes(keyword));
+  };
+  
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -33,6 +53,22 @@ function ChatbotWidget() {
     setMessages([...messages, userMessage]);
     setInput("");
     setIsLoading(true);
+    
+    // Check if user wants to set up a call
+    if (containsCallRequest(input)) {
+      setIsLoading(false);
+      setMessages(prev => [...prev, { 
+        role: "system", 
+        content: "Great! I'll take you to our contact form where you can schedule a free call with Manthan. Just click the link below." 
+      }, {
+        role: "system",
+        content: "<a href='#contact' class='text-cyan-400 underline font-medium' onclick='window.chatbotLinkClicked()'>Schedule a call with Manthan</a>"
+      }]);
+      
+      // Add a global function that can be called from the rendered HTML
+      window.chatbotLinkClicked = handleContactLinkClick;
+      return;
+    }
     
     try {
       // Prepare messages for API - include context but limit to last 10 messages to keep token count down
@@ -50,10 +86,24 @@ function ChatbotWidget() {
           content: "I'm sorry, I encountered an error. Please try again later." 
         }]);
       } else if (data?.message) {
-        setMessages(prev => [...prev, { 
-          role: "system", 
-          content: data.message 
-        }]);
+        // Check if the AI response indicates setting up a call
+        const aiResponse = data.message;
+        
+        if (containsCallRequest(aiResponse)) {
+          // If AI suggests a call, add a link to the contact form
+          setMessages(prev => [...prev, { 
+            role: "system", 
+            content: aiResponse 
+          }, {
+            role: "system",
+            content: "<a href='#contact' class='text-cyan-400 underline font-medium' onclick='window.chatbotLinkClicked()'>Schedule a call with Manthan</a>"
+          }]);
+        } else {
+          setMessages(prev => [...prev, { 
+            role: "system", 
+            content: aiResponse 
+          }]);
+        }
       }
     } catch (err) {
       console.error('Error in chat interaction:', err);
@@ -139,8 +189,8 @@ function ChatbotWidget() {
                             ? "bg-gradient-to-r from-blue-500 to-cyan-400 text-white" 
                             : "bg-secondary border border-border/30 text-white"
                         }`}
+                        dangerouslySetInnerHTML={{ __html: message.content }}
                       >
-                        {message.content}
                       </div>
                     </div>
                   ))}
