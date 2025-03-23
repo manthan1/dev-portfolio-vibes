@@ -1,7 +1,7 @@
 
 import React from "react";
 import FadeInView from "./animations/FadeInView";
-import { ArrowRight, Phone, Brain, Wrench, RefreshCw, Rocket } from "lucide-react";
+import { ArrowRight, Phone, Brain, Wrench, RefreshCw, Rocket, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -15,27 +15,27 @@ const workflowSteps: WorkflowStep[] = [
   {
     icon: <Phone className="h-10 w-10" />,
     title: "Discovery Call",
-    description: "Free consultation to understand needs",
+    description: "Free initial consultation",
   },
   {
     icon: <Brain className="h-10 w-10" />,
     title: "Problem Mapping",
-    description: "Strategic plan for implementation",
+    description: "Strategic implementation plan",
   },
   {
     icon: <Wrench className="h-10 w-10" />,
     title: "Custom AI Dev",
-    description: "Tailored solutions for your workflow",
+    description: "Tailored workflow solutions",
   },
   {
     icon: <RefreshCw className="h-10 w-10" />,
     title: "Integration",
-    description: "Seamless deployment with training",
+    description: "Seamless deployment",
   },
   {
     icon: <Rocket className="h-10 w-10" />,
     title: "Go-Live & Support",
-    description: "Continuous optimization and maintenance",
+    description: "Ongoing optimization",
   },
 ];
 
@@ -65,9 +65,9 @@ export default function HowWeWorkSection() {
           </div>
         </FadeInView>
 
-        <div className="relative py-8 px-4">
-          {/* First Row - 2 Steps */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 relative">
+        <div className="relative py-8 px-4 max-w-5xl mx-auto">
+          {/* First Row - 2 Steps with Arrow */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 relative">
             {workflowSteps.slice(0, 2).map((step, index) => (
               <FadeInView
                 key={index}
@@ -96,20 +96,25 @@ export default function HowWeWorkSection() {
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-muted-foreground">
                     {step.description}
                   </p>
                 </div>
               </FadeInView>
             ))}
             
-            {/* Connector between rows */}
-            <div className="hidden md:block absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-4 z-20">
-              <div className="h-8 w-0.5 bg-gradient-to-b from-cyan-400/30 to-blue-500/30"></div>
+            {/* Arrow between first two steps */}
+            <div className="hidden md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+              <ArrowRight className="w-8 h-8 text-cyan-400 animate-pulse-subtle" />
+            </div>
+            
+            {/* Arrow pointing down to connect rows */}
+            <div className="hidden md:flex absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-8 z-20">
+              <ArrowDown className="w-8 h-8 text-cyan-400 animate-pulse-subtle" />
             </div>
           </div>
           
-          {/* Second Row - 3 Steps */}
+          {/* Second Row - 3 Steps with Arrows */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             {workflowSteps.slice(2).map((step, index) => (
               <FadeInView
@@ -139,15 +144,21 @@ export default function HowWeWorkSection() {
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-muted-foreground">
                     {step.description}
                   </p>
                 </div>
               </FadeInView>
             ))}
             
-            {/* Horizontal connector for second row */}
-            <div className="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-cyan-400/30 via-blue-500/30 to-cyan-400/30 transform -translate-y-1/2 z-0"></div>
+            {/* Arrows between bottom row steps */}
+            <div className="hidden md:flex absolute left-[calc(25%-4px)] top-1/2 transform -translate-y-1/2 z-20">
+              <ArrowRight className="w-8 h-8 text-cyan-400 animate-pulse-subtle" />
+            </div>
+            
+            <div className="hidden md:flex absolute left-[calc(58.33%-4px)] top-1/2 transform -translate-y-1/2 z-20">
+              <ArrowRight className="w-8 h-8 text-cyan-400 animate-pulse-subtle" />
+            </div>
           </div>
         </div>
 
