@@ -8,7 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { ArrowRight, Phone, Brain, ToolIcon, RefreshCw, Rocket } from "lucide-react";
+import { ArrowRight, Phone, Brain, Wrench, RefreshCw, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface WorkflowStep {
@@ -32,7 +32,7 @@ const workflowSteps: WorkflowStep[] = [
     color: "from-purple-500 to-pink-400",
   },
   {
-    icon: <ToolIcon className="h-10 w-10" />,
+    icon: <Wrench className="h-10 w-10" />,
     title: "Custom AI Dev",
     description: "We build tailored AI solutions that integrate seamlessly with your existing systems and business processes.",
     color: "from-emerald-500 to-teal-400",
