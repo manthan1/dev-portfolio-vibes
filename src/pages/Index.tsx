@@ -24,19 +24,35 @@ const Index = () => {
       <main>
         <HeroSection />
         <div className="relative">
-          <div className="absolute left-0 right-0 h-12 bg-gradient-to-b from-background to-background z-10"></div>
+          {/* Divider line between Hero and About */}
+          <div className="absolute left-0 right-0 z-10">
+            <div className="h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"></div>
+            <div className="h-12 bg-gradient-to-b from-background to-background"></div>
+          </div>
           <AboutSection />
         </div>
         <div className="relative">
-          <div className="absolute left-0 right-0 h-12 bg-gradient-to-b from-background to-background z-10"></div>
+          {/* Divider line between About and Skills */}
+          <div className="absolute left-0 right-0 z-10">
+            <div className="h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"></div>
+            <div className="h-12 bg-gradient-to-b from-background to-background"></div>
+          </div>
           <OurProcessSection />
         </div>
         <div className="relative">
-          <div className="absolute left-0 right-0 h-12 bg-gradient-to-b from-background to-background z-10"></div>
+          {/* Divider line between Skills and Projects */}
+          <div className="absolute left-0 right-0 z-10">
+            <div className="h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"></div>
+            <div className="h-12 bg-gradient-to-b from-background to-background"></div>
+          </div>
           <ProjectsSection />
         </div>
         <div className="relative">
-          <div className="absolute left-0 right-0 h-12 bg-gradient-to-b from-background to-background z-10"></div>
+          {/* Divider line between Projects and Contact */}
+          <div className="absolute left-0 right-0 z-10">
+            <div className="h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"></div>
+            <div className="h-12 bg-gradient-to-b from-background to-background"></div>
+          </div>
           <ContactSection />
         </div>
       </main>
