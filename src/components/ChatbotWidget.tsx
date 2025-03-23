@@ -5,6 +5,15 @@ import { MessageSquare, X, Minimize2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
+// Create a global context for opening the chatbot from anywhere
+let globalOpenChatbot: () => void;
+
+export function openChatbot() {
+  if (globalOpenChatbot) {
+    globalOpenChatbot();
+  }
+}
+
 function ChatbotWidget() {
   const [messages, setMessages] = useState([
     { role: "system", content: "Hey there! I'm the MJ AI assistant. What kind of business are you running, and what challenges are you facing?" }
@@ -14,6 +23,14 @@ function ChatbotWidget() {
   const [isMinimized, setIsMinimized] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  
+  // Register the global open function
+  useEffect(() => {
+    globalOpenChatbot = () => {
+      setIsOpen(true);
+      setIsMinimized(false);
+    };
+  }, []);
   
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -129,6 +146,34 @@ function ChatbotWidget() {
     setIsMinimized(true);
   };
   
+  // Animation variants for framer-motion
+  const chatWidgetVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20, 
+      scale: 0.95,
+      transition: { duration: 0.3, ease: "easeInOut" }
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { duration: 0.3, ease: "easeOut" }
+    },
+    exit: { 
+      opacity: 0, 
+      y: 20, 
+      scale: 0.95,
+      transition: { duration: 0.3, ease: "easeInOut" }
+    }
+  };
+  
+  const minimizedVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.2 } },
+    exit: { opacity: 0, y: 10, transition: { duration: 0.2 } }
+  };
+  
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end">
       {/* Hidden button for contact navigation */}
@@ -140,104 +185,118 @@ function ChatbotWidget() {
       
       {/* Chat Button */}
       {!isOpen && (
-        <Button 
-          onClick={toggleChat} 
-          className="rounded-full h-12 w-12 p-0 bg-gradient-to-r from-blue-500 to-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300"
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
-          <MessageSquare className="h-5 w-5" />
-        </Button>
+          <Button 
+            onClick={toggleChat} 
+            className="rounded-full h-12 w-12 p-0 bg-gradient-to-r from-blue-500 to-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300"
+          >
+            <MessageSquare className="h-5 w-5" />
+          </Button>
+        </motion.div>
       )}
       
       {/* Chat Widget */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={isMinimized 
-              ? { opacity: 1, y: 0, scale: 1, height: "auto", width: "auto" }
-              : { opacity: 1, y: 0, scale: 1, height: "450px", width: "350px" }
-            }
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className={`bg-background border border-border/50 rounded-xl overflow-hidden shadow-lg flex flex-col`}
-          >
-            {isMinimized ? (
-              <div 
-                className="p-3 cursor-pointer flex items-center justify-between bg-secondary/20 hover:bg-secondary/30 transition-colors"
-                onClick={() => setIsMinimized(false)}
-              >
-                <span className="text-sm font-medium">Chat with MJ AI</span>
+          isMinimized ? (
+            <motion.div 
+              key="minimized"
+              variants={minimizedVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="p-3 cursor-pointer flex items-center justify-between bg-secondary/20 hover:bg-secondary/30 transition-colors rounded-xl border border-border/50 shadow-lg"
+              onClick={() => setIsMinimized(false)}
+            >
+              <span className="text-sm font-medium">Chat with MJ AI</span>
+              <div className="flex gap-2">
+                <Maximize2 className="h-4 w-4 text-muted-foreground" />
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div 
+              key="expanded"
+              variants={chatWidgetVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="bg-background border border-border/50 rounded-xl overflow-hidden shadow-lg flex flex-col h-[450px] w-[350px]"
+            >
+              <div className="p-3 border-b border-border/50 bg-secondary/20 flex justify-between items-center">
+                <h3 className="text-md font-semibold text-white">Chat with MJ AI</h3>
                 <div className="flex gap-2">
-                  <Maximize2 className="h-4 w-4 text-muted-foreground" />
+                  <Button variant="ghost" size="icon" className="h-6 w-6" onClick={minimizeChat}>
+                    <Minimize2 className="h-4 w-4 text-muted-foreground" />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setIsOpen(false)}>
+                    <X className="h-4 w-4 text-muted-foreground" />
+                  </Button>
                 </div>
               </div>
-            ) : (
-              <>
-                <div className="p-3 border-b border-border/50 bg-secondary/20 flex justify-between items-center">
-                  <h3 className="text-md font-semibold text-white">Chat with MJ AI</h3>
-                  <div className="flex gap-2">
-                    <Button variant="ghost" size="icon" className="h-6 w-6" onClick={minimizeChat}>
-                      <Minimize2 className="h-4 w-4 text-muted-foreground" />
-                    </Button>
-                    <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setIsOpen(false)}>
-                      <X className="h-4 w-4 text-muted-foreground" />
-                    </Button>
-                  </div>
-                </div>
-                
-                <div className="flex-1 p-4 overflow-y-auto space-y-4">
-                  {messages.map((message, i) => (
+              
+              <div className="flex-1 p-4 overflow-y-auto space-y-4">
+                {messages.map((message, i) => (
+                  <motion.div 
+                    key={i} 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                    className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+                  >
                     <div 
-                      key={i} 
-                      className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+                      className={`px-4 py-2 rounded-lg max-w-[80%] ${
+                        message.role === "user" 
+                          ? "bg-gradient-to-r from-blue-500 to-cyan-400 text-white" 
+                          : "bg-secondary border border-border/30 text-white"
+                      }`}
+                      dangerouslySetInnerHTML={{ __html: message.content }}
                     >
-                      <div 
-                        className={`px-4 py-2 rounded-lg max-w-[80%] ${
-                          message.role === "user" 
-                            ? "bg-gradient-to-r from-blue-500 to-cyan-400 text-white" 
-                            : "bg-secondary border border-border/30 text-white"
-                        }`}
-                        dangerouslySetInnerHTML={{ __html: message.content }}
-                      >
-                      </div>
                     </div>
-                  ))}
-                  {isLoading && (
-                    <div className="flex justify-start">
-                      <div className="bg-secondary border border-border/30 text-white px-4 py-2 rounded-lg max-w-[80%] flex items-center">
-                        <span className="flex gap-1">
-                          <span className="animate-bounce">.</span>
-                          <span className="animate-bounce delay-100">.</span>
-                          <span className="animate-bounce delay-200">.</span>
-                        </span>
-                      </div>
+                  </motion.div>
+                ))}
+                {isLoading && (
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="flex justify-start"
+                  >
+                    <div className="bg-secondary border border-border/30 text-white px-4 py-2 rounded-lg max-w-[80%] flex items-center">
+                      <span className="flex gap-1">
+                        <span className="animate-bounce">.</span>
+                        <span className="animate-bounce delay-100">.</span>
+                        <span className="animate-bounce delay-200">.</span>
+                      </span>
                     </div>
-                  )}
-                  <div ref={messagesEndRef} />
+                  </motion.div>
+                )}
+                <div ref={messagesEndRef} />
+              </div>
+              
+              <form onSubmit={handleSendMessage} className="border-t border-border/50 p-3">
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Type your message..."
+                    className="flex-1 bg-secondary rounded-md px-3 py-2 text-white focus:outline-none focus:ring-1 focus:ring-accent"
+                    disabled={isLoading}
+                  />
+                  <Button 
+                    type="submit" 
+                    className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white"
+                    disabled={isLoading}
+                  >
+                    Send
+                  </Button>
                 </div>
-                
-                <form onSubmit={handleSendMessage} className="border-t border-border/50 p-3">
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      value={input}
-                      onChange={(e) => setInput(e.target.value)}
-                      placeholder="Type your message..."
-                      className="flex-1 bg-secondary rounded-md px-3 py-2 text-white focus:outline-none focus:ring-1 focus:ring-accent"
-                      disabled={isLoading}
-                    />
-                    <Button 
-                      type="submit" 
-                      className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white"
-                      disabled={isLoading}
-                    >
-                      Send
-                    </Button>
-                  </div>
-                </form>
-              </>
-            )}
-          </motion.div>
+              </form>
+            </motion.div>
+          )
         )}
       </AnimatePresence>
     </div>
