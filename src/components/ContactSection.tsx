@@ -50,20 +50,21 @@ const contactInfo: ContactInfo[] = [
 interface FormData {
   name: string;
   email: string;
-  phone: string;  // Added phone field
+  phone: string;
   message: string;
 }
 
 export default function ContactSection() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
-  const { submit, isSubmitting, error } = useSupabaseSubmit();
+  const { register, handleSubmit, reset: resetForm, formState: { errors } } = useForm<FormData>();
+  const { submit, isSubmitting, isSuccess, error, reset: resetSubmit } = useSupabaseSubmit();
   const [isSubmitted, setIsSubmitted] = useState(false);
   
   const onSubmit = async (data: FormData) => {
     try {
+      console.log('Form submitted with data:', data);
       await submit(data);
       toast.success("Message sent successfully! I'll get back to you soon.");
-      reset();
+      resetForm();
       setIsSubmitted(true);
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -73,6 +74,11 @@ export default function ContactSection() {
           : "There was an error sending your message. Please try again."
       );
     }
+  };
+
+  const handleNewMessage = () => {
+    setIsSubmitted(false);
+    resetSubmit();
   };
 
   const copyToClipboard = (text: string, label: string) => {
@@ -85,10 +91,10 @@ export default function ContactSection() {
       <div className="container max-w-7xl mx-auto">
         <FadeInView animation="fade-in">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block pill bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground mb-4">
+            <div className="inline-block pill bg-primary/10 text-cyan-400 dark:bg-primary/20 dark:text-cyan-400 mb-4">
               <span className="font-medium">Get in Touch</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 neon-text">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-cyan-400">
               Let's Connect
             </h2>
             <p className="text-muted-foreground">
@@ -111,21 +117,21 @@ export default function ContactSection() {
             )}
             
             {isSubmitted ? (
-              <div className="glass p-8 rounded-xl flex flex-col items-center justify-center min-h-[400px] neon-border">
+              <div className="glass p-8 rounded-xl flex flex-col items-center justify-center min-h-[400px]">
                 <div className="text-center">
                   <h3 className="text-xl font-semibold mb-4 text-cyan-400">Thank You!</h3>
                   <p className="text-muted-foreground mb-6">
                     Your message has been received. I'll get back to you as soon as possible.
                   </p>
-                  <Button onClick={() => setIsSubmitted(false)} className="neon-outline-button">Send Another Message</Button>
+                  <Button onClick={handleNewMessage} className="bg-cyan-500 hover:bg-cyan-600">Send Another Message</Button>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="glass p-8 rounded-xl neon-border">
+              <form onSubmit={handleSubmit(onSubmit)} className="glass p-8 rounded-xl">
                 <h3 className="text-xl font-semibold mb-6 text-cyan-400">Send a Message</h3>
                 <div className="space-y-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-1 text-primary">
+                    <label htmlFor="name" className="block text-sm font-medium mb-1 text-cyan-400">
                       Name
                     </label>
                     <Input
@@ -139,7 +145,7 @@ export default function ContactSection() {
                     )}
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-1 text-primary">
+                    <label htmlFor="email" className="block text-sm font-medium mb-1 text-cyan-400">
                       Email
                     </label>
                     <Input
@@ -160,7 +166,7 @@ export default function ContactSection() {
                     )}
                   </div>
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-1 text-primary">
+                    <label htmlFor="phone" className="block text-sm font-medium mb-1 text-cyan-400">
                       Phone (optional)
                     </label>
                     <Input
@@ -175,7 +181,7 @@ export default function ContactSection() {
                     )}
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-1 text-primary">
+                    <label htmlFor="message" className="block text-sm font-medium mb-1 text-cyan-400">
                       Message
                     </label>
                     <Textarea
@@ -192,7 +198,7 @@ export default function ContactSection() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full neon-button"
+                    className="w-full bg-cyan-500 hover:bg-cyan-600"
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>

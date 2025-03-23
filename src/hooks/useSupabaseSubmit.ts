@@ -5,7 +5,7 @@ import { supabase } from '@/integrations/supabase/client';
 interface FormData {
   name: string;
   email: string;
-  phone?: string; // Added optional phone field
+  phone?: string;
   message: string;
 }
 
@@ -30,25 +30,30 @@ export function useSupabaseSubmit(): UseSupabaseSubmitReturn {
     setError(null);
     
     try {
+      console.log('Submitting form data to Supabase:', data);
+      
       // Insert the form data into the "contact_messages" table in Supabase
-      const { error: supabaseError } = await supabase
+      const { error: supabaseError, data: responseData } = await supabase
         .from('contact_messages')
         .insert([
           {
             name: data.name,
             email: data.email,
-            phone: data.phone || null, // Handle the phone field
+            phone: data.phone || null,
             message: data.message,
             created_at: new Date().toISOString()
           }
         ]);
       
       if (supabaseError) {
+        console.error('Supabase error:', supabaseError);
         throw new Error(supabaseError.message);
       }
       
+      console.log('Form data submitted successfully:', responseData);
       setIsSuccess(true);
     } catch (err) {
+      console.error('Error in form submission:', err);
       setError(err instanceof Error ? err : new Error('Unknown error occurred'));
       throw err;
     } finally {
