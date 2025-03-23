@@ -1,4 +1,3 @@
-
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { MoveRight, PhoneCall } from "lucide-react";
@@ -79,7 +78,7 @@ function Hero() {
           <div className="flex flex-row gap-3">
             <Button 
               size="lg" 
-              className="border border-cyan-400 text-white gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300" 
+              className="bg-transparent border border-input text-white gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300" 
               variant="outline" 
               onClick={handleScrollTo("contact")}
             >
