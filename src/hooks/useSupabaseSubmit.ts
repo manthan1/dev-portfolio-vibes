@@ -31,6 +31,7 @@ export function useSupabaseSubmit(): UseSupabaseSubmitReturn {
     
     try {
       console.log('Submitting form data to Supabase:', data);
+      console.log('Using Supabase URL:', supabase.supabaseUrl);
       
       // Insert the form data into the "contact_messages" table in Supabase
       const { error: supabaseError, data: responseData } = await supabase
@@ -39,7 +40,7 @@ export function useSupabaseSubmit(): UseSupabaseSubmitReturn {
           {
             name: data.name,
             email: data.email,
-            phone: data.phone, // Phone is required now
+            phone: data.phone, // Phone is required
             message: data.message,
             created_at: new Date().toISOString()
           }
@@ -47,6 +48,9 @@ export function useSupabaseSubmit(): UseSupabaseSubmitReturn {
       
       if (supabaseError) {
         console.error('Supabase error details:', supabaseError);
+        console.error('Error code:', supabaseError.code);
+        console.error('Error message:', supabaseError.message);
+        console.error('Error details:', supabaseError.details);
         throw new Error(supabaseError.message || 'Error submitting to database');
       }
       
