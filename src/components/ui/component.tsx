@@ -1,9 +1,9 @@
-
 import { useEffect, useMemo, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, MoveRight, PhoneCall, X, Minimize2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { supabase } from "@/integrations/supabase/client";
 
 function ChatbotWidget() {
   const [messages, setMessages] = useState([
@@ -12,6 +12,7 @@ function ChatbotWidget() {
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   
   const scrollToBottom = () => {
@@ -24,20 +25,45 @@ function ChatbotWidget() {
     }
   }, [messages, isOpen, isMinimized]);
   
-  const handleSendMessage = (e) => {
+  const handleSendMessage = async (e) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim() || isLoading) return;
     
-    setMessages([...messages, { role: "user", content: input }]);
+    const userMessage = { role: "user", content: input };
+    setMessages([...messages, userMessage]);
     setInput("");
+    setIsLoading(true);
     
-    // Simulate AI response
-    setTimeout(() => {
+    try {
+      // Prepare messages for API - include context but limit to last 10 messages to keep token count down
+      const contextMessages = [...messages.slice(-9), userMessage];
+      
+      // Call Supabase Edge Function
+      const { data, error } = await supabase.functions.invoke('chat-with-ai', {
+        body: { messages: contextMessages }
+      });
+      
+      if (error) {
+        console.error('Error calling AI function:', error);
+        setMessages(prev => [...prev, { 
+          role: "system", 
+          content: "I'm sorry, I encountered an error. Please try again later." 
+        }]);
+      } else if (data?.message) {
+        setMessages(prev => [...prev, { 
+          role: "system", 
+          content: data.message 
+        }]);
+      }
+    } catch (err) {
+      console.error('Error in chat interaction:', err);
       setMessages(prev => [...prev, { 
         role: "system", 
-        content: "Thanks for your message! Our team will get back to you shortly." 
+        content: "I'm sorry, something went wrong. Please try again." 
       }]);
-    }, 1000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const toggleChat = () => {
@@ -118,6 +144,17 @@ function ChatbotWidget() {
                       </div>
                     </div>
                   ))}
+                  {isLoading && (
+                    <div className="flex justify-start">
+                      <div className="bg-secondary border border-border/30 text-white px-4 py-2 rounded-lg max-w-[80%] flex items-center">
+                        <span className="flex gap-1">
+                          <span className="animate-bounce">.</span>
+                          <span className="animate-bounce delay-100">.</span>
+                          <span className="animate-bounce delay-200">.</span>
+                        </span>
+                      </div>
+                    </div>
+                  )}
                   <div ref={messagesEndRef} />
                 </div>
                 
@@ -129,8 +166,13 @@ function ChatbotWidget() {
                       onChange={(e) => setInput(e.target.value)}
                       placeholder="Type your message..."
                       className="flex-1 bg-secondary rounded-md px-3 py-2 text-white focus:outline-none focus:ring-1 focus:ring-accent"
+                      disabled={isLoading}
                     />
-                    <Button type="submit" className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white">
+                    <Button 
+                      type="submit" 
+                      className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white"
+                      disabled={isLoading}
+                    >
                       Send
                     </Button>
                   </div>
