@@ -65,10 +65,11 @@ export function BeamsBackground({
 
         const updateCanvasSize = () => {
             const dpr = window.devicePixelRatio || 1;
-            canvas.width = window.innerWidth * dpr;
-            canvas.height = window.innerHeight * dpr;
-            canvas.style.width = `${window.innerWidth}px`;
-            canvas.style.height = `${window.innerHeight}px`;
+            // Add extra width to prevent black borders
+            canvas.width = (window.innerWidth + 100) * dpr;
+            canvas.height = (window.innerHeight + 100) * dpr;
+            canvas.style.width = `${window.innerWidth + 100}px`;
+            canvas.style.height = `${window.innerHeight + 100}px`;
             ctx.scale(dpr, dpr);
 
             const totalBeams = MINIMUM_BEAMS * 1.5;
@@ -177,7 +178,7 @@ export function BeamsBackground({
         >
             <canvas
                 ref={canvasRef}
-                className="absolute inset-0"
+                className="absolute inset-0 -left-[50px] -right-[50px] -top-[50px] -bottom-[50px] w-[calc(100%+100px)] h-[calc(100%+100px)]"
                 style={{ filter: "blur(15px)" }}
             />
 

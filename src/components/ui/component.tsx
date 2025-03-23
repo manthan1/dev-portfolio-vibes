@@ -1,27 +1,35 @@
 
-import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useMemo, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
+  const intervalRef = useRef<number | null>(null);
   const titles = useMemo(
     () => ["Your Work", "Your Time", "Your Business", "Your Daily Tasks", "Your Growth"],
     []
   );
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (titleNumber === titles.length - 1) {
-        setTitleNumber(0);
-      } else {
-        setTitleNumber(titleNumber + 1);
-      }
+    // Clear any existing interval when component mounts or titleNumber changes
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    
+    // Set new interval
+    intervalRef.current = window.setInterval(() => {
+      setTitleNumber(prev => prev === titles.length - 1 ? 0 : prev + 1);
     }, 2000);
-    return () => clearTimeout(timeoutId);
-  }, [titleNumber, titles]);
+    
+    // Cleanup
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [titles.length]);
 
   const handleScrollTo = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
@@ -48,27 +56,23 @@ function Hero() {
             <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
               <span className="text-primary">The AI Agency Built to Automate</span>
               <div className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1 h-[60px] md:h-[80px]">
-                {titles.map((title, index) => (
+                <AnimatePresence mode="wait">
                   <motion.span
-                    key={index}
+                    key={titleNumber}
                     className="absolute font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500"
-                    initial={{ opacity: 0, y: -100 }}
-                    transition={{ type: "spring", stiffness: 50 }}
-                    animate={
-                      titleNumber === index
-                        ? {
-                            y: 0,
-                            opacity: 1,
-                          }
-                        : {
-                            y: titleNumber > index ? -150 : 150,
-                            opacity: 0,
-                          }
-                    }
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 300, 
+                      damping: 30,
+                      mass: 0.5
+                    }}
                   >
-                    {title}
+                    {titles[titleNumber]}
                   </motion.span>
-                ))}
+                </AnimatePresence>
               </div>
             </h1>
 
@@ -87,7 +91,7 @@ function Hero() {
             </Button>
             <Button 
               size="lg" 
-              className="neon-button gap-4" 
+              className="gap-4 bg-gradient-to-r from-cyan-400 to-blue-500 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300" 
               onClick={handleScrollTo("projects")}
             >
               Our Work <MoveRight className="w-4 h-4" />
