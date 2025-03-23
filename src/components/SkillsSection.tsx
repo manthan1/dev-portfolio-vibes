@@ -1,125 +1,130 @@
 
+import React from "react";
 import FadeInView from "./animations/FadeInView";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { ArrowRight, Phone, Brain, ToolIcon, RefreshCw, Rocket } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-interface SkillCategory {
+interface WorkflowStep {
+  icon: React.ReactNode;
   title: string;
-  skills: Skill[];
+  description: string;
+  color: string;
 }
 
-interface Skill {
-  name: string;
-  level: number; // 1-10
-}
-
-const skillCategories: SkillCategory[] = [
+const workflowSteps: WorkflowStep[] = [
   {
-    title: "Programming",
-    skills: [
-      { name: "Python", level: 9 },
-      { name: "JavaScript", level: 7 },
-      { name: "TypeScript", level: 7 },
-      { name: "SQL", level: 8 },
-    ],
+    icon: <Phone className="h-10 w-10" />,
+    title: "Discovery Call",
+    description: "We start by understanding your unique business needs, challenges, and goals during a complimentary consultation.",
+    color: "from-blue-500 to-cyan-400",
   },
   {
-    title: "Backend",
-    skills: [
-      { name: "FastAPI", level: 9 },
-      { name: "Django", level: 7 },
-      { name: "Node.js", level: 6 },
-      { name: "PostgreSQL", level: 8 },
-    ],
+    icon: <Brain className="h-10 w-10" />,
+    title: "Problem Mapping",
+    description: "Our team analyzes your workflow, identifies bottlenecks, and creates a strategic plan for AI implementation.",
+    color: "from-purple-500 to-pink-400",
   },
   {
-    title: "AI & ML",
-    skills: [
-      { name: "Machine Learning", level: 8 },
-      { name: "NLP", level: 9 },
-      { name: "Computer Vision", level: 7 },
-      { name: "TensorFlow", level: 8 },
-    ],
+    icon: <ToolIcon className="h-10 w-10" />,
+    title: "Custom AI Dev",
+    description: "We build tailored AI solutions that integrate seamlessly with your existing systems and business processes.",
+    color: "from-emerald-500 to-teal-400",
   },
   {
-    title: "Frontend",
-    skills: [
-      { name: "React", level: 7 },
-      { name: "HTML/CSS", level: 8 },
-      { name: "Tailwind CSS", level: 7 },
-      { name: "UI/UX Design", level: 6 },
-    ],
+    icon: <RefreshCw className="h-10 w-10" />,
+    title: "Integration",
+    description: "Our experts ensure a smooth transition, with training and support to help your team adapt to the new tools.",
+    color: "from-amber-500 to-orange-400",
   },
   {
-    title: "Cloud & DevOps",
-    skills: [
-      { name: "AWS", level: 7 },
-      { name: "GCP", level: 6 },
-      { name: "Docker", level: 7 },
-      { name: "CI/CD", level: 6 },
-    ],
-  },
-  {
-    title: "Other",
-    skills: [
-      { name: "System Design", level: 8 },
-      { name: "Process Automation", level: 9 },
-      { name: "API Development", level: 8 },
-      { name: "Project Management", level: 7 },
-    ],
+    icon: <Rocket className="h-10 w-10" />,
+    title: "Go-Live & Support",
+    description: "We provide ongoing optimization and maintenance to ensure your AI solutions continue to deliver results.",
+    color: "from-red-500 to-rose-400",
   },
 ];
 
-export default function SkillsSection() {
+export default function HowWeWorkSection() {
+  const handleScrollTo = (id: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="skills">
       <div className="container max-w-7xl mx-auto">
         <FadeInView animation="fade-in">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-block pill bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground mb-4">
-              <span className="font-medium">Expertise</span>
+              <span className="font-medium">Our Process</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Technical Skills
+              🧩 How We Work
             </h2>
             <p className="text-muted-foreground">
-              The technologies, languages, and frameworks I work with to build innovative solutions.
+              Our proven workflow delivers AI solutions that solve real business problems and drive measurable results.
             </p>
           </div>
         </FadeInView>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
-            <FadeInView
-              key={category.title}
-              animation="scale-in"
-              delay={100 * categoryIndex}
-              className="glass p-6 rounded-xl"
-            >
-              <h3 className="text-lg font-semibold mb-4">
-                {category.title}
-              </h3>
-              <div className="space-y-4">
-                {category.skills.map((skill) => (
-                  <div key={skill.name} className="space-y-1">
-                    <div className="flex justify-between">
-                      <span className="text-sm">{skill.name}</span>
-                      <span className="text-sm text-muted-foreground">
-                        {skill.level * 10}%
-                      </span>
+        <div className="relative px-8 md:px-16 py-8">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {workflowSteps.map((step, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <FadeInView
+                    animation="scale-in"
+                    delay={100 * index}
+                    className="h-full"
+                  >
+                    <div className="glass p-6 rounded-xl h-full flex flex-col">
+                      <div className={`p-3 rounded-full bg-gradient-to-r ${step.color} w-fit mb-4`}>
+                        {step.icon}
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-4 flex-grow">
+                        {step.description}
+                      </p>
+                      <div className="text-sm text-muted-foreground">
+                        Step {index + 1} of {workflowSteps.length}
+                      </div>
                     </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-primary transition-all duration-500"
-                        style={{
-                          width: `${skill.level * 10}%`,
-                          opacity: 0.7 + skill.level * 0.03,
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </FadeInView>
-          ))}
+                  </FadeInView>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-2 md:left-4" />
+            <CarouselNext className="absolute right-2 md:right-4" />
+          </Carousel>
+        </div>
+
+        <div className="mt-12 text-center">
+          <Button 
+            size="lg" 
+            className="bg-transparent border border-input text-white gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300" 
+            variant="outline" 
+            onClick={handleScrollTo("contact")}
+          >
+            Book a Free Consultation <ArrowRight className="w-4 h-4" />
+          </Button>
         </div>
       </div>
     </section>

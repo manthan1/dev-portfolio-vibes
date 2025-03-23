@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
 import ProjectsSection from "../components/ProjectsSection";
-import SkillsSection from "../components/SkillsSection";
+import HowWeWorkSection from "../components/SkillsSection";
 import ContactSection from "../components/ContactSection";
 
 const Index = () => {
@@ -25,7 +25,7 @@ const Index = () => {
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
-        <SkillsSection />
+        <HowWeWorkSection />
         <ContactSection />
       </main>
       <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
