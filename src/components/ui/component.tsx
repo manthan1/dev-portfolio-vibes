@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MoveRight, PhoneCall, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { openChatbot } from "@/components/ChatbotWidget";
 
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
@@ -48,13 +49,7 @@ function Hero() {
               variant="secondary" 
               size="sm" 
               className="gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300"
-              onClick={() => {
-                // Find the ChatbotWidget component and trigger it
-                const chatButton = document.querySelector('.fixed.bottom-4.right-4 button');
-                if (chatButton instanceof HTMLElement) {
-                  chatButton.click();
-                }
-              }}
+              onClick={openChatbot}
             >
               Talk to our AI assistant <MessageSquare className="w-4 h-4 text-cyan-400" />
             </Button>
