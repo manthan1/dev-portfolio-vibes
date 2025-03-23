@@ -1,3 +1,4 @@
+
 import { Copy, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 import FadeInView from "./animations/FadeInView";
@@ -49,7 +50,7 @@ const contactInfo: ContactInfo[] = [
 interface FormData {
   name: string;
   email: string;
-  phone: string; // This is required as per your request
+  phone: string;
   message: string;
 }
 
@@ -86,7 +87,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="bg-secondary/50">
+    <section id="contact" className="bg-secondary/30">
       <div className="container max-w-7xl mx-auto">
         <FadeInView animation="fade-in">
           <div className="text-center max-w-3xl mx-auto mb-16">
