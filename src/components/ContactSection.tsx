@@ -1,4 +1,3 @@
-
 import { Copy, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 import FadeInView from "./animations/FadeInView";
@@ -50,7 +49,7 @@ const contactInfo: ContactInfo[] = [
 interface FormData {
   name: string;
   email: string;
-  phone: string;
+  phone: string; // This is required as per your request
   message: string;
 }
 
@@ -167,12 +166,18 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium mb-1 text-cyan-400">
-                      Phone (optional)
+                      Phone
                     </label>
                     <Input
                       id="phone"
                       type="tel"
-                      {...register("phone")}
+                      {...register("phone", { 
+                        required: "Phone number is required",
+                        pattern: {
+                          value: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
+                          message: "Invalid phone number format"
+                        }
+                      })}
                       className="w-full focus:border-cyan-400 focus:ring-cyan-400"
                       placeholder="Your phone number"
                     />

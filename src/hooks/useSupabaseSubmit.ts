@@ -5,7 +5,7 @@ import { supabase } from '@/integrations/supabase/client';
 interface FormData {
   name: string;
   email: string;
-  phone?: string;
+  phone: string;
   message: string;
 }
 
@@ -39,7 +39,7 @@ export function useSupabaseSubmit(): UseSupabaseSubmitReturn {
           {
             name: data.name,
             email: data.email,
-            phone: data.phone || null,
+            phone: data.phone || null, // Allow null if phone is not provided
             message: data.message,
             created_at: new Date().toISOString()
           }
