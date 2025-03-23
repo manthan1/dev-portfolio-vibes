@@ -50,7 +50,7 @@ function ChatbotWidget() {
     if (!input.trim() || isLoading) return;
     
     const userMessage = { role: "user", content: input };
-    setMessages([...messages, userMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
     
@@ -71,10 +71,13 @@ function ChatbotWidget() {
     }
     
     try {
-      // Prepare messages for API - include context but limit to last 10 messages to keep token count down
-      const contextMessages = [...messages.slice(-9), userMessage];
+      // Prepare messages for API - include all previous conversation context
+      // Filter out system messages with HTML content (links) to avoid sending them to the AI
+      const contextMessages = messages
+        .filter(msg => !(msg.role === "system" && msg.content.includes("<a href")))
+        .concat(userMessage);
       
-      // Call Supabase Edge Function
+      // Call Supabase Edge Function with the complete conversation history
       const { data, error } = await supabase.functions.invoke('chat-with-ai', {
         body: { messages: contextMessages }
       });

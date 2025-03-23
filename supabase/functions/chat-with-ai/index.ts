@@ -58,12 +58,14 @@ serve(async (req) => {
 
     // Convert the format to match what Gemini expects
     const geminiHistory = messages
-      .filter(msg => msg.role !== 'system') // Filter out system messages
+      .filter(msg => msg.role !== 'system' || msg.role === 'system' && messages.indexOf(msg) === 0) // Keep first system message as it's the greeting
       .map(msg => ({
         role: msg.role === 'user' ? 'user' : 'model',
         parts: [{ text: msg.content }]
       }));
 
+    console.log('Sending conversation history to Gemini:', JSON.stringify(geminiHistory));
+    
     const chat = model.startChat({ history: geminiHistory });
     
     // Get the last user message to respond to
