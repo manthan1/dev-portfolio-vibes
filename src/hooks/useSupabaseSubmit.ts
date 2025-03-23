@@ -39,18 +39,18 @@ export function useSupabaseSubmit(): UseSupabaseSubmitReturn {
           {
             name: data.name,
             email: data.email,
-            phone: data.phone || null, // Allow null if phone is not provided
+            phone: data.phone, // Phone is required now
             message: data.message,
             created_at: new Date().toISOString()
           }
         ]);
       
       if (supabaseError) {
-        console.error('Supabase error:', supabaseError);
-        throw new Error(supabaseError.message);
+        console.error('Supabase error details:', supabaseError);
+        throw new Error(supabaseError.message || 'Error submitting to database');
       }
       
-      console.log('Form data submitted successfully:', responseData);
+      console.log('Form data submitted successfully, response:', responseData);
       setIsSuccess(true);
     } catch (err) {
       console.error('Error in form submission:', err);
