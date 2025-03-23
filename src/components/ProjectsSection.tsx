@@ -64,17 +64,17 @@ export { projects };
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="bg-gray-100 dark:bg-gray-900">
+    <section id="projects" className="bg-background">
       <div className="container max-w-7xl mx-auto">
         <FadeInView animation="fade-in">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block pill bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 mb-4">
+            <div className="inline-block pill bg-accent/10 text-accent mb-4">
               <span className="font-medium">Our Work</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-gray-800 dark:text-gray-200">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-foreground">
               Featured Projects
             </h2>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-muted-foreground">
               A selection of our recent work in AI, automation, and software development. Each project represents unique challenges solved with innovative approaches.
             </p>
           </div>
@@ -89,21 +89,21 @@ export default function ProjectsSection() {
               className="group"
             >
               <Link to={`/projects/${project.id}`} className="block h-full">
-                <div className="h-full flex flex-col overflow-hidden rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg transition-all duration-300">
+                <div className="h-full flex flex-col overflow-hidden rounded-xl border border-border bg-secondary/50 backdrop-blur-lg hover:shadow-lg transition-all duration-300">
                   <div className="relative h-48 overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-4 right-4 flex gap-2">
                         {project.links?.github && (
                           <a
                             href={project.links.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
+                            className="p-2 rounded-full bg-accent/20 hover:bg-accent/30 text-white transition-colors"
                             aria-label="View GitHub repository"
                             onClick={(e) => e.stopPropagation()}
                           >
@@ -115,7 +115,7 @@ export default function ProjectsSection() {
                             href={project.links.live}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
+                            className="p-2 rounded-full bg-accent/20 hover:bg-accent/30 text-white transition-colors"
                             aria-label="View live project"
                             onClick={(e) => e.stopPropagation()}
                           >
@@ -126,17 +126,17 @@ export default function ProjectsSection() {
                     </div>
                   </div>
                   <div className="flex-1 p-6 flex flex-col">
-                    <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-200 group-hover:text-gray-600 dark:group-hover:text-white transition-colors">
+                    <h3 className="text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-1">
+                    <p className="text-sm text-muted-foreground mb-4 flex-1">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="pill bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-[10px]"
+                          className="pill bg-accent/10 text-accent text-[10px]"
                         >
                           {tag}
                         </span>

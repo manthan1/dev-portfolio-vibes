@@ -27,24 +27,24 @@ const features = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="bg-gray-100 dark:bg-gray-900">
+    <section id="about" className="bg-background">
       <div className="container max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <FadeInView animation="fade-in">
-              <div className="inline-block pill bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 mb-4">
+              <div className="inline-block pill bg-accent/10 text-accent mb-4">
                 <span className="font-medium">About Us</span>
               </div>
             </FadeInView>
             
             <FadeInView animation="fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-800 dark:text-gray-200">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
                 Your partner in AI-powered business transformation
               </h2>
             </FadeInView>
             
             <FadeInView animation="fade-in" delay={200}>
-              <div className="space-y-4 text-gray-600 dark:text-gray-400">
+              <div className="space-y-4 text-muted-foreground">
                 <p>
                   We're not just building tools—we're building smart solutions that think, learn, and deliver results. 
                   Whether you're a startup or a scaling enterprise, our AI-driven systems are designed to automate, 
@@ -69,14 +69,14 @@ export default function AboutSection() {
                 key={feature.title} 
                 animation="scale-in" 
                 delay={150 * index}
-                className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700"
+                className="p-6 rounded-xl backdrop-blur-lg bg-secondary/50 border border-border shadow-sm"
               >
                 <div className="flex flex-col gap-3">
-                  <div className="p-2 w-fit rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
+                  <div className="p-2 w-fit rounded-md bg-accent/10 text-accent">
                     {feature.icon}
                   </div>
-                  <h3 className="font-semibold text-gray-800 dark:text-gray-200">{feature.title}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <h3 className="font-semibold text-foreground">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground">
                     {feature.description}
                   </p>
                 </div>
