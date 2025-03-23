@@ -1,5 +1,6 @@
 
-import { Hero } from "@/components/ui/component"
+import { Hero } from "@/components/ui/component";
+import { BeamsBackgroundDemo } from "@/components/ui/beams-demo";
 
 function HeroDemo() {
   return (
@@ -9,4 +10,4 @@ function HeroDemo() {
   );
 }
 
-export { HeroDemo };
+export { HeroDemo, BeamsBackgroundDemo };
