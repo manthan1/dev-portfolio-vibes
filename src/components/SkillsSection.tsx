@@ -39,7 +39,7 @@ const workflowSteps: WorkflowStep[] = [
   },
 ];
 
-export default function HowWeWorkSection() {
+export default function OurProcessSection() {
   const handleScrollTo = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     const element = document.getElementById(id);

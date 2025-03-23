@@ -12,23 +12,39 @@ const navItems: NavItem[] = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
+  { label: "Our Process", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      
+      // Determine scroll direction and apply visibility based on rules
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past threshold - hide navbar
+        setIsVisible(false);
+      } else {
+        // Scrolling up or at top - show navbar
+        setIsVisible(true);
+      }
+
+      // Update background style based on scroll position
+      setIsScrolled(currentScrollY > 20);
+      
+      // Update last scroll position
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
     <header
@@ -36,7 +52,7 @@ export default function Navbar() {
         isScrolled
           ? "py-4 glass"
           : "py-6 bg-transparent"
-      }`}
+      } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       <div className="container max-w-7xl mx-auto px-6 flex items-center justify-between">
         <a
