@@ -64,23 +64,26 @@ export { projects };
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="bg-background">
-      <div className="container max-w-7xl mx-auto">
+    <section id="projects" className="bg-[#111827] py-24 border-t border-b border-accent/10">
+      <div className="container max-w-7xl mx-auto relative">
         <FadeInView animation="fade-in">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block pill bg-accent/10 text-accent mb-4">
+            <div className="inline-block pill bg-accent/20 text-accent mb-4">
               <span className="font-medium">Our Work</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-foreground">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-white">
               Featured Projects
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-gray-300">
               A selection of our recent work in AI, automation, and software development. Each project represents unique challenges solved with innovative approaches.
             </p>
           </div>
         </FadeInView>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="absolute -top-16 -left-16 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
           {projects.map((project, index) => (
             <FadeInView 
               key={project.id} 
@@ -89,14 +92,14 @@ export default function ProjectsSection() {
               className="group"
             >
               <Link to={`/projects/${project.id}`} className="block h-full">
-                <div className="h-full flex flex-col overflow-hidden rounded-xl border border-border bg-secondary/50 backdrop-blur-lg hover:shadow-lg transition-all duration-300">
+                <div className="h-full flex flex-col overflow-hidden rounded-xl border border-white/10 bg-black/30 backdrop-blur-sm hover:shadow-lg transition-all duration-300 group-hover:border-accent/20">
                   <div className="relative h-48 overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-4 right-4 flex gap-2">
                         {project.links?.github && (
                           <a
@@ -126,10 +129,10 @@ export default function ProjectsSection() {
                     </div>
                   </div>
                   <div className="flex-1 p-6 flex flex-col">
-                    <h3 className="text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-accent transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-4 flex-1">
+                    <p className="text-sm text-gray-300 mb-4 flex-1">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-2 mt-auto">
