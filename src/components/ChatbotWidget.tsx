@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, X, Minimize2, Maximize2 } from "lucide-react";
@@ -6,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 function ChatbotWidget() {
   const [messages, setMessages] = useState([
-    { role: "system", content: "Hey, got a biz challenge? MJ AI's got answers 💡" }
+    { role: "system", content: "Hi there! Need an AI solution for your business? Let me know what you're working on." }
   ]);
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
