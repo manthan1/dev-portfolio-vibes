@@ -79,7 +79,7 @@ function Hero() {
           <div className="flex flex-row gap-3">
             <Button 
               size="lg" 
-              className="neon-outline-button gap-4" 
+              className="neon-outline-button gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)]" 
               variant="outline" 
               onClick={handleScrollTo("contact")}
             >
