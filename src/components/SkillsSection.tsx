@@ -15,7 +15,6 @@ interface WorkflowStep {
   icon: React.ReactNode;
   title: string;
   description: string;
-  color: string;
 }
 
 const workflowSteps: WorkflowStep[] = [
@@ -23,31 +22,26 @@ const workflowSteps: WorkflowStep[] = [
     icon: <Phone className="h-10 w-10" />,
     title: "Discovery Call",
     description: "We start by understanding your unique business needs, challenges, and goals during a complimentary consultation.",
-    color: "from-blue-500 to-cyan-400",
   },
   {
     icon: <Brain className="h-10 w-10" />,
     title: "Problem Mapping",
     description: "Our team analyzes your workflow, identifies bottlenecks, and creates a strategic plan for AI implementation.",
-    color: "from-purple-500 to-pink-400",
   },
   {
     icon: <Wrench className="h-10 w-10" />,
     title: "Custom AI Dev",
     description: "We build tailored AI solutions that integrate seamlessly with your existing systems and business processes.",
-    color: "from-emerald-500 to-teal-400",
   },
   {
     icon: <RefreshCw className="h-10 w-10" />,
     title: "Integration",
     description: "Our experts ensure a smooth transition, with training and support to help your team adapt to the new tools.",
-    color: "from-amber-500 to-orange-400",
   },
   {
     icon: <Rocket className="h-10 w-10" />,
     title: "Go-Live & Support",
     description: "We provide ongoing optimization and maintenance to ensure your AI solutions continue to deliver results.",
-    color: "from-red-500 to-rose-400",
   },
 ];
 
@@ -65,10 +59,10 @@ export default function HowWeWorkSection() {
       <div className="container max-w-7xl mx-auto">
         <FadeInView animation="fade-in">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block pill bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground mb-4">
+            <div className="inline-block pill bg-primary/10 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-4">
               <span className="font-medium">Our Process</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
               🧩 How We Work
             </h2>
             <p className="text-muted-foreground">
@@ -94,10 +88,10 @@ export default function HowWeWorkSection() {
                     className="h-full"
                   >
                     <div className="glass p-6 rounded-xl h-full flex flex-col">
-                      <div className={`p-3 rounded-full bg-gradient-to-r ${step.color} w-fit mb-4`}>
+                      <div className="p-3 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 w-fit mb-4">
                         {step.icon}
                       </div>
-                      <h3 className="text-xl font-semibold mb-2">
+                      <h3 className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
                         {step.title}
                       </h3>
                       <p className="text-muted-foreground mb-4 flex-grow">
@@ -123,7 +117,7 @@ export default function HowWeWorkSection() {
             variant="outline" 
             onClick={handleScrollTo("contact")}
           >
-            Book a Free Consultation <ArrowRight className="w-4 h-4" />
+            Book a Free Consultation <ArrowRight className="w-4 h-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500" />
           </Button>
         </div>
       </div>
