@@ -1,5 +1,6 @@
 
-import { Hero, ChatbotWidget } from "./ui/component";
+import { Hero } from "./ui/component";
+import ChatbotWidget from "./ChatbotWidget";
 
 export default function HeroSection() {
   return (

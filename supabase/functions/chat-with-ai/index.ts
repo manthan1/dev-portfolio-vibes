@@ -1,11 +1,44 @@
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
+import { GoogleGenerativeAI } from "npm:@google/generative-ai";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+const businessInfo = `
+You're a smart, confident Gen Z chatbot for **MJ AI**—an AI agency that builds intelligent agents to solve real business problems.
+
+### 🤖 What's MJ AI?
+- **Custom AI Agents** that automate & scale business ops  
+- **Plug-n-Play Solutions** for marketing, support, lead-gen & more  
+- **Built for Startups & SMEs** that wanna level up 🚀  
+- **Free Consultation Calls** with Manthan to get you started  
+
+### 🎯 What You Do:
+- Ask users what they're struggling with  
+- Suggest how MJ AI can solve it (with a touch of swagger 😏)  
+- Push for a **free consultation call** with Manthan 💼📞  
+- Keep convos chill, confident & helpful  
+
+### 🧠 How You Talk:
+- Friendly, slightly cheeky, helpful  
+- Short replies, straight to the point  
+- Use emojis to add vibe ✨ but don't overdo it  
+- Match user's tone—calm if they're formal, casual if they're cool  
+
+### 🔄 Flow:
+1. Kick off: "Hey, got a biz challenge? MJ AI's got answers 💡"  
+2. Dive deep: "Tell me what you're struggling with, and I'll tell you what we'd build."  
+3. Push the CTA: "Wanna hop on a quick call with Manthan? It's free, no strings 💬"  
+4. End on a high: "Let's build something cool together 💻✨"
+
+You're not just a bot. You're MJ AI's first impression. Make it count 😉  
+`;
+
+const API_KEY = "AIzaSyBtKiun9KwLOPXQgBqosO9dHFuIIrisSXA";
 
 serve(async (req) => {
   // Handle CORS preflight requests
@@ -14,11 +47,6 @@ serve(async (req) => {
   }
 
   try {
-    const openAIApiKey = Deno.env.get('OPENAI_API_KEY');
-    if (!openAIApiKey) {
-      throw new Error('OPENAI_API_KEY environment variable not set');
-    }
-
     // Parse request body
     const { messages } = await req.json();
 
@@ -26,32 +54,32 @@ serve(async (req) => {
       throw new Error('Invalid request: messages array is required');
     }
 
-    // Call OpenAI API
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${openAIApiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: messages,
-        max_tokens: 500,
-        temperature: 0.7,
-      }),
+    const genAI = new GoogleGenerativeAI(API_KEY);
+    const model = genAI.getGenerativeModel({ 
+      model: "gemini-1.5-pro",
+      systemInstruction: businessInfo
     });
 
-    if (!response.ok) {
-      const error = await response.json();
-      console.error('OpenAI API error:', error);
-      throw new Error(`OpenAI API error: ${error.error?.message || 'Unknown error'}`);
-    }
+    // Convert the format to match what Gemini expects
+    const geminiHistory = messages
+      .filter(msg => msg.role !== 'system') // Filter out system messages
+      .map(msg => ({
+        role: msg.role === 'user' ? 'user' : 'model',
+        parts: [{ text: msg.content }]
+      }));
 
-    const data = await response.json();
-    console.log('OpenAI response received:', data);
+    const chat = model.startChat({ history: geminiHistory });
+    
+    // Get the last user message to respond to
+    const lastUserMessage = messages[messages.length - 1].content;
+    const result = await chat.sendMessage(lastUserMessage);
+    const response = await result.response;
+    const responseText = response.text();
+
+    console.log('Gemini response received:', responseText);
 
     return new Response(JSON.stringify({
-      message: data.choices[0].message.content,
+      message: responseText,
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
