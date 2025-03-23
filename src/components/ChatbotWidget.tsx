@@ -66,13 +66,11 @@ function ChatbotWidget() {
       }]);
       
       // Add a hidden button that will be clicked programmatically 
-      // This avoids using window.chatbotLinkClicked which causes the TypeScript error
       return;
     }
     
     try {
-      // Prepare messages for API - include all previous conversation context
-      // Filter out system messages with HTML content (links) to avoid sending them to the AI
+      // Filter out system messages with HTML content (links) to avoid sending them to the API
       const contextMessages = messages
         .filter(msg => !(msg.role === "system" && msg.content.includes("<a href")))
         .concat(userMessage);

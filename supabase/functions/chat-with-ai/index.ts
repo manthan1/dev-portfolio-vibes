@@ -1,7 +1,6 @@
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
-import { GoogleGenerativeAI } from "npm:@google/generative-ai";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -34,7 +33,7 @@ You're a friendly, focused chatbot for **MJ AI** — an AI agency that builds cu
 You're not just chatting — you're here to connect users with real solutions, fast. Help them feel heard, then show them the value MJ AI can bring.
 `;
 
-const API_KEY = "AIzaSyBtKiun9KwLOPXQgBqosO9dHFuIIrisSXA";
+const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY') || "sk-..."; // Fallback is just for development
 
 serve(async (req) => {
   // Handle CORS preflight requests
@@ -50,31 +49,40 @@ serve(async (req) => {
       throw new Error('Invalid request: messages array is required');
     }
 
-    const genAI = new GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-pro",
-      systemInstruction: businessInfo
+    // Format messages for OpenAI
+    const formattedMessages = [
+      { role: "system", content: businessInfo },
+      ...messages.map(msg => ({
+        role: msg.role === 'system' && messages.indexOf(msg) !== 0 ? 'assistant' : msg.role,
+        content: msg.content
+      }))
+    ];
+
+    console.log('Sending conversation history to OpenAI:', JSON.stringify(formattedMessages));
+    
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${OPENAI_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'gpt-4o-mini', // Using a recommended model
+        messages: formattedMessages,
+        temperature: 0.7,
+      }),
     });
 
-    // Convert the format to match what Gemini expects
-    const geminiHistory = messages
-      .filter(msg => msg.role !== 'system' || msg.role === 'system' && messages.indexOf(msg) === 0) // Keep first system message as it's the greeting
-      .map(msg => ({
-        role: msg.role === 'user' ? 'user' : 'model',
-        parts: [{ text: msg.content }]
-      }));
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('OpenAI API error:', errorData);
+      throw new Error(`API returned ${response.status}: ${JSON.stringify(errorData)}`);
+    }
 
-    console.log('Sending conversation history to Gemini:', JSON.stringify(geminiHistory));
-    
-    const chat = model.startChat({ history: geminiHistory });
-    
-    // Get the last user message to respond to
-    const lastUserMessage = messages[messages.length - 1].content;
-    const result = await chat.sendMessage(lastUserMessage);
-    const response = await result.response;
-    const responseText = response.text();
+    const data = await response.json();
+    const responseText = data.choices[0].message.content;
 
-    console.log('Gemini response received:', responseText);
+    console.log('OpenAI response received:', responseText);
 
     return new Response(JSON.stringify({
       message: responseText,
