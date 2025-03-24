@@ -77,7 +77,15 @@ export default function ContactSection() {
   });
 
   const onSubmit = async (data: FormValues) => {
-    await submit(data);
+    // Ensure all required fields are present
+    const formData = {
+      name: data.name,
+      email: data.email,
+      phone: data.phone || "",
+      message: data.message
+    };
+    
+    await submit(formData);
     if (!error) {
       form.reset();
     }
