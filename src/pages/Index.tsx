@@ -21,6 +21,10 @@ const Index = () => {
     // Set HTML class for smooth scrolling
     document.documentElement.classList.add("smooth-scroll");
     
+    // Remove any overflow hidden properties that might prevent scrolling
+    document.body.style.overflow = "auto";
+    document.documentElement.style.overflow = "auto";
+    
     // Clean up
     return () => {
       document.documentElement.classList.remove("smooth-scroll");

@@ -180,12 +180,6 @@ export default function ContactSection() {
                     I'm here to help turn your ideas into reality. Reach out today to discuss 
                     how we can collaborate.
                   </p>
-                  <button
-                    onClick={openCalendlyPopup}
-                    className="w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white py-3 px-4 rounded-md font-medium hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300"
-                  >
-                    Book a Call
-                  </button>
                   <div className="flex items-center gap-2 text-sm mt-6">
                     <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
                     <span>Based in <span className="font-medium text-cyan-400">Mumbai, India</span></span>
