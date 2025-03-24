@@ -7,6 +7,15 @@ import ProjectsSection from "../components/ProjectsSection";
 import OurProcessSection from "../components/SkillsSection";
 import ContactSection from "../components/ContactSection";
 
+// Add Calendly type declaration
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (options: { url: string }) => void;
+    };
+  }
+}
+
 const Index = () => {
   useEffect(() => {
     // Set HTML class for smooth scrolling
