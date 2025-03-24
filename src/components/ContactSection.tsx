@@ -3,9 +3,17 @@ import { Copy, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 import FadeInView from "./animations/FadeInView";
 import { toast } from "sonner";
-import { useEffect } from "react";
 import { Card, CardContent } from "./ui/card";
 import { Separator } from "./ui/separator";
+import { Button } from "./ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useSupabaseSubmit } from "@/hooks/useSupabaseSubmit";
+import { Link } from "react-router-dom";
 
 interface ContactInfo {
   icon: JSX.Element;
@@ -44,28 +52,36 @@ const contactInfo: ContactInfo[] = [
   },
 ];
 
+// Define form schema
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  phone: z.string().optional(),
+  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
 export default function ContactSection() {
-  const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
+  const { submit, isSubmitting, isSuccess, error, reset } = useSupabaseSubmit();
   
-  useEffect(() => {
-    // Check if Calendly script is already loaded
-    const isScriptLoaded = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
-    
-    if (!isScriptLoaded) {
-      // If not loaded, inject the script
-      const script = document.createElement('script');
-      script.src = "https://assets.calendly.com/assets/external/widget.js";
-      script.async = true;
-      script.onload = () => setIsCalendlyLoaded(true);
-      document.body.appendChild(script);
-    } else {
-      setIsCalendlyLoaded(true);
+  // Initialize form
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = async (data: FormValues) => {
+    await submit(data);
+    if (!error) {
+      form.reset();
     }
-    
-    return () => {
-      // Clean up if needed
-    };
-  }, []);
+  };
 
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -95,11 +111,109 @@ export default function ContactSection() {
               <Card className="overflow-hidden shadow-md border border-border/50 h-full">
                 <CardContent className="p-0">
                   <div className="bg-secondary/30 px-6 py-4 border-b border-border/50">
-                    <h3 className="text-xl font-semibold text-cyan-400">Book a Free Consultation</h3>
+                    <h3 className="text-xl font-semibold text-cyan-400">Send a Message</h3>
                   </div>
-                  <div className="calendly-inline-widget" 
-                    data-url="https://calendly.com/manthanjethwani02/consultancy-call" 
-                    style={{ minWidth: "320px", height: "600px" }}>
+                  <div className="p-6">
+                    <div className="mb-6">
+                      <p className="text-sm text-muted-foreground">
+                        Fill out the form below and I'll get back to you as soon as possible.
+                      </p>
+                    </div>
+                    
+                    {isSuccess ? (
+                      <div className="text-center py-8">
+                        <div className="bg-primary/5 p-3 rounded-full text-cyan-400 inline-flex mx-auto mb-4">
+                          <Mail className="h-8 w-8" />
+                        </div>
+                        <h3 className="text-xl font-semibold mb-2 text-cyan-400">Message Sent!</h3>
+                        <p className="text-muted-foreground mb-6">
+                          Thank you for reaching out. I'll get back to you as soon as possible.
+                        </p>
+                        <Button onClick={() => reset()} variant="outline">
+                          Send Another Message
+                        </Button>
+                      </div>
+                    ) : (
+                      <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <FormField
+                              control={form.control}
+                              name="name"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Name</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Your name" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            <FormField
+                              control={form.control}
+                              name="email"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Email</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Your email" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          <FormField
+                            control={form.control}
+                            name="phone"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Phone (Optional)</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Your phone number" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="message"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Message</FormLabel>
+                                <FormControl>
+                                  <Textarea 
+                                    placeholder="Tell me about your project or inquiry" 
+                                    rows={5}
+                                    {...field} 
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          
+                          {error && (
+                            <div className="bg-destructive/10 text-destructive p-3 rounded-md text-sm">
+                              {error.message || "Something went wrong. Please try again."}
+                            </div>
+                          )}
+                          
+                          <div className="flex justify-between items-center pt-2">
+                            <Link to="/schedule">
+                              <Button type="button" variant="outline">
+                                Or Schedule a Call
+                              </Button>
+                            </Link>
+                            <Button type="submit" disabled={isSubmitting}>
+                              {isSubmitting ? "Sending..." : "Send Message"}
+                            </Button>
+                          </div>
+                        </form>
+                      </Form>
+                    )}
                   </div>
                 </CardContent>
               </Card>
