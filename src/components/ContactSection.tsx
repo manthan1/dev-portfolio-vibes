@@ -4,6 +4,8 @@ import { useState } from "react";
 import FadeInView from "./animations/FadeInView";
 import { toast } from "sonner";
 import { useEffect } from "react";
+import { Card, CardContent } from "./ui/card";
+import { Separator } from "./ui/separator";
 
 interface ContactInfo {
   icon: JSX.Element;
@@ -71,90 +73,116 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="bg-background">
-      <div className="container max-w-7xl mx-auto">
+    <section id="contact" className="bg-background py-20">
+      <div className="container max-w-7xl mx-auto px-6">
         <FadeInView animation="fade-in">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block pill bg-primary/10 text-cyan-400 dark:bg-primary/20 dark:text-cyan-400 mb-4">
+            <div className="inline-block pill bg-primary/10 text-cyan-400 dark:bg-primary/20 dark:text-cyan-400 mb-4 px-3 py-1 rounded-full">
               <span className="font-medium">Get in Touch</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-cyan-400">
               Let's Connect
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               Have a project in mind or want to explore collaboration opportunities? I'd love to hear from you!
             </p>
           </div>
         </FadeInView>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <FadeInView animation="fade-in-right">
-            <div className="glass p-8 rounded-xl h-full">
-              <h3 className="text-xl font-semibold mb-6 text-cyan-400">Book a Free Consultation</h3>
-              <div className="calendly-inline-widget" 
-                data-url="https://calendly.com/manthanjethwani02/consultancy-call" 
-                style={{ minWidth: "320px", height: "600px" }}>
-              </div>
-            </div>
-          </FadeInView>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="lg:col-span-7">
+            <FadeInView animation="fade-in-right">
+              <Card className="overflow-hidden shadow-md border border-border/50 h-full">
+                <CardContent className="p-0">
+                  <div className="bg-secondary/30 px-6 py-4 border-b border-border/50">
+                    <h3 className="text-xl font-semibold text-cyan-400">Book a Free Consultation</h3>
+                  </div>
+                  <div className="calendly-inline-widget" 
+                    data-url="https://calendly.com/manthanjethwani02/consultancy-call" 
+                    style={{ minWidth: "320px", height: "600px" }}>
+                  </div>
+                </CardContent>
+              </Card>
+            </FadeInView>
+          </div>
 
-          <div className="space-y-8">
+          <div className="lg:col-span-5 space-y-8">
             <FadeInView animation="fade-in-left">
-              <h3 className="text-xl font-semibold mb-6 text-cyan-400">Contact Information</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {contactInfo.map((info) => (
-                  <div
-                    key={info.label}
-                    className="glass p-4 rounded-xl flex flex-col gap-2 group neon-border"
-                  >
-                    <div className="flex items-center gap-2 text-cyan-400">
-                      {info.icon}
-                      <span className="text-sm font-medium">{info.label}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      {info.href ? (
-                        <a
-                          href={info.href}
-                          target={info.href.startsWith("http") ? "_blank" : undefined}
-                          rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="text-sm hover:text-cyan-400 transition-colors"
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <span className="text-sm">{info.value}</span>
-                      )}
-                      {info.copyable && (
-                        <button
-                          type="button"
-                          onClick={() => copyToClipboard(info.value, info.label)}
-                          className="p-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-secondary text-cyan-400"
-                          aria-label={`Copy ${info.label}`}
-                        >
-                          <Copy className="h-4 w-4" />
-                        </button>
-                      )}
+              <Card className="overflow-hidden shadow-md border border-border/50">
+                <CardContent className="p-0">
+                  <div className="bg-secondary/30 px-6 py-4 border-b border-border/50">
+                    <h3 className="text-xl font-semibold text-cyan-400">Contact Information</h3>
+                  </div>
+                  <div className="p-6">
+                    <div className="grid grid-cols-1 gap-4">
+                      {contactInfo.map((info, index) => (
+                        <div key={info.label}>
+                          <div className="flex items-start gap-4 p-3 rounded-lg hover:bg-secondary/20 transition-colors">
+                            <div className="bg-primary/5 p-2 rounded-full text-cyan-400">
+                              {info.icon}
+                            </div>
+                            <div className="flex-1">
+                              <div className="text-sm font-medium text-muted-foreground mb-1">
+                                {info.label}
+                              </div>
+                              <div className="flex items-center justify-between">
+                                {info.href ? (
+                                  <a
+                                    href={info.href}
+                                    target={info.href.startsWith("http") ? "_blank" : undefined}
+                                    rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                    className="text-sm hover:text-cyan-400 transition-colors"
+                                  >
+                                    {info.value}
+                                  </a>
+                                ) : (
+                                  <span className="text-sm">{info.value}</span>
+                                )}
+                                {info.copyable && (
+                                  <button
+                                    type="button"
+                                    onClick={() => copyToClipboard(info.value, info.label)}
+                                    className="p-1 rounded-md opacity-70 hover:opacity-100 transition-opacity hover:bg-secondary/30 text-cyan-400"
+                                    aria-label={`Copy ${info.label}`}
+                                  >
+                                    <Copy className="h-4 w-4" />
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          {index < contactInfo.length - 1 && (
+                            <Separator className="my-2 opacity-30" />
+                          )}
+                        </div>
+                      ))}
                     </div>
                   </div>
-                ))}
-              </div>
+                </CardContent>
+              </Card>
             </FadeInView>
 
             <FadeInView animation="fade-in" delay={200}>
-              <div className="glass p-6 rounded-xl neon-border">
-                <h3 className="text-lg font-semibold mb-4 text-cyan-400">
-                  Let's Build Something Amazing Together
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Whether you need AI integration, backend development, or process automation, 
-                  I'm here to help turn your ideas into reality. Reach out today to discuss 
-                  how we can collaborate.
-                </p>
-                <p className="text-sm">
-                  Based in{" "}
-                  <span className="font-medium text-cyan-400">Mumbai, India</span> — Available for remote work worldwide
-                </p>
-              </div>
+              <Card className="shadow-md border border-border/50">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-cyan-400">
+                    Let's Build Something Amazing Together
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Whether you need AI integration, backend development, or process automation, 
+                    I'm here to help turn your ideas into reality. Reach out today to discuss 
+                    how we can collaborate.
+                  </p>
+                  <div className="flex items-center gap-2 text-sm mt-6">
+                    <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
+                    <span>Based in <span className="font-medium text-cyan-400">Mumbai, India</span></span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm mt-2">
+                    <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
+                    <span>Available for remote work worldwide</span>
+                  </div>
+                </CardContent>
+              </Card>
             </FadeInView>
           </div>
         </div>
