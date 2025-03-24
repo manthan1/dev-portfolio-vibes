@@ -1,13 +1,9 @@
+
 import { Copy, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 import FadeInView from "./animations/FadeInView";
 import { toast } from "sonner";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
-import { useForm } from "react-hook-form";
-import { useSupabaseSubmit } from "../hooks/useSupabaseSubmit";
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
+import { useEffect } from "react";
 
 interface ContactInfo {
   icon: JSX.Element;
@@ -46,39 +42,28 @@ const contactInfo: ContactInfo[] = [
   },
 ];
 
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-}
-
 export default function ContactSection() {
-  const { register, handleSubmit, reset: resetForm, formState: { errors } } = useForm<FormData>();
-  const { submit, isSubmitting, isSuccess, error, reset: resetSubmit } = useSupabaseSubmit();
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
   
-  const onSubmit = async (data: FormData) => {
-    try {
-      console.log('Form submitted with data:', data);
-      await submit(data);
-      toast.success("Message sent successfully! I'll get back to you soon.");
-      resetForm();
-      setIsSubmitted(true);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast.error(
-        error instanceof Error 
-          ? error.message 
-          : "There was an error sending your message. Please try again."
-      );
+  useEffect(() => {
+    // Check if Calendly script is already loaded
+    const isScriptLoaded = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+    
+    if (!isScriptLoaded) {
+      // If not loaded, inject the script
+      const script = document.createElement('script');
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      script.onload = () => setIsCalendlyLoaded(true);
+      document.body.appendChild(script);
+    } else {
+      setIsCalendlyLoaded(true);
     }
-  };
-
-  const handleNewMessage = () => {
-    setIsSubmitted(false);
-    resetSubmit();
-  };
+    
+    return () => {
+      // Clean up if needed
+    };
+  }, []);
 
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -104,112 +89,13 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <FadeInView animation="fade-in-right">
-            {error && (
-              <Alert className="mb-4 border-destructive bg-destructive/10">
-                <AlertTitle className="text-destructive">
-                  Error
-                </AlertTitle>
-                <AlertDescription>
-                  {error.message}
-                </AlertDescription>
-              </Alert>
-            )}
-            
-            {isSubmitted ? (
-              <div className="glass p-8 rounded-xl flex flex-col items-center justify-center min-h-[400px]">
-                <div className="text-center">
-                  <h3 className="text-xl font-semibold mb-4 text-cyan-400">Thank You!</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Your message has been received. I'll get back to you as soon as possible.
-                  </p>
-                  <Button onClick={handleNewMessage} className="bg-cyan-500 hover:bg-cyan-600">Send Another Message</Button>
-                </div>
+            <div className="glass p-8 rounded-xl h-full">
+              <h3 className="text-xl font-semibold mb-6 text-cyan-400">Book a Free Consultation</h3>
+              <div className="calendly-inline-widget" 
+                data-url="https://calendly.com/manthanjethwani02/consultancy-call" 
+                style={{ minWidth: "320px", height: "600px" }}>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="glass p-8 rounded-xl">
-                <h3 className="text-xl font-semibold mb-6 text-cyan-400">Send a Message</h3>
-                <div className="space-y-4">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-1 text-cyan-400">
-                      Name
-                    </label>
-                    <Input
-                      id="name"
-                      {...register("name", { required: "Name is required" })}
-                      className="w-full focus:border-cyan-400 focus:ring-cyan-400"
-                      placeholder="Your name"
-                    />
-                    {errors.name && (
-                      <p className="mt-1 text-sm text-destructive">{errors.name.message}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-1 text-cyan-400">
-                      Email
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      {...register("email", {
-                        required: "Email is required",
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                          message: "Invalid email address"
-                        }
-                      })}
-                      className="w-full focus:border-cyan-400 focus:ring-cyan-400"
-                      placeholder="Your email"
-                    />
-                    {errors.email && (
-                      <p className="mt-1 text-sm text-destructive">{errors.email.message}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-1 text-cyan-400">
-                      Phone
-                    </label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      {...register("phone", { 
-                        required: "Phone number is required",
-                        pattern: {
-                          value: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
-                          message: "Invalid phone number format"
-                        }
-                      })}
-                      className="w-full focus:border-cyan-400 focus:ring-cyan-400"
-                      placeholder="Your phone number"
-                    />
-                    {errors.phone && (
-                      <p className="mt-1 text-sm text-destructive">{errors.phone.message}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-1 text-cyan-400">
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      {...register("message", { required: "Message is required" })}
-                      rows={5}
-                      className="w-full resize-none focus:border-cyan-400 focus:ring-cyan-400"
-                      placeholder="Your message"
-                    />
-                    {errors.message && (
-                      <p className="mt-1 text-sm text-destructive">{errors.message.message}</p>
-                    )}
-                  </div>
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-cyan-500 hover:bg-cyan-600"
-                  >
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
-                </div>
-              </form>
-            )}
+            </div>
           </FadeInView>
 
           <div className="space-y-8">
