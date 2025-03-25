@@ -17,9 +17,9 @@ interface Project {
 const projects: Project[] = [
   {
     id: "ai-job-recommendation",
-    title: "AI-powered Job Recommendation System",
-    description: "Developed a recommendation engine that matches job seekers with relevant opportunities based on skills, experience, and preferences.",
-    tags: ["Python", "Machine Learning", "NLP", "FastAPI"],
+    title: "AI Outreach Automation System",
+    description: "Built an AI automation system that streamlined research, data collection, and personalized email generation for B2B client outreach.",
+    tags: ["Python", "NLP", "Web Scraping", "Automation"],
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
   },
   {
