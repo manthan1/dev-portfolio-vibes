@@ -60,7 +60,7 @@ export default function AboutSection() {
             {features.map((feature) => (
               <div 
                 key={feature.title}
-                className="p-6 rounded-xl bg-secondary border border-border/30 shadow-lg"
+                className="p-6 rounded-xl bg-secondary border border-border/30 shadow-lg transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] hover:scale-[1.02] hover:border-accent/40"
               >
                 <div className="flex flex-col gap-3">
                   <div className="p-2 w-fit rounded-md bg-accent/20 text-accent">
