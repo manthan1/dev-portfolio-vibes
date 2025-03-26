@@ -1,4 +1,3 @@
-
 import { Copy, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { useEffect, useState } from "react";
 import FadeInView from "./animations/FadeInView";
@@ -172,21 +171,15 @@ export default function ContactSection() {
             <FadeInView animation="fade-in" delay={200}>
               <Card className="shadow-md border border-border/50">
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-4 text-cyan-400">
-                    Let's Build Something Amazing Together
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Whether you need AI integration, backend development, or process automation, 
-                    I'm here to help turn your ideas into reality. Reach out today to discuss 
-                    how we can collaborate.
-                  </p>
-                  <div className="flex items-center gap-2 text-sm mt-6">
-                    <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-                    <span>Based in <span className="font-medium text-cyan-400">Mumbai, India</span></span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm mt-2">
-                    <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-                    <span>Available for remote work worldwide</span>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
+                      <span>Based in <span className="font-medium text-cyan-400">Mumbai, India</span></span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
+                      <span>Available for remote work worldwide</span>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
