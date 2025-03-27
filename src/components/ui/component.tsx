@@ -37,14 +37,14 @@ function Hero() {
   };
   return <div className="w-full h-full flex items-center justify-center">
       <div className="container mx-auto">
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center space-y-8">
           <div>
             <Button variant="secondary" size="sm" className="gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300" onClick={openChatbot}>
               Talk to our AI assistant <MessageSquare className="w-4 h-4 text-cyan-400" />
             </Button>
           </div>
           
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center space-y-4">
             <h1 className="text-4xl sm:text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
               <span className="text-primary">The AI Agency Built to Automate</span>
               <div className="relative flex justify-center overflow-hidden text-center h-[clamp(80px,16vw,160px)]">
