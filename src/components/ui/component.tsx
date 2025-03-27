@@ -58,7 +58,7 @@ function Hero() {
           <div className="flex flex-col gap-2 items-center">
             <h1 className="text-4xl sm:text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
               <span className="text-primary">The AI Agency Built to Automate</span>
-              <div className="relative flex justify-center overflow-hidden text-center h-[clamp(50px,12vw,90px)] mt-1">
+              <div className="relative flex justify-center overflow-hidden text-center h-[clamp(60px,12vw,120px)] mt-1">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={titleNumber}
