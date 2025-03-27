@@ -37,17 +37,17 @@ function Hero() {
   };
   return <div className="w-full h-full flex items-center justify-center">
       <div className="container mx-auto">
-        <div className="flex flex-col items-center justify-center py-10 lg:py-16">
+        <div className="flex flex-col items-center justify-center gap-6 py-20">
           <div>
             <Button variant="secondary" size="sm" className="gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300" onClick={openChatbot}>
               Talk to our AI assistant <MessageSquare className="w-4 h-4 text-cyan-400" />
             </Button>
           </div>
           
-          <div className="flex flex-col items-center mt-1">
+          <div className="flex flex-col items-center">
             <h1 className="text-4xl sm:text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
               <span className="text-primary">The AI Agency Built to Automate</span>
-              <div className="relative flex justify-center overflow-hidden text-center h-[clamp(80px,16vw,160px)] mb-0 mt-0 px-0 py-0">
+              <div className="relative flex justify-center overflow-hidden text-center h-[clamp(80px,16vw,160px)]">
                 <AnimatePresence mode="wait">
                   <motion.span key={titleNumber} className="absolute font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500" initial={{
                   opacity: 0,
@@ -70,11 +70,11 @@ function Hero() {
               </div>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
+            <p className="text-base sm:text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center mt-6">
               We build custom AI tools that automate the boring stuff — so you can focus on what actually matters.
             </p>
           </div>
-          <div className="flex flex-row gap-3 mt-2">
+          <div className="flex flex-row gap-3 mt-6">
             <Button size="lg" className="bg-transparent border border-input text-white gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300" variant="outline" onClick={handleScrollTo("contact")}>
               Book a Free Call <PhoneCall className="w-4 h-4 text-cyan-400" />
             </Button>
