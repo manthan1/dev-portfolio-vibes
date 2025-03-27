@@ -43,7 +43,7 @@ function Hero() {
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="container mx-auto">
-        <div className="flex flex-col items-center justify-center gap-8 py-20 lg:py-40">
+        <div className="flex flex-col items-center justify-center gap-6 py-20 lg:py-40">
           <div>
             <Button 
               variant="secondary" 
@@ -55,10 +55,10 @@ function Hero() {
             </Button>
           </div>
           
-          <div className="flex flex-col gap-4 items-center">
+          <div className="flex flex-col gap-2 items-center">
             <h1 className="text-4xl sm:text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
               <span className="text-primary">The AI Agency Built to Automate</span>
-              <div className="relative flex justify-center overflow-hidden text-center min-h-[clamp(60px,12vw,100px)]">
+              <div className="relative flex justify-center overflow-hidden text-center h-[clamp(50px,12vw,90px)] mt-1">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={titleNumber}
@@ -79,11 +79,11 @@ function Hero() {
               </div>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center mt-2">
+            <p className="text-base sm:text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
               We build custom AI tools that automate the boring stuff — so you can focus on what actually matters.
             </p>
           </div>
-          <div className="flex flex-row gap-3">
+          <div className="flex flex-row gap-3 mt-2">
             <Button 
               size="lg" 
               className="bg-transparent border border-input text-white gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300" 
