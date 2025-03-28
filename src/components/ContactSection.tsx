@@ -1,10 +1,11 @@
-import { Copy, Github, Linkedin, Mail, Phone } from "lucide-react";
+import { Copy, Github, Linkedin, Mail, Phone, Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
 import FadeInView from "./animations/FadeInView";
 import { toast } from "sonner";
 import { Card, CardContent } from "./ui/card";
 import { Separator } from "./ui/separator";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "./ui/button";
 
 interface ContactInfo {
   icon: JSX.Element;
@@ -107,19 +108,12 @@ export default function ContactSection() {
                   </div>
                   {isMobile ? (
                     <div className="p-6 text-center">
-                      <p className="mb-4">For a better scheduling experience on mobile:</p>
-                      <button
-                        onClick={() => {
-                          if (window.Calendly) {
-                            window.Calendly.initPopupWidget({
-                              url: 'https://calendly.com/manthanjethwani2803/30min'
-                            });
-                          }
-                        }}
-                        className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-r from-cyan-400 to-blue-500 text-white h-10 py-2 px-4"
+                      <Button
+                        onClick={openCalendlyPopup}
+                        className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300 gap-2"
                       >
-                        Open Scheduler
-                      </button>
+                        Open Scheduler <Calendar className="h-4 w-4" />
+                      </Button>
                     </div>
                   ) : (
                     <div className="calendly-inline-widget" 
