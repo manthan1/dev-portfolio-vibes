@@ -9,7 +9,7 @@ function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const intervalRef = useRef<number | null>(null);
   const titles = useMemo(
-    () => ["Your Work", "Your Time", "Your Business", "Tasks", "Your Growth"],
+    () => ["Your Work", "Your Time", "Your Business", "Your Tasks", "Your Growth"],
     []
   );
 
