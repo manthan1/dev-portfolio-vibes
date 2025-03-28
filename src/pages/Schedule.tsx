@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import FadeInView from "../components/animations/FadeInView";
 import { Card } from "@/components/ui/card";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
 
 export default function Schedule() {
   const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     // Check if Calendly script is already loaded
@@ -52,10 +55,28 @@ export default function Schedule() {
                 <div className="bg-secondary/30 px-6 py-4 border-b border-border/50">
                   <h3 className="text-xl font-semibold text-cyan-400">Select Your Preferred Time Slot</h3>
                 </div>
-                <div className="calendly-inline-widget" 
-                  data-url="https://calendly.com/manthanjethwani02/consultancy-call" 
-                  style={{ minWidth: "320px", height: "700px" }}>
-                </div>
+                {isMobile ? (
+                  <div className="p-8 text-center">
+                    <p className="mb-6 text-muted-foreground">For a better scheduling experience on mobile devices:</p>
+                    <Button 
+                      className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300"
+                      onClick={() => {
+                        if (window.Calendly) {
+                          window.Calendly.initPopupWidget({
+                            url: 'https://calendly.com/manthanjethwani02/consultancy-call'
+                          });
+                        }
+                      }}
+                    >
+                      Open Scheduling Widget
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="calendly-inline-widget" 
+                    data-url="https://calendly.com/manthanjethwani02/consultancy-call" 
+                    style={{ minWidth: "320px", height: "700px" }}>
+                  </div>
+                )}
               </Card>
             </FadeInView>
           </div>

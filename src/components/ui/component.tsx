@@ -51,7 +51,7 @@ function Hero() {
               className="gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300"
               onClick={openChatbot}
             >
-              Talk to our AI assistant <MessageSquare className="w-4 h-4 text-cyan-400" />
+              <span className="text-xs sm:text-sm">Talk to our AI assistant</span> <MessageSquare className="w-4 h-4 text-cyan-400" />
             </Button>
           </div>
           
@@ -83,21 +83,21 @@ function Hero() {
               We build custom AI tools that automate the boring stuff — so you can focus on what actually matters.
             </p>
           </div>
-          <div className="flex flex-row gap-3 mt-2">
+          <div className="flex flex-col sm:flex-row gap-3 mt-2 w-full justify-center">
             <Button 
               size="lg" 
-              className="bg-transparent border border-input text-white gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300" 
+              className="bg-transparent border border-input text-white gap-2 sm:gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300 text-xs sm:text-sm" 
               variant="outline" 
               onClick={handleScrollTo("contact")}
             >
-              Book a Free Call <PhoneCall className="w-4 h-4 text-cyan-400" />
+              Book a Free Call <PhoneCall className="w-3 h-3 sm:w-4 sm:h-4 text-cyan-400" />
             </Button>
             <Button 
               size="lg" 
-              className="gap-4 bg-gradient-to-r from-cyan-400 to-blue-500 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300" 
+              className="gap-2 sm:gap-4 bg-gradient-to-r from-cyan-400 to-blue-500 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300 text-xs sm:text-sm" 
               onClick={handleScrollTo("projects")}
             >
-              Our Work <MoveRight className="w-4 h-4" />
+              Our Work <MoveRight className="w-3 h-3 sm:w-4 sm:h-4" />
             </Button>
           </div>
         </div>

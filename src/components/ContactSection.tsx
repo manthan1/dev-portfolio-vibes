@@ -4,6 +4,7 @@ import FadeInView from "./animations/FadeInView";
 import { toast } from "sonner";
 import { Card, CardContent } from "./ui/card";
 import { Separator } from "./ui/separator";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface ContactInfo {
   icon: JSX.Element;
@@ -44,6 +45,7 @@ const contactInfo: ContactInfo[] = [
 
 export default function ContactSection() {
   const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     // Check if Calendly script is already loaded
@@ -103,10 +105,28 @@ export default function ContactSection() {
                   <div className="bg-secondary/30 px-6 py-4 border-b border-border/50">
                     <h3 className="text-xl font-semibold text-cyan-400">Schedule a Meeting</h3>
                   </div>
-                  <div className="calendly-inline-widget" 
-                    data-url="https://calendly.com/manthanjethwani2803/30min" 
-                    style={{ minWidth: "320px", height: "600px" }}>
-                  </div>
+                  {isMobile ? (
+                    <div className="p-6 text-center">
+                      <p className="mb-4">For a better scheduling experience on mobile:</p>
+                      <button
+                        onClick={() => {
+                          if (window.Calendly) {
+                            window.Calendly.initPopupWidget({
+                              url: 'https://calendly.com/manthanjethwani2803/30min'
+                            });
+                          }
+                        }}
+                        className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-r from-cyan-400 to-blue-500 text-white h-10 py-2 px-4"
+                      >
+                        Open Scheduler
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="calendly-inline-widget" 
+                      data-url="https://calendly.com/manthanjethwani2803/30min" 
+                      style={{ minWidth: "320px", height: "600px" }}>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </FadeInView>
