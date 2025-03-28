@@ -30,6 +30,14 @@ export default function Schedule() {
     };
   }, []);
 
+  const openCalendlyPopup = () => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/manthanjethwani02/consultancy-call'
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -60,13 +68,7 @@ export default function Schedule() {
                     <p className="mb-6 text-muted-foreground">For a better scheduling experience on mobile devices:</p>
                     <Button 
                       className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300"
-                      onClick={() => {
-                        if (window.Calendly) {
-                          window.Calendly.initPopupWidget({
-                            url: 'https://calendly.com/manthanjethwani02/consultancy-call'
-                          });
-                        }
-                      }}
+                      onClick={openCalendlyPopup}
                     >
                       Open Scheduling Widget
                     </Button>
