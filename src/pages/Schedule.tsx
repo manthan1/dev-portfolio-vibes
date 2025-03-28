@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import FadeInView from "../components/animations/FadeInView";
 import { Card } from "@/components/ui/card";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 export default function Schedule() {
   const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
@@ -21,6 +21,12 @@ export default function Schedule() {
       script.async = true;
       script.onload = () => setIsCalendlyLoaded(true);
       document.body.appendChild(script);
+      
+      // Load Calendly CSS
+      const link = document.createElement('link');
+      link.href = "https://assets.calendly.com/assets/external/widget.css";
+      link.rel = "stylesheet";
+      document.head.appendChild(link);
     } else {
       setIsCalendlyLoaded(true);
     }
@@ -35,6 +41,9 @@ export default function Schedule() {
       window.Calendly.initPopupWidget({
         url: 'https://calendly.com/manthanjethwani02/consultancy-call'
       });
+      return false;
+    } else {
+      toast.error("Calendly is not loaded properly. Please try again.");
     }
   };
 
@@ -65,13 +74,16 @@ export default function Schedule() {
                 </div>
                 {isMobile ? (
                   <div className="p-8 text-center">
-                    <p className="mb-6 text-muted-foreground">For a better scheduling experience on mobile devices:</p>
-                    <Button 
-                      className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300"
-                      onClick={openCalendlyPopup}
+                    <a 
+                      href="#" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openCalendlyPopup();
+                      }}
+                      className="text-cyan-400 hover:underline font-medium"
                     >
-                      Open Scheduling Widget
-                    </Button>
+                      Schedule time with me
+                    </a>
                   </div>
                 ) : (
                   <div className="calendly-inline-widget" 

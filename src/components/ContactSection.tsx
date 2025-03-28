@@ -1,3 +1,4 @@
+
 import { Copy, Github, Linkedin, Mail, Phone, Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
 import FadeInView from "./animations/FadeInView";
@@ -53,19 +54,25 @@ export default function ContactSection() {
     const isScriptLoaded = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
     
     if (!isScriptLoaded) {
-      // If not loaded, inject the script
+      // Load Calendly widget script
       const script = document.createElement('script');
       script.src = "https://assets.calendly.com/assets/external/widget.js";
       script.async = true;
       script.onload = () => setIsCalendlyLoaded(true);
       document.body.appendChild(script);
+      
+      // Load Calendly CSS
+      const link = document.createElement('link');
+      link.href = "https://assets.calendly.com/assets/external/widget.css";
+      link.rel = "stylesheet";
+      document.head.appendChild(link);
     } else {
       setIsCalendlyLoaded(true);
     }
   }, []);
 
   const openCalendlyPopup = () => {
-    // Use the Calendly popup instead of inline widget when button is clicked
+    // Use the Calendly popup when button is clicked
     if (window.Calendly) {
       window.Calendly.initPopupWidget({
         url: 'https://calendly.com/manthanjethwani2803/30min'
@@ -108,12 +115,16 @@ export default function ContactSection() {
                   </div>
                   {isMobile ? (
                     <div className="p-6 text-center">
-                      <Button
-                        onClick={openCalendlyPopup}
-                        className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300 gap-2"
+                      <a 
+                        href="#" 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          openCalendlyPopup();
+                        }}
+                        className="text-cyan-400 hover:underline font-medium"
                       >
-                        Open Scheduler <Calendar className="h-4 w-4" />
-                      </Button>
+                        Schedule time with me
+                      </a>
                     </div>
                   ) : (
                     <div className="calendly-inline-widget" 
