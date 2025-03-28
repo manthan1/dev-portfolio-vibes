@@ -85,10 +85,10 @@ export default function Navbar() {
           <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1"
+            className="p-1 bg-background/80 rounded-md backdrop-blur-sm border border-border/30"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X /> : <Menu />}
+            {mobileMenuOpen ? <X className="opacity-100" /> : <Menu className="opacity-100" />}
           </button>
         </div>
       </div>
