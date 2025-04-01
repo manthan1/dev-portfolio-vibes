@@ -15,8 +15,8 @@ interface ContactInfoType {
 const contactInfo: ContactInfoType[] = [{
   icon: <Mail className="h-5 w-5" />,
   label: "Email",
-  value: "manthanjethwani@phazeai.com",
-  href: "mailto:manthanjethwani@phazeai.com",
+  value: "contactus@phazeai.com",
+  href: "mailto:contactus@phazeai.com",
   copyable: true
 }, {
   icon: <Phone className="h-5 w-5" />,
@@ -113,7 +113,7 @@ export default function ContactSection() {
                   </div>
                   <div className="p-6">
                     <div className="space-y-4">
-                      {contactInfo.map((info, index) => <div key={info.label} className="flex items-start gap-4 p-3 rounded-lg hover:bg-secondary/20 transition-colors px-[5px]">
+                      {contactInfo.map((info, index) => <div key={info.label} className="flex items-start gap-4 p-3 rounded-lg hover:bg-secondary/20 transition-colors">
                           <div className="bg-primary/5 p-2 rounded-full text-cyan-400">
                             {info.icon}
                           </div>
