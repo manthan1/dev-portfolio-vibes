@@ -1,3 +1,4 @@
+
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { projects } from "../components/ProjectsSection";
@@ -793,4 +794,15 @@ export default function ProjectDetail() {
                 </Button>
               )}
             </div>
-          </FadeInView
+          </FadeInView>
+        </div>
+      </main>
+      
+      <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
+        <div className="container">
+          <p>© {new Date().getFullYear()} AutoScale — Helping biz scale with AI.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
