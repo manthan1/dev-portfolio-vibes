@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import WhatsAppChatbot from "../components/projects/WhatsAppChatbot";
@@ -8,7 +9,7 @@ import AIRecruitmentBot from "../components/projects/AIRecruitmentBot";
 
 export default function ProjectDetail() {
   const { projectId } = useParams<{ projectId: string }>();
-  const [project, setProject] = React.useState<any>(null);
+  const [project, setProject] = useState<any>(null);
 
   useEffect(() => {
     // Simulate fetching project data based on projectId
@@ -140,7 +141,6 @@ export default function ProjectDetail() {
   }
   
   // Update footer for default project page
-  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
