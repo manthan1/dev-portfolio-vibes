@@ -30,10 +30,10 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: "number-plate-detection",
-    title: "Number Plate Detection (YOLOv8)",
-    description: "Implemented a real-time license plate detection system using YOLOv8 for traffic monitoring and security applications.",
-    tags: ["Computer Vision", "YOLOv8", "Python", "OpenCV"],
+    id: "conversational-feedback-bot",
+    title: "AI-Powered Conversational Feedback Bot",
+    description: "Created an interactive AI chatbot that collects client feedback through natural conversation, replacing traditional static forms.",
+    tags: ["NLP", "Sentiment Analysis", "Chatbot Development"],
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
   },
   {

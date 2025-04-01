@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { projects } from "../components/ProjectsSection";
@@ -296,6 +295,155 @@ export default function ProjectDetail() {
                     <li><span className="font-semibold text-white">Reduced quotation generation time</span> from 30 minutes to under 2 minutes</li>
                     <li><span className="font-semibold text-white">Eliminated dependency</span> on multiple human checkpoints, reducing errors</li>
                     <li><span className="font-semibold text-white">Increased customer satisfaction</span> with faster response times and efficient processing</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+                <Button asChild className="w-full sm:w-auto">
+                  <Link to="/#contact">
+                    💡 Request a Similar Solution
+                  </Link>
+                </Button>
+                
+                <Button variant="outline" asChild className="w-full sm:w-auto">
+                  <Link to="/">
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Back to Projects
+                  </Link>
+                </Button>
+                
+                {project.links?.github && (
+                  <Button variant="outline" asChild className="w-full sm:w-auto">
+                    <a 
+                      href={project.links.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="mr-2 h-4 w-4" />
+                      View Source
+                    </a>
+                  </Button>
+                )}
+                
+                {project.links?.live && (
+                  <Button variant="outline" asChild className="w-full sm:w-auto">
+                    <a 
+                      href={project.links.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      View Live Demo
+                    </a>
+                  </Button>
+                )}
+              </div>
+            </FadeInView>
+          </div>
+        </main>
+        
+        <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
+          <div className="container">
+            <p>© {new Date().getFullYear()} AutoScale — Helping biz scale with AI.</p>
+          </div>
+        </footer>
+      </div>
+    );
+  }
+  
+  // Custom content for AI-Powered Conversational Feedback Bot
+  if (projectId === "conversational-feedback-bot") {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1 pt-24">
+          <div className="container max-w-5xl mx-auto pb-16">
+            <Breadcrumb className="mb-8">
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/">Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/#projects">Projects</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{project.title}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+            
+            <FadeInView animation="fade-in">
+              <h1 className="text-4xl font-bold mb-6">💬 {project.title}</h1>
+              <p className="text-lg mb-8">
+                <span className="font-semibold">Tech Stack:</span> {project.tags.join(", ")} | 
+                <span className="font-semibold ml-2">Industries:</span> Creative Studios, Customer Experience, Service-Based Businesses
+              </p>
+              
+              <div className="aspect-video overflow-hidden rounded-lg mb-8 border border-border">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              <Card className="mb-8">
+                <CardContent className="pt-6">
+                  <h2 className="text-2xl font-semibold mb-4">Project Overview</h2>
+                  <p className="text-muted-foreground mb-4">
+                    A creative studio struggled with collecting meaningful client feedback. Their long, static Google Forms discouraged 
+                    users from responding, leading to poor engagement and hard-to-interpret insights.
+                  </p>
+                  <p className="text-muted-foreground">
+                    We developed an AI-driven conversational feedback bot to enhance user interaction and extract valuable feedback effortlessly.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="mb-8">
+                <CardContent className="pt-6">
+                  <h2 className="text-2xl font-semibold mb-4">Solution & Implementation</h2>
+                  <p className="text-muted-foreground mb-4">
+                    Our AI-powered bot transformed feedback collection with an engaging, intelligent approach:
+                  </p>
+                  <ul className="list-none pl-6 space-y-4 text-muted-foreground">
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">✅</span>
+                      <span><span className="font-medium text-white">Interactive Feedback Collection:</span> The bot chats with users in a friendly, conversational manner, making feedback submission effortless.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">🔄</span>
+                      <span><span className="font-medium text-white">Follow-up Intelligence:</span> If a user gives a low rating, the bot smartly asks relevant follow-up questions like, "What could we have done better?" or "Was it the delivery, quality, or interaction?"</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">📊</span>
+                      <span><span className="font-medium text-white">Sentiment Analysis:</span> AI evaluates the tone and emotion behind responses to gain deeper insights.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">📈</span>
+                      <span><span className="font-medium text-white">Real-time Dashboard:</span> Feedback data is stored and visualized in an interactive dashboard, highlighting trends and areas needing improvement.</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <Card className="mb-8">
+                <CardContent className="pt-6">
+                  <h2 className="text-2xl font-semibold mb-4">Results</h2>
+                  <p className="text-muted-foreground mb-4">
+                    🚀 Measurable impact:
+                  </p>
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+                    <li><span className="font-semibold text-white">3x increase</span> in client feedback submissions</li>
+                    <li><span className="font-semibold text-white">Pinpointed problem areas</span>, such as slow photo delivery or editing issues</li>
+                    <li><span className="font-semibold text-white">Enabled continuous improvement</span>, enhancing the overall customer experience</li>
                   </ul>
                 </CardContent>
               </Card>
