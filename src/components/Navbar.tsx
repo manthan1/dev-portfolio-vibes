@@ -56,12 +56,12 @@ export default function Navbar() {
       <div className="container max-w-7xl mx-auto px-6 flex items-center justify-between">
         <a
           href="#home"
-          className="font-bold font-display relative h-12"
+          className="font-bold font-display relative h-10"
         >
           <img 
             src="/lovable-uploads/0f1410d9-2ff8-40c3-b3d3-c20b389d378b.png" 
             alt="PhazeAI Logo" 
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-7 md:h-8 w-auto object-contain"
           />
         </a>
 
