@@ -1,5 +1,4 @@
-
-import { Copy, Github, Linkedin, Mail, Phone, Calendar } from "lucide-react";
+import { Copy, Mail, Phone, Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
 import FadeInView from "./animations/FadeInView";
 import { toast } from "sonner";
@@ -8,7 +7,7 @@ import { Separator } from "./ui/separator";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "./ui/button";
 
-interface ContactInfo {
+interface ContactInfoType {
   icon: JSX.Element;
   label: string;
   value: string;
@@ -16,32 +15,20 @@ interface ContactInfo {
   copyable?: boolean;
 }
 
-const contactInfo: ContactInfo[] = [
+const contactInfo: ContactInfoType[] = [
   {
     icon: <Mail className="h-5 w-5" />,
     label: "Email",
-    value: "contact@example.com",
-    href: "mailto:contact@example.com",
+    value: "manthanjethwani@phazeai.com",
+    href: "mailto:manthanjethwani@phazeai.com",
     copyable: true,
   },
   {
     icon: <Phone className="h-5 w-5" />,
     label: "Phone",
-    value: "+1 (555) 123-4567",
-    href: "tel:+15551234567",
+    value: "+91 7990700545",
+    href: "tel:+917990700545",
     copyable: true,
-  },
-  {
-    icon: <Linkedin className="h-5 w-5" />,
-    label: "LinkedIn",
-    value: "linkedin.com/in/yourprofile",
-    href: "https://linkedin.com/in/yourprofile",
-  },
-  {
-    icon: <Github className="h-5 w-5" />,
-    label: "GitHub",
-    value: "github.com/yourusername",
-    href: "https://github.com/yourusername",
   },
 ];
 
