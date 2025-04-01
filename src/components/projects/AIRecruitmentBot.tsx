@@ -64,23 +64,13 @@ export default function AIRecruitmentBot() {
 
         <Card className="p-6 border border-border/50">
           <h2 className="text-xl font-semibold mb-4 text-cyan-400">Project Details and Explanations</h2>
-          <div className="space-y-4">
-            <p>
-              The jewelry business faced challenges managing installment payments from numerous customers, with the owner spending hours each week tracking payments manually and sending reminders.
-            </p>
-            <p>
-              Our solution was designed to work within the Telegram messaging platform, which was already widely used by the business's customers. The bot accepts both text and voice commands, making it accessible to customers who prefer different communication methods.
-            </p>
-            <p>
-              When a customer makes a payment, they can simply tell the bot "I paid $200 for my gold necklace today" either through text or voice. The bot uses natural language processing to extract the payment amount, item, and date, then logs this information automatically in a Google Sheet.
-            </p>
-            <p>
-              The integration with Google Tasks creates automated payment reminders based on each customer's installment schedule. Customers receive friendly reminders before payments are due, which has significantly reduced late payments.
-            </p>
-            <p>
-              The bot also provides customers with an easy way to check their payment history and remaining balance by simply asking "How much do I still owe?" or "Show me my payment history." This self-service capability has reduced customer service inquiries by 68%.
-            </p>
-          </div>
+          <ul className="space-y-2 list-disc pl-5">
+            <li>Addressed challenge of managing installment payments from multiple customers</li>
+            <li>Built solution on Telegram platform for easy customer adoption</li>
+            <li>Implemented natural language processing for both text and voice command inputs</li>
+            <li>Created automated payment reminder system to reduce late payments</li>
+            <li>Provided self-service capabilities for customers to check payment history and balances</li>
+          </ul>
         </Card>
       </div>
     </div>

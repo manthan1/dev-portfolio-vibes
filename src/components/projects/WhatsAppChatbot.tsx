@@ -64,20 +64,13 @@ export default function WhatsAppChatbot() {
 
         <Card className="p-6 border border-border/50">
           <h2 className="text-xl font-semibold mb-4 text-cyan-400">Project Details and Explanations</h2>
-          <div className="space-y-4">
-            <p>
-              This project addressed a critical challenge faced by medical clinics: balancing quality patient communication with operational efficiency. The clinic staff was spending significant time on phone calls for appointment scheduling and reminders, taking away from patient care.
-            </p>
-            <p>
-              Our AI calling system was designed to sound natural and conversational, using Eleven Labs' voice synthesis technology to create a voice that patients found friendly and approachable. The system can understand various accents and speaking patterns thanks to advanced natural language processing.
-            </p>
-            <p>
-              The workflow automation component, built with n8n, handles everything from scheduling logic to follow-up reminders. When a patient misses an appointment, the system automatically calls to reschedule. For routine check-ups, the system proactively reaches out to patients due for appointments.
-            </p>
-            <p>
-              By handling an average of 120 calls per day that previously required manual attention, the clinic has been able to redirect their front desk staff to focus on improving the in-person patient experience, resulting in higher satisfaction scores and more efficient operations.
-            </p>
-          </div>
+          <ul className="space-y-2 list-disc pl-5">
+            <li>Solved clinic's challenge of balancing quality patient communication with operational efficiency</li>
+            <li>Used advanced voice synthesis to create a friendly, natural-sounding conversational experience</li>
+            <li>Implemented automated workflow for appointment scheduling, reminders, and follow-ups</li>
+            <li>Integrated with existing calendar systems for real-time appointment management</li>
+            <li>Enabled staff to focus on in-person patient care rather than administrative tasks</li>
+          </ul>
         </Card>
       </div>
     </div>
