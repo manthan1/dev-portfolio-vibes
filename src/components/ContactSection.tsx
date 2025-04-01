@@ -1,4 +1,5 @@
-import { Copy, Mail, Phone, Calendar } from "lucide-react";
+
+import { Copy, Mail, Phone, Calendar, MapPin, Globe } from "lucide-react";
 import { useEffect, useState } from "react";
 import FadeInView from "./animations/FadeInView";
 import { toast } from "sonner";
@@ -92,39 +93,37 @@ export default function ContactSection() {
           </div>
         </FadeInView>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-7">
-            <FadeInView animation="fade-in-right">
-              <Card className="overflow-hidden shadow-md border border-border/50 h-full">
-                <CardContent className="p-0">
-                  <div className="bg-secondary/30 px-6 py-4 border-b border-border/50">
-                    <h3 className="text-xl font-semibold text-cyan-400">Schedule a Meeting</h3>
-                  </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <FadeInView animation="fade-in-right">
+            <Card className="overflow-hidden shadow-md border border-border/50 h-full">
+              <CardContent className="p-0">
+                <div className="bg-secondary/30 px-6 py-4 border-b border-border/50">
+                  <h3 className="text-xl font-semibold text-cyan-400">Schedule a Meeting</h3>
+                </div>
+                <div className="p-6">
                   {isMobile ? (
-                    <div className="p-6 text-center">
-                      <a 
-                        href="#" 
-                        onClick={(e) => {
-                          e.preventDefault();
-                          openCalendlyPopup();
-                        }}
-                        className="text-cyan-400 hover:underline font-medium"
+                    <div className="text-center space-y-4">
+                      <p className="text-muted-foreground">Book a 30-minute consultation call to discuss your project requirements.</p>
+                      <Button 
+                        onClick={openCalendlyPopup}
+                        className="bg-cyan-400 hover:bg-cyan-500 text-black font-medium"
                       >
-                        Schedule time with me
-                      </a>
+                        <Calendar className="mr-2 h-4 w-4" />
+                        Schedule a Call
+                      </Button>
                     </div>
                   ) : (
                     <div className="calendly-inline-widget" 
                       data-url="https://calendly.com/manthanjethwani2803/30min" 
-                      style={{ minWidth: "320px", height: "600px" }}>
+                      style={{ minWidth: "320px", height: "500px" }}>
                     </div>
                   )}
-                </CardContent>
-              </Card>
-            </FadeInView>
-          </div>
+                </div>
+              </CardContent>
+            </Card>
+          </FadeInView>
 
-          <div className="lg:col-span-5 space-y-8">
+          <div className="space-y-8">
             <FadeInView animation="fade-in-left">
               <Card className="overflow-hidden shadow-md border border-border/50">
                 <CardContent className="p-0">
@@ -184,14 +183,34 @@ export default function ContactSection() {
               <Card className="shadow-md border border-border/50">
                 <CardContent className="p-6">
                   <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-sm">
-                      <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-                      <span>Based in <span className="font-medium text-cyan-400">Mumbai, India</span></span>
+                    <div className="flex items-center gap-3">
+                      <MapPin className="h-5 w-5 text-cyan-400" />
+                      <div>
+                        <h4 className="font-medium">Location</h4>
+                        <p className="text-sm text-muted-foreground">Based in <span className="font-medium text-cyan-400">Mumbai, India</span></p>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-                      <span>Available for remote work worldwide</span>
+                    <Separator className="opacity-30" />
+                    <div className="flex items-center gap-3">
+                      <Globe className="h-5 w-5 text-cyan-400" />
+                      <div>
+                        <h4 className="font-medium">Work Availability</h4>
+                        <p className="text-sm text-muted-foreground">Available for remote work worldwide</p>
+                      </div>
                     </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </FadeInView>
+            
+            <FadeInView animation="fade-in" delay={300}>
+              <Card className="shadow-md border border-border/50 bg-gradient-to-br from-secondary/40 to-background">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold mb-3 text-cyan-400">Why Work With Me</h3>
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">✓ Specialized in AI-driven solutions</p>
+                    <p className="text-sm text-muted-foreground">✓ Dedicated to meeting client objectives</p>
+                    <p className="text-sm text-muted-foreground">✓ Fast turnaround and responsive communication</p>
                   </div>
                 </CardContent>
               </Card>
