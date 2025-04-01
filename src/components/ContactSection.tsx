@@ -1,10 +1,9 @@
 
-import { Copy, Mail, Phone, Calendar, MapPin, Globe } from "lucide-react";
+import { Copy, Mail, Phone, Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
 import FadeInView from "./animations/FadeInView";
 import { toast } from "sonner";
 import { Card, CardContent } from "./ui/card";
-import { Separator } from "./ui/separator";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "./ui/button";
 
@@ -123,75 +122,60 @@ export default function ContactSection() {
             </Card>
           </FadeInView>
 
-          <div className="flex flex-col space-y-6 h-full">
+          <div className="flex flex-col space-y-6">
+            {/* First Box: Contact Information Only */}
             <FadeInView animation="fade-in-left" className="flex-grow">
-              <Card className="overflow-hidden shadow-md border border-border/50 h-full">
-                <CardContent className="p-0 h-full">
+              <Card className="overflow-hidden shadow-md border border-border/50">
+                <CardContent className="p-0">
                   <div className="bg-secondary/30 px-6 py-4 border-b border-border/50">
                     <h3 className="text-xl font-semibold text-cyan-400">Contact Information</h3>
                   </div>
-                  <div className="p-6 h-full flex flex-col justify-between">
+                  <div className="p-6">
                     <div className="space-y-4">
                       {contactInfo.map((info, index) => (
-                        <div key={info.label}>
-                          <div className="flex items-start gap-4 p-3 rounded-lg hover:bg-secondary/20 transition-colors">
-                            <div className="bg-primary/5 p-2 rounded-full text-cyan-400">
-                              {info.icon}
+                        <div key={info.label} className="flex items-start gap-4 p-3 rounded-lg hover:bg-secondary/20 transition-colors">
+                          <div className="bg-primary/5 p-2 rounded-full text-cyan-400">
+                            {info.icon}
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-sm font-medium text-muted-foreground mb-1">
+                              {info.label}
                             </div>
-                            <div className="flex-1">
-                              <div className="text-sm font-medium text-muted-foreground mb-1">
-                                {info.label}
-                              </div>
-                              <div className="flex items-center justify-between">
-                                {info.href ? (
-                                  <a
-                                    href={info.href}
-                                    target={info.href.startsWith("http") ? "_blank" : undefined}
-                                    rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                    className="text-sm hover:text-cyan-400 transition-colors"
-                                  >
-                                    {info.value}
-                                  </a>
-                                ) : (
-                                  <span className="text-sm">{info.value}</span>
-                                )}
-                                {info.copyable && (
-                                  <button
-                                    type="button"
-                                    onClick={() => copyToClipboard(info.value, info.label)}
-                                    className="p-1 rounded-md opacity-70 hover:opacity-100 transition-opacity hover:bg-secondary/30 text-cyan-400"
-                                    aria-label={`Copy ${info.label}`}
-                                  >
-                                    <Copy className="h-4 w-4" />
-                                  </button>
-                                )}
-                              </div>
+                            <div className="flex items-center justify-between">
+                              {info.href ? (
+                                <a
+                                  href={info.href}
+                                  target={info.href.startsWith("http") ? "_blank" : undefined}
+                                  rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                  className="text-sm hover:text-cyan-400 transition-colors"
+                                >
+                                  {info.value}
+                                </a>
+                              ) : (
+                                <span className="text-sm">{info.value}</span>
+                              )}
+                              {info.copyable && (
+                                <button
+                                  type="button"
+                                  onClick={() => copyToClipboard(info.value, info.label)}
+                                  className="p-1 rounded-md opacity-70 hover:opacity-100 transition-opacity hover:bg-secondary/30 text-cyan-400"
+                                  aria-label={`Copy ${info.label}`}
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
+                              )}
                             </div>
                           </div>
-                          {index < contactInfo.length - 1 && (
-                            <Separator className="my-2 opacity-30" />
-                          )}
                         </div>
                       ))}
-                    </div>
-
-                    <div className="mt-6 pt-4 space-y-6">
-                      <div className="text-sm">
-                        <span className="text-muted-foreground">Location:</span> 
-                        <span className="ml-2 text-cyan-400">Based in Mumbai, India</span>
-                      </div>
-                      
-                      <div className="text-sm">
-                        <span className="text-muted-foreground">Work Availability:</span>
-                        <span className="ml-2">Available for remote work worldwide</span>
-                      </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </FadeInView>
             
-            <FadeInView animation="fade-in" delay={300} className="hidden lg:block">
+            {/* Second Box: Why Work With Me */}
+            <FadeInView animation="fade-in-left" delay={100}>
               <Card className="shadow-md border border-border/50 bg-gradient-to-br from-secondary/40 to-background">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold mb-3 text-cyan-400">Why Work With Me</h3>
@@ -199,6 +183,25 @@ export default function ContactSection() {
                     <p className="text-sm text-muted-foreground">✓ Specialized in AI-driven solutions</p>
                     <p className="text-sm text-muted-foreground">✓ Dedicated to meeting client objectives</p>
                     <p className="text-sm text-muted-foreground">✓ Fast turnaround and responsive communication</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </FadeInView>
+            
+            {/* Third Box: Location and Work Availability */}
+            <FadeInView animation="fade-in-left" delay={200}>
+              <Card className="shadow-md border border-border/50">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold mb-3 text-cyan-400">Location & Availability</h3>
+                  <div className="space-y-3">
+                    <p className="text-sm">
+                      <span className="text-muted-foreground">Based in:</span> 
+                      <span className="ml-2 text-cyan-400">Mumbai, India</span>
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-muted-foreground">Available for:</span>
+                      <span className="ml-2">Remote work worldwide</span>
+                    </p>
                   </div>
                 </CardContent>
               </Card>
