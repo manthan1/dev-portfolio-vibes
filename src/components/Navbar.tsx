@@ -50,7 +50,7 @@ export default function Navbar() {
   return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "py-3 glass" : "py-5 bg-transparent"} ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
       <div className="container max-w-7xl mx-auto px-6 flex items-center justify-between">
         <a href="#home" className="font-bold font-display relative h-10">
-          <img alt="PhazeAI Logo" src="/lovable-uploads/50f1415d-97e7-41ec-8502-e92dd06cf5a1.jpg" className="h-7 md:h-auto w-auto object-scale-down" />
+          <img alt="PhazeAI Logo" className="h-7 md:h-8 w-auto object-contain" src="/lovable-uploads/50f1415d-97e7-41ec-8502-e92dd06cf5a1.jpg" />
         </a>
 
         {/* Desktop Navigation */}
