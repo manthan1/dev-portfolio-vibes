@@ -4,23 +4,23 @@ import { Code, Cpu, Server, Zap } from "lucide-react";
 const features = [
   {
     icon: <Cpu className="h-5 w-5" />,
-    title: "AI Automation",
-    description: "Creating intelligent systems that automate repetitive tasks and workflows.",
+    title: "AI-Powered Automation",
+    description: "Streamline operations, eliminate repetitive tasks, and let AI handle the busywork—so you can focus on what truly matters.",
   },
   {
     icon: <Code className="h-5 w-5" />,
-    title: "Custom AI Solutions",
-    description: "Building tailored AI applications that solve your specific business challenges.",
+    title: "AI Consulting & Strategy",
+    description: "Not sure where AI fits into your business? We analyze your processes, identify AI opportunities, and craft a tailored strategy to maximize ROI.",
   },
   {
     icon: <Server className="h-5 w-5" />,
-    title: "Smart Infrastructure",
-    description: "Designing scalable AI systems that grow with your business needs.",
+    title: "Custom AI Development",
+    description: "From chatbots to predictive analytics, we build AI solutions tailored to your business needs—ensuring seamless integration and high performance.",
   },
   {
     icon: <Zap className="h-5 w-5" />,
-    title: "Business Optimization",
-    description: "Streamlining operations and driving efficiency through intelligent automation.",
+    title: "AI Agents & Virtual Assistants",
+    description: "Enhance customer experience and internal workflows with autonomous AI-powered assistants capable of handling complex tasks and decision-making.",
   },
 ];
 
@@ -35,23 +35,19 @@ export default function AboutSection() {
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-              Your partner in AI-powered business transformation
+              PhazeAI – Your Partner in AI-Powered Business Transformation
             </h2>
             
             <div className="space-y-4 text-gray-300">
               <p>
-                We're not just building tools—we're building smart solutions that think, learn, and deliver results. 
-                Whether you're a startup or a scaling enterprise, our AI-driven systems are designed to automate, 
+                We don't just build AI tools—we create intelligent solutions that think, learn, and deliver results. 
+                Whether you're a startup or a scaling enterprise, our AI-driven systems help you automate, 
                 optimize, and accelerate your workflow.
               </p>
               <p>
-                At our agency, we combine deep technical expertise with strategic business thinking to create AI 
-                solutions that deliver real value. Our team of specialists works closely with you to understand your 
-                challenges and build custom AI systems that drive growth and efficiency.
-              </p>
-              <p>
-                From chatbots and recommendation engines to predictive analytics and automation tools, our solutions 
-                are built to enhance your business capabilities and give you a competitive edge in the digital age.
+                At PhazeAI, we combine deep technical expertise with strategic business thinking to develop AI 
+                solutions that drive real value. We work closely with you to understand your challenges and build 
+                custom AI systems that fuel growth and efficiency.
               </p>
             </div>
           </div>
