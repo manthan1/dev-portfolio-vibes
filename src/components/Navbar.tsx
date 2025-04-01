@@ -1,30 +1,34 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-
 interface NavItem {
   label: string;
   href: string;
 }
-
-const navItems: NavItem[] = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Our Process", href: "#skills" },
-  { label: "Contact", href: "#contact" },
-];
-
+const navItems: NavItem[] = [{
+  label: "Home",
+  href: "#home"
+}, {
+  label: "About",
+  href: "#about"
+}, {
+  label: "Projects",
+  href: "#projects"
+}, {
+  label: "Our Process",
+  href: "#skills"
+}, {
+  label: "Contact",
+  href: "#contact"
+}];
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Determine scroll direction and apply visibility based on rules
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // Scrolling down & past threshold - hide navbar
@@ -36,84 +40,47 @@ export default function Navbar() {
 
       // Update background style based on scroll position
       setIsScrolled(currentScrollY > 20);
-      
+
       // Update last scroll position
       setLastScrollY(currentScrollY);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
-
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "py-3 glass"
-          : "py-5 bg-transparent"
-      } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
-    >
+  return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "py-3 glass" : "py-5 bg-transparent"} ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
       <div className="container max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a
-          href="#home"
-          className="font-bold font-display relative h-10"
-        >
-          <img 
-            src="/lovable-uploads/0f1410d9-2ff8-40c3-b3d3-c20b389d378b.png" 
-            alt="PhazeAI Logo" 
-            className="h-7 md:h-8 w-auto object-contain"
-          />
+        <a href="#home" className="font-bold font-display relative h-10">
+          <img alt="PhazeAI Logo" className="h-7 md:h-8 w-auto object-contain" src="/lovable-uploads/50f1415d-97e7-41ec-8502-e92dd06cf5a1.jpg" />
         </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <ul className="flex items-center gap-6">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  className="font-medium text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
-                >
+            {navItems.map(item => <li key={item.label}>
+                <a href={item.href} className="font-medium text-sm text-muted-foreground hover:text-foreground transition-colors link-underline">
                   {item.label}
                 </a>
-              </li>
-            ))}
+              </li>)}
           </ul>
         </nav>
 
         {/* Mobile Navigation */}
         <div className="flex items-center gap-4 md:hidden">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1 bg-background/80 rounded-md backdrop-blur-sm border border-border/30"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? 
-              <X className="opacity-100" /> : 
-              <Menu className="opacity-60" />
-            }
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-1 bg-background/80 rounded-md backdrop-blur-sm border border-border/30" aria-label="Toggle menu">
+            {mobileMenuOpen ? <X className="opacity-100" /> : <Menu className="opacity-60" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="glass absolute top-full left-0 right-0 py-4 px-6 md:hidden animate-fade-in">
+      {mobileMenuOpen && <div className="glass absolute top-full left-0 right-0 py-4 px-6 md:hidden animate-fade-in">
           <ul className="flex flex-col gap-4">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  className="block font-medium py-2 text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+            {navItems.map(item => <li key={item.label}>
+                <a href={item.href} className="block font-medium py-2 text-muted-foreground hover:text-foreground transition-colors" onClick={() => setMobileMenuOpen(false)}>
                   {item.label}
                 </a>
-              </li>
-            ))}
+              </li>)}
           </ul>
-        </div>
-      )}
-    </header>
-  );
+        </div>}
+    </header>;
 }
