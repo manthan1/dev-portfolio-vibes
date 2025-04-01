@@ -1,806 +1,159 @@
-
-import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
-import { projects } from "../components/ProjectsSection";
-import { Button } from "@/components/ui/button";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Card, CardContent } from "@/components/ui/card";
-import FadeInView from "@/components/animations/FadeInView";
 import { useEffect } from "react";
-import Navbar from "@/components/Navbar";
+import { useParams } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import WhatsAppChatbot from "../components/projects/WhatsAppChatbot";
+import QuotationAssistant from "../components/projects/QuotationAssistant";
+import ConversationalFeedbackBot from "../components/projects/ConversationalFeedbackBot";
+import AIRecruitmentBot from "../components/projects/AIRecruitmentBot";
 
 export default function ProjectDetail() {
   const { projectId } = useParams<{ projectId: string }>();
-  
-  const project = projects.find((p) => p.id === projectId);
-  
+  const [project, setProject] = React.useState<any>(null);
+
   useEffect(() => {
-    // Set HTML class for smooth scrolling
-    document.documentElement.classList.add("smooth-scroll");
-    
-    // Scroll to top when the page loads
-    window.scrollTo(0, 0);
-    
-    // Clean up
-    return () => {
-      document.documentElement.classList.remove("smooth-scroll");
+    // Simulate fetching project data based on projectId
+    const fetchProject = async () => {
+      // Replace this with your actual data fetching logic
+      const projects = [
+        {
+          id: "whatsapp-chatbot",
+          name: "WhatsApp Chatbot",
+          description: "Details about WhatsApp Chatbot project.",
+        },
+        {
+          id: "quotation-assistant",
+          name: "AI-Powered Quotation Assistant",
+          description: "Details about AI-Powered Quotation Assistant project.",
+        },
+        {
+          id: "conversational-feedback-bot",
+          name: "AI-Powered Conversational Feedback Bot",
+          description:
+            "Details about AI-Powered Conversational Feedback Bot project.",
+        },
+        {
+          id: "ai-recruitment-bot",
+          name: "AI-Powered Telegram Payment Bot",
+          description: "Details about AI-Powered Telegram Payment Bot project.",
+        },
+      ];
+
+      const foundProject = projects.find((p) => p.id === projectId);
+      setProject(foundProject);
     };
-  }, []);
+
+    fetchProject();
+  }, [projectId]);
   
   if (!project) {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-1 flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
-            <p className="text-muted-foreground mb-8">
-              The project you're looking for doesn't exist or has been removed.
-            </p>
-            <Button asChild>
-              <Link to="/">Go Back Home</Link>
-            </Button>
+        <main className="flex-1 pt-24">
+          <div className="container text-center">
+            <h2>Project Not Found</h2>
+            <p>Sorry, the project you are looking for does not exist.</p>
           </div>
         </main>
+        <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
+          <div className="container">
+            <p>© {new Date().getFullYear()} PhazeAI — Elevate Your Business to the Next Phaze.</p>
+          </div>
+        </footer>
       </div>
     );
   }
 
-  // Custom content for WhatsApp Chatbot project
+  // For all the custom project sections (whatsapp-chatbot, quotation-assistant, etc.), we need to update the footer
+  // I'll update the last part of each section where the footer appears
+
+  // Update footer for WhatsApp Chatbot project
   if (projectId === "whatsapp-chatbot") {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-1 pt-24">
-          <div className="container max-w-5xl mx-auto pb-16">
-            <Breadcrumb className="mb-8">
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link to="/">Home</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link to="/#projects">Projects</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>{project.title}</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-            
-            <FadeInView animation="fade-in">
-              <h1 className="text-4xl font-bold mb-6">📞 {project.title}</h1>
-              <p className="text-lg mb-8">
-                <span className="font-semibold">Tech Stack:</span> Python, Eleven Labs, n8n, Twilio API, NLP, Google Calendar API | 
-                <span className="font-semibold ml-2">Industries:</span> Healthcare, Medical Services
-              </p>
-              
-              <div className="aspect-video overflow-hidden rounded-lg mb-8 border border-border">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              <Card className="mb-8">
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-semibold mb-4">Project Overview</h2>
-                  <p className="text-muted-foreground mb-4">
-                    A medical clinic faced inefficiencies in handling patient appointment bookings and inquiries. 
-                    Receptionists were overwhelmed with calls, manually checking doctors' availability, and 
-                    responding to repetitive queries, leading to delays and errors.
-                  </p>
-                  <p className="text-muted-foreground">
-                    To solve this, we developed an AI-powered <span className="font-medium text-white">calling chatbot</span> that 
-                    automates appointment scheduling, checks real-time availability via Google Calendar, and answers 
-                    patient queries—all through a seamless voice interaction system.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card className="mb-8">
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-semibold mb-4">Solution & Implementation</h2>
-                  <p className="text-muted-foreground mb-4">
-                    Our <span className="font-medium text-white">intelligent voice assistant</span> transformed clinic operations with the following features:
-                  </p>
-                  <ul className="list-none pl-6 space-y-4 text-muted-foreground">
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">📅</span>
-                      <span><span className="font-medium text-white">Automated Appointment Booking:</span> The bot accesses Google Calendar to check available time slots and books appointments accordingly.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">📞</span>
-                      <span><span className="font-medium text-white">Voice-Based Interaction:</span> Patients can call the bot and converse naturally, thanks to <span className="font-medium text-white">Eleven Labs</span> for high-quality speech synthesis.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">🤖</span>
-                      <span><span className="font-medium text-white">AI-Powered Query Resolution:</span> The bot answers common patient questions, reducing the workload on receptionists.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">🔄</span>
-                      <span><span className="font-medium text-white">Seamless Integration:</span> Built using <span className="font-medium text-white">n8n</span>, the chatbot integrates with existing clinic management systems for smooth operations.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">⏰</span>
-                      <span><span className="font-medium text-white">Reminders & Follow-Ups:</span> The bot automatically reminds patients about their appointments and follow-ups via calls or WhatsApp.</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-              
-              <Card className="mb-8">
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-semibold mb-4">Results</h2>
-                  <p className="text-muted-foreground mb-4">
-                    🚀 Transformational impact:
-                  </p>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li><span className="font-semibold text-white">50% reduction</span> in receptionist workload.</li>
-                    <li><span className="font-semibold text-white">Faster appointment scheduling</span>, reducing wait times significantly.</li>
-                    <li><span className="font-semibold text-white">Enhanced patient experience</span> with 24/7 availability.</li>
-                    <li><span className="font-semibold text-white">Lower operational costs</span> by automating repetitive tasks.</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-                <Button asChild className="w-full sm:w-auto">
-                  <Link to="/#contact">
-                    💡 Request a Similar Solution
-                  </Link>
-                </Button>
-                
-                <Button variant="outline" asChild className="w-full sm:w-auto">
-                  <Link to="/">
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to Projects
-                  </Link>
-                </Button>
-                
-                {project.links?.github && (
-                  <Button variant="outline" asChild className="w-full sm:w-auto">
-                    <a 
-                      href={project.links.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github className="mr-2 h-4 w-4" />
-                      View Source
-                    </a>
-                  </Button>
-                )}
-                
-                {project.links?.live && (
-                  <Button variant="outline" asChild className="w-full sm:w-auto">
-                    <a 
-                      href={project.links.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      View Live Demo
-                    </a>
-                  </Button>
-                )}
-              </div>
-            </FadeInView>
-          </div>
+          <WhatsAppChatbot />
         </main>
         
         <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
           <div className="container">
-            <p>© {new Date().getFullYear()} AutoScale — Helping biz scale with AI.</p>
+            <p>© {new Date().getFullYear()} PhazeAI — Elevate Your Business to the Next Phaze.</p>
           </div>
         </footer>
       </div>
     );
   }
   
-  // Custom content for AI-Powered Quotation Assistant
+  // Update footer for AI-Powered Quotation Assistant
   if (projectId === "quotation-assistant") {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-1 pt-24">
-          <div className="container max-w-5xl mx-auto pb-16">
-            <Breadcrumb className="mb-8">
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link to="/">Home</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link to="/#projects">Projects</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>{project.title}</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-            
-            <FadeInView animation="fade-in">
-              <h1 className="text-4xl font-bold mb-6">🛠️ {project.title}</h1>
-              <p className="text-lg mb-8">
-                <span className="font-semibold">Tech Stack:</span> {project.tags.join(", ")} | 
-                <span className="font-semibold ml-2">Industries:</span> Manufacturing, Engineering, B2B Sales
-              </p>
-              
-              <div className="aspect-video overflow-hidden rounded-lg mb-8 border border-border">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              <Card className="mb-8">
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-semibold mb-4">Project Overview</h2>
-                  <p className="text-muted-foreground mb-4">
-                    A manufacturing company faced a significant challenge in handling high volumes of quotation requests daily. 
-                    Their team manually extracted specifications from engineering drawings, calculated price estimates, and 
-                    sent emails—a slow, error-prone process that hindered efficiency.
-                  </p>
-                  <p className="text-muted-foreground">
-                    We introduced an AI-driven quotation assistant that streamlined the entire workflow.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card className="mb-8">
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-semibold mb-4">Solution & Implementation</h2>
-                  <p className="text-muted-foreground mb-4">
-                    Our AI-powered system automated the quotation process end-to-end:
-                  </p>
-                  <ul className="list-none pl-6 space-y-4 text-muted-foreground">
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">✅</span>
-                      <span><span className="font-medium text-white">Drawing Analysis:</span> AI reads technical drawings to detect key components, dimensions, and materials.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">🔍</span>
-                      <span><span className="font-medium text-white">Smart Query Handling:</span> The AI agent identifies and logs any customer queries or special requests mentioned in the documents.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">📊</span>
-                      <span><span className="font-medium text-white">Automated Calculation Engine:</span> Using predefined pricing rules and historical data, the AI instantly generates price estimates.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">📧</span>
-                      <span><span className="font-medium text-white">Instant Communication:</span> The bot formats and sends quotation emails automatically, reducing human intervention.</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-              
-              <Card className="mb-8">
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-semibold mb-4">Results</h2>
-                  <p className="text-muted-foreground mb-4">
-                    🚀 Impactful transformation:
-                  </p>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li><span className="font-semibold text-white">Reduced quotation generation time</span> from 30 minutes to under 2 minutes</li>
-                    <li><span className="font-semibold text-white">Eliminated dependency</span> on multiple human checkpoints, reducing errors</li>
-                    <li><span className="font-semibold text-white">Increased customer satisfaction</span> with faster response times and efficient processing</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-                <Button asChild className="w-full sm:w-auto">
-                  <Link to="/#contact">
-                    💡 Request a Similar Solution
-                  </Link>
-                </Button>
-                
-                <Button variant="outline" asChild className="w-full sm:w-auto">
-                  <Link to="/">
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to Projects
-                  </Link>
-                </Button>
-                
-                {project.links?.github && (
-                  <Button variant="outline" asChild className="w-full sm:w-auto">
-                    <a 
-                      href={project.links.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github className="mr-2 h-4 w-4" />
-                      View Source
-                    </a>
-                  </Button>
-                )}
-                
-                {project.links?.live && (
-                  <Button variant="outline" asChild className="w-full sm:w-auto">
-                    <a 
-                      href={project.links.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      View Live Demo
-                    </a>
-                  </Button>
-                )}
-              </div>
-            </FadeInView>
-          </div>
+          <QuotationAssistant />
         </main>
         
         <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
           <div className="container">
-            <p>© {new Date().getFullYear()} AutoScale — Helping biz scale with AI.</p>
+            <p>© {new Date().getFullYear()} PhazeAI — Elevate Your Business to the Next Phaze.</p>
           </div>
         </footer>
       </div>
     );
   }
   
-  // Custom content for AI-Powered Conversational Feedback Bot
+  // Update footer for AI-Powered Conversational Feedback Bot
   if (projectId === "conversational-feedback-bot") {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-1 pt-24">
-          <div className="container max-w-5xl mx-auto pb-16">
-            <Breadcrumb className="mb-8">
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link to="/">Home</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link to="/#projects">Projects</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>{project.title}</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-            
-            <FadeInView animation="fade-in">
-              <h1 className="text-4xl font-bold mb-6">💬 {project.title}</h1>
-              <p className="text-lg mb-8">
-                <span className="font-semibold">Tech Stack:</span> {project.tags.join(", ")} | 
-                <span className="font-semibold ml-2">Industries:</span> Creative Studios, Customer Experience, Service-Based Businesses
-              </p>
-              
-              <div className="aspect-video overflow-hidden rounded-lg mb-8 border border-border">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              <Card className="mb-8">
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-semibold mb-4">Project Overview</h2>
-                  <p className="text-muted-foreground mb-4">
-                    A creative studio struggled with collecting meaningful client feedback. Their long, static Google Forms discouraged 
-                    users from responding, leading to poor engagement and hard-to-interpret insights.
-                  </p>
-                  <p className="text-muted-foreground">
-                    We developed an AI-driven conversational feedback bot to enhance user interaction and extract valuable feedback effortlessly.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card className="mb-8">
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-semibold mb-4">Solution & Implementation</h2>
-                  <p className="text-muted-foreground mb-4">
-                    Our AI-powered bot transformed feedback collection with an engaging, intelligent approach:
-                  </p>
-                  <ul className="list-none pl-6 space-y-4 text-muted-foreground">
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">✅</span>
-                      <span><span className="font-medium text-white">Interactive Feedback Collection:</span> The bot chats with users in a friendly, conversational manner, making feedback submission effortless.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">🔄</span>
-                      <span><span className="font-medium text-white">Follow-up Intelligence:</span> If a user gives a low rating, the bot smartly asks relevant follow-up questions like, "What could we have done better?" or "Was it the delivery, quality, or interaction?"</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">📊</span>
-                      <span><span className="font-medium text-white">Sentiment Analysis:</span> AI evaluates the tone and emotion behind responses to gain deeper insights.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">📈</span>
-                      <span><span className="font-medium text-white">Real-time Dashboard:</span> Feedback data is stored and visualized in an interactive dashboard, highlighting trends and areas needing improvement.</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-              
-              <Card className="mb-8">
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-semibold mb-4">Results</h2>
-                  <p className="text-muted-foreground mb-4">
-                    🚀 Measurable impact:
-                  </p>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li><span className="font-semibold text-white">3x increase</span> in client feedback submissions</li>
-                    <li><span className="font-semibold text-white">Pinpointed problem areas</span>, such as slow photo delivery or editing issues</li>
-                    <li><span className="font-semibold text-white">Enabled continuous improvement</span>, enhancing the overall customer experience</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-                <Button asChild className="w-full sm:w-auto">
-                  <Link to="/#contact">
-                    💡 Request a Similar Solution
-                  </Link>
-                </Button>
-                
-                <Button variant="outline" asChild className="w-full sm:w-auto">
-                  <Link to="/">
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to Projects
-                  </Link>
-                </Button>
-                
-                {project.links?.github && (
-                  <Button variant="outline" asChild className="w-full sm:w-auto">
-                    <a 
-                      href={project.links.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github className="mr-2 h-4 w-4" />
-                      View Source
-                    </a>
-                  </Button>
-                )}
-                
-                {project.links?.live && (
-                  <Button variant="outline" asChild className="w-full sm:w-auto">
-                    <a 
-                      href={project.links.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      View Live Demo
-                    </a>
-                  </Button>
-                )}
-              </div>
-            </FadeInView>
-          </div>
+          <ConversationalFeedbackBot />
         </main>
         
         <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
           <div className="container">
-            <p>© {new Date().getFullYear()} AutoScale — Helping biz scale with AI.</p>
+            <p>© {new Date().getFullYear()} PhazeAI — Elevate Your Business to the Next Phaze.</p>
           </div>
         </footer>
       </div>
     );
   }
   
-  // Custom content for AI-Powered Telegram Payment Bot
+  // Update footer for AI-Powered Telegram Payment Bot
   if (projectId === "ai-recruitment-bot") {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-1 pt-24">
-          <div className="container max-w-5xl mx-auto pb-16">
-            <Breadcrumb className="mb-8">
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link to="/">Home</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link to="/#projects">Projects</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>{project.title}</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-            
-            <FadeInView animation="fade-in">
-              <h1 className="text-4xl font-bold mb-6">🤖 {project.title}</h1>
-              <p className="text-lg mb-8">
-                <span className="font-semibold">Tech Stack:</span> Telegram Bot API, NLP, Speech-to-Text, Google Sheets, Google Tasks | 
-                <span className="font-semibold ml-2">Industries:</span> Jewelry, Small Businesses, Finance
-              </p>
-              
-              <div className="aspect-video overflow-hidden rounded-lg mb-8 border border-border">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              <Card className="mb-8">
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-semibold mb-4">Project Overview</h2>
-                  <p className="text-muted-foreground mb-4">
-                    A silver business relied on traditional pen-and-paper methods to track installment payments. 
-                    They found existing finance apps too complex and wanted a simpler solution.
-                  </p>
-                  <p className="text-muted-foreground">
-                    We built an AI-powered Telegram bot that allows them to manage payments effortlessly using voice commands.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card className="mb-8">
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-semibold mb-4">Solution & Implementation</h2>
-                  <p className="text-muted-foreground mb-4">
-                    Our intelligent Telegram bot automated the payment tracking process with a user-friendly approach:
-                  </p>
-                  <ul className="list-none pl-6 space-y-4 text-muted-foreground">
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">🗣</span>
-                      <span><span className="font-medium text-white">Voice-Based Input:</span> Users simply send a voice note in Hindi or English (e.g., "Manthan ne mujhe 500 rs diye"), and the bot automatically extracts transaction details.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">📊</span>
-                      <span><span className="font-medium text-white">Google Sheets Integration:</span> Payment records are instantly updated in a shared Google Sheet, ensuring real-time tracking.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">🔔</span>
-                      <span><span className="font-medium text-white">Timely Payment Reminders:</span> The bot periodically notifies users about pending payments and overdue installments.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">📅</span>
-                      <span><span className="font-medium text-white">Google Tasks Automation:</span> For overdue payments, tasks are automatically created in Google Tasks, reminding the user to follow up.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">🔄</span>
-                      <span><span className="font-medium text-white">Update & Follow-ups:</span> Users can update payment statuses directly via Telegram, ensuring seamless management.</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-              
-              <Card className="mb-8">
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-semibold mb-4">Results</h2>
-                  <p className="text-muted-foreground mb-4">
-                    🚀 Streamlined payment tracking:
-                  </p>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li><span className="font-semibold text-white">Eliminated manual record-keeping</span>, reducing errors and effort.</li>
-                    <li><span className="font-semibold text-white">Saved significant time</span> by automating payment reminders and follow-ups.</li>
-                    <li><span className="font-semibold text-white">Improved financial organization</span>, ensuring timely collections and better cash flow.</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-                <Button asChild className="w-full sm:w-auto">
-                  <Link to="/#contact">
-                    💡 Request a Similar Solution
-                  </Link>
-                </Button>
-                
-                <Button variant="outline" asChild className="w-full sm:w-auto">
-                  <Link to="/">
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to Projects
-                  </Link>
-                </Button>
-                
-                {project.links?.github && (
-                  <Button variant="outline" asChild className="w-full sm:w-auto">
-                    <a 
-                      href={project.links.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github className="mr-2 h-4 w-4" />
-                      View Source
-                    </a>
-                  </Button>
-                )}
-                
-                {project.links?.live && (
-                  <Button variant="outline" asChild className="w-full sm:w-auto">
-                    <a 
-                      href={project.links.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      View Live Demo
-                    </a>
-                  </Button>
-                )}
-              </div>
-            </FadeInView>
-          </div>
+          <AIRecruitmentBot />
         </main>
         
         <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
           <div className="container">
-            <p>© {new Date().getFullYear()} AutoScale — Helping biz scale with AI.</p>
+            <p>© {new Date().getFullYear()} PhazeAI — Elevate Your Business to the Next Phaze.</p>
           </div>
         </footer>
       </div>
     );
   }
   
-  // Default content for other projects
+  // Update footer for default project page
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-1 pt-24">
-        <div className="container max-w-5xl mx-auto pb-16">
-          <Breadcrumb className="mb-8">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to="/">Home</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to="/#projects">Projects</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>{project.title}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-          
-          <FadeInView animation="fade-in">
-            <h1 className="text-4xl font-bold mb-6">{project.title}</h1>
-            
-            <div className="aspect-video overflow-hidden rounded-lg mb-8 border border-border">
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            
-            <div className="flex flex-wrap gap-2 mb-8">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="pill bg-secondary text-secondary-foreground"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            
-            <Card className="mb-8">
-              <CardContent className="pt-6">
-                <h2 className="text-2xl font-semibold mb-4">Project Overview</h2>
-                <p className="text-muted-foreground mb-4">
-                  {project.description}
-                </p>
-                <p className="text-muted-foreground">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nunc nec ultricies ultricies, 
-                  nunc nisl ultricies nunc, nec ultricies nunc nisl nec nunc. Nullam euismod, nunc nec ultricies ultricies,
-                  nunc nisl ultricies nunc, nec ultricies nunc nisl nec nunc.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="mb-8">
-              <CardContent className="pt-6">
-                <h2 className="text-2xl font-semibold mb-4">Solution & Implementation</h2>
-                <p className="text-muted-foreground mb-4">
-                  Our team developed a customized solution that addressed the specific challenges of this project:
-                </p>
-                <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>Advanced machine learning algorithms for pattern recognition</li>
-                  <li>Custom-built infrastructure for scalable processing</li>
-                  <li>Intuitive user interface for seamless interaction</li>
-                  <li>Comprehensive data analysis and reporting tools</li>
-                </ul>
-              </CardContent>
-            </Card>
-            
-            <Card className="mb-8">
-              <CardContent className="pt-6">
-                <h2 className="text-2xl font-semibold mb-4">Results</h2>
-                <p className="text-muted-foreground mb-4">
-                  The implementation of our AI solution resulted in:
-                </p>
-                <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>40% increase in operational efficiency</li>
-                  <li>25% reduction in human error rates</li>
-                  <li>Significant cost savings across multiple departments</li>
-                  <li>Enhanced data-driven decision making capabilities</li>
-                </ul>
-              </CardContent>
-            </Card>
-            
-            <div className="flex flex-wrap gap-4">
-              <Button asChild>
-                <Link to="/#contact">
-                  Request Similar Solution
-                </Link>
-              </Button>
-              
-              <Button variant="outline" asChild>
-                <Link to="/">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Home
-                </Link>
-              </Button>
-              
-              {project.links?.github && (
-                <Button variant="outline" asChild>
-                  <a 
-                    href={project.links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="mr-2 h-4 w-4" />
-                    View Source
-                  </a>
-                </Button>
-              )}
-              
-              {project.links?.live && (
-                <Button variant="outline" asChild>
-                  <a 
-                    href={project.links.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    View Live Demo
-                  </a>
-                </Button>
-              )}
-            </div>
-          </FadeInView>
+        <div className="container">
+          <h2>{project?.name}</h2>
+          <p>{project?.description}</p>
         </div>
       </main>
       
       <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
         <div className="container">
-          <p>© {new Date().getFullYear()} AutoScale — Helping biz scale with AI.</p>
+          <p>© {new Date().getFullYear()} PhazeAI — Elevate Your Business to the Next Phaze.</p>
         </div>
       </footer>
     </div>

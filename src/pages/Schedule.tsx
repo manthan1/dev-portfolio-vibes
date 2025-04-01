@@ -98,7 +98,7 @@ export default function Schedule() {
       </main>
       <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
         <div className="container">
-          <p>© {new Date().getFullYear()} AI Agency. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} PhazeAI — Elevate Your Business to the Next Phaze.</p>
         </div>
       </footer>
     </div>
