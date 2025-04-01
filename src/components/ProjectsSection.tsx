@@ -23,10 +23,10 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: "music-recommendation",
-    title: "Music Recommendation System using CNN",
-    description: "Built a music recommendation system using Convolutional Neural Networks that analyzes audio patterns to suggest similar tracks.",
-    tags: ["Python", "TensorFlow", "CNN", "Audio Processing"],
+    id: "quotation-assistant",
+    title: "AI-Powered Quotation Assistant",
+    description: "Developed an AI system that analyzes engineering drawings, extracts specifications, and automatically generates accurate price quotations.",
+    tags: ["Computer Vision", "NLP", "Automation", "B2B Sales"],
     image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
   },
   {

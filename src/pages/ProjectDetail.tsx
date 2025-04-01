@@ -203,6 +203,156 @@ export default function ProjectDetail() {
     );
   }
   
+  // Custom content for AI-Powered Quotation Assistant
+  if (projectId === "quotation-assistant") {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1 pt-24">
+          <div className="container max-w-5xl mx-auto pb-16">
+            <Breadcrumb className="mb-8">
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/">Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/#projects">Projects</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{project.title}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+            
+            <FadeInView animation="fade-in">
+              <h1 className="text-4xl font-bold mb-6">🛠️ {project.title}</h1>
+              <p className="text-lg mb-8">
+                <span className="font-semibold">Tech Stack:</span> {project.tags.join(", ")} | 
+                <span className="font-semibold ml-2">Industries:</span> Manufacturing, Engineering, B2B Sales
+              </p>
+              
+              <div className="aspect-video overflow-hidden rounded-lg mb-8 border border-border">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              <Card className="mb-8">
+                <CardContent className="pt-6">
+                  <h2 className="text-2xl font-semibold mb-4">Project Overview</h2>
+                  <p className="text-muted-foreground mb-4">
+                    A manufacturing company faced a significant challenge in handling high volumes of quotation requests daily. 
+                    Their team manually extracted specifications from engineering drawings, calculated price estimates, and 
+                    sent emails—a slow, error-prone process that hindered efficiency.
+                  </p>
+                  <p className="text-muted-foreground">
+                    We introduced an AI-driven quotation assistant that streamlined the entire workflow.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="mb-8">
+                <CardContent className="pt-6">
+                  <h2 className="text-2xl font-semibold mb-4">Solution & Implementation</h2>
+                  <p className="text-muted-foreground mb-4">
+                    Our AI-powered system automated the quotation process end-to-end:
+                  </p>
+                  <ul className="list-none pl-6 space-y-4 text-muted-foreground">
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">✅</span>
+                      <span><span className="font-medium text-white">Drawing Analysis:</span> AI reads technical drawings to detect key components, dimensions, and materials.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">🔍</span>
+                      <span><span className="font-medium text-white">Smart Query Handling:</span> The AI agent identifies and logs any customer queries or special requests mentioned in the documents.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">📊</span>
+                      <span><span className="font-medium text-white">Automated Calculation Engine:</span> Using predefined pricing rules and historical data, the AI instantly generates price estimates.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">📧</span>
+                      <span><span className="font-medium text-white">Instant Communication:</span> The bot formats and sends quotation emails automatically, reducing human intervention.</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <Card className="mb-8">
+                <CardContent className="pt-6">
+                  <h2 className="text-2xl font-semibold mb-4">Results</h2>
+                  <p className="text-muted-foreground mb-4">
+                    🚀 Impactful transformation:
+                  </p>
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+                    <li><span className="font-semibold text-white">Reduced quotation generation time</span> from 30 minutes to under 2 minutes</li>
+                    <li><span className="font-semibold text-white">Eliminated dependency</span> on multiple human checkpoints, reducing errors</li>
+                    <li><span className="font-semibold text-white">Increased customer satisfaction</span> with faster response times and efficient processing</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+                <Button asChild className="w-full sm:w-auto">
+                  <Link to="/#contact">
+                    💡 Request a Similar Solution
+                  </Link>
+                </Button>
+                
+                <Button variant="outline" asChild className="w-full sm:w-auto">
+                  <Link to="/">
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Back to Projects
+                  </Link>
+                </Button>
+                
+                {project.links?.github && (
+                  <Button variant="outline" asChild className="w-full sm:w-auto">
+                    <a 
+                      href={project.links.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="mr-2 h-4 w-4" />
+                      View Source
+                    </a>
+                  </Button>
+                )}
+                
+                {project.links?.live && (
+                  <Button variant="outline" asChild className="w-full sm:w-auto">
+                    <a 
+                      href={project.links.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      View Live Demo
+                    </a>
+                  </Button>
+                )}
+              </div>
+            </FadeInView>
+          </div>
+        </main>
+        
+        <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
+          <div className="container">
+            <p>© {new Date().getFullYear()} AutoScale — Helping biz scale with AI.</p>
+          </div>
+        </footer>
+      </div>
+    );
+  }
+  
   // Default content for other projects
   return (
     <div className="min-h-screen flex flex-col">
