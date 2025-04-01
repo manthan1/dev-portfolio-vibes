@@ -175,21 +175,15 @@ export default function ContactSection() {
                       ))}
                     </div>
 
-                    <div className="mt-auto space-y-4 pt-4">
-                      <div className="flex items-center gap-3">
-                        <MapPin className="h-5 w-5 text-cyan-400" />
-                        <div>
-                          <h4 className="font-medium">Location</h4>
-                          <p className="text-sm text-muted-foreground">Based in <span className="font-medium text-cyan-400">Mumbai, India</span></p>
-                        </div>
+                    <div className="mt-6 pt-4 space-y-6">
+                      <div className="text-sm">
+                        <span className="text-muted-foreground">Location:</span> 
+                        <span className="ml-2 text-cyan-400">Based in Mumbai, India</span>
                       </div>
-                      <Separator className="opacity-30" />
-                      <div className="flex items-center gap-3">
-                        <Globe className="h-5 w-5 text-cyan-400" />
-                        <div>
-                          <h4 className="font-medium">Work Availability</h4>
-                          <p className="text-sm text-muted-foreground">Available for remote work worldwide</p>
-                        </div>
+                      
+                      <div className="text-sm">
+                        <span className="text-muted-foreground">Work Availability:</span>
+                        <span className="ml-2">Available for remote work worldwide</span>
                       </div>
                     </div>
                   </div>
