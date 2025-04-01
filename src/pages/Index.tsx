@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
@@ -11,28 +10,27 @@ import ContactSection from "../components/ContactSection";
 declare global {
   interface Window {
     Calendly?: {
-      initPopupWidget: (options: { url: string }) => void;
+      initPopupWidget: (options: {
+        url: string;
+      }) => void;
     };
   }
 }
-
 const Index = () => {
   useEffect(() => {
     // Set HTML class for smooth scrolling
     document.documentElement.classList.add("smooth-scroll");
-    
+
     // Remove any overflow hidden properties that might prevent scrolling
     document.body.style.overflow = "auto";
     document.documentElement.style.overflow = "auto";
-    
+
     // Clean up
     return () => {
       document.documentElement.classList.remove("smooth-scroll");
     };
   }, []);
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       <main>
         <HeroSection />
@@ -72,11 +70,9 @@ const Index = () => {
       </main>
       <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
         <div className="container">
-          <p>PhazeAI — Elevate Your Business to the Next Phaze.</p>
+          <p>© 2025 PhazeAI — Elevate Your Business to the Next Phaze.</p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
