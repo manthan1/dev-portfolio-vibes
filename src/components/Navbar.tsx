@@ -46,6 +46,11 @@ export default function Navbar() {
         setIsVisible(true);
       }
 
+      // Close mobile menu when scrolling
+      if (mobileMenuOpen && currentScrollY > 20) {
+        setMobileMenuOpen(false);
+      }
+
       // Update background style based on scroll position
       setIsScrolled(currentScrollY > 20);
 
@@ -54,7 +59,7 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, mobileMenuOpen]);
 
   const handleNavigation = (href: string) => {
     if (location.pathname !== "/") {
@@ -118,10 +123,10 @@ export default function Navbar() {
         <div className="flex items-center md:hidden">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            className="p-1 bg-background/80 rounded-md backdrop-blur-sm border border-border/30" 
+            className="p-1 bg-background/60 rounded-md backdrop-blur-sm border border-border/30" 
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="opacity-100" /> : <Menu className="opacity-60" />}
+            {mobileMenuOpen ? <X className="opacity-70" /> : <Menu className="opacity-40" />}
           </button>
         </div>
       </div>
