@@ -52,8 +52,8 @@ export default function ProjectDetail() {
     );
   }
 
-  // Custom content for AI Outreach Automation System project
-  if (projectId === "ai-job-recommendation") {
+  // Custom content for WhatsApp Chatbot project
+  if (projectId === "whatsapp-chatbot") {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
@@ -80,10 +80,10 @@ export default function ProjectDetail() {
             </Breadcrumb>
             
             <FadeInView animation="fade-in">
-              <h1 className="text-4xl font-bold mb-6">🧠 {project.title}</h1>
+              <h1 className="text-4xl font-bold mb-6">📞 {project.title}</h1>
               <p className="text-lg mb-8">
-                <span className="font-semibold">Tech Stack:</span> {project.tags.join(", ")} | 
-                <span className="font-semibold ml-2">Industries:</span> Marketing, Client Outreach, B2B Automation
+                <span className="font-semibold">Tech Stack:</span> Python, Eleven Labs, n8n, Twilio API, NLP, Google Calendar API | 
+                <span className="font-semibold ml-2">Industries:</span> Healthcare, Medical Services
               </p>
               
               <div className="aspect-video overflow-hidden rounded-lg mb-8 border border-border">
@@ -98,12 +98,14 @@ export default function ProjectDetail() {
                 <CardContent className="pt-6">
                   <h2 className="text-2xl font-semibold mb-4">Project Overview</h2>
                   <p className="text-muted-foreground mb-4">
-                    A consulting team faced a major bottleneck in their outreach process. They were spending hours manually 
-                    researching businesses through directories like ZaubaCorp and Tofler, collecting details like registration 
-                    info and director data, then manually crafting personalized emails. It was repetitive, slow, and costly.
+                    A medical clinic faced inefficiencies in handling patient appointment bookings and inquiries. 
+                    Receptionists were overwhelmed with calls, manually checking doctors' availability, and 
+                    responding to repetitive queries, leading to delays and errors.
                   </p>
                   <p className="text-muted-foreground">
-                    We stepped in with a custom AI automation system that replaced all of this with one seamless workflow.
+                    To solve this, we developed an AI-powered <span className="font-medium text-white">calling chatbot</span> that 
+                    automates appointment scheduling, checks real-time availability via Google Calendar, and answers 
+                    patient queries—all through a seamless voice interaction system.
                   </p>
                 </CardContent>
               </Card>
@@ -112,24 +114,28 @@ export default function ProjectDetail() {
                 <CardContent className="pt-6">
                   <h2 className="text-2xl font-semibold mb-4">Solution & Implementation</h2>
                   <p className="text-muted-foreground mb-4">
-                    Our AI-powered pipeline simplified their operations end-to-end:
+                    Our <span className="font-medium text-white">intelligent voice assistant</span> transformed clinic operations with the following features:
                   </p>
                   <ul className="list-none pl-6 space-y-4 text-muted-foreground">
                     <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">✅</span>
-                      <span><span className="font-medium text-white">Excel-Based Input:</span> Team uploads an Excel file with a list of target companies.</span>
+                      <span className="font-semibold text-accent mr-2">📅</span>
+                      <span><span className="font-medium text-white">Automated Appointment Booking:</span> The bot accesses Google Calendar to check available time slots and books appointments accordingly.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">🔍</span>
-                      <span><span className="font-medium text-white">Automated Research Engine:</span> AI scrapes data such as CIN, directors, industry classification, etc., from reliable online sources.</span>
+                      <span className="font-semibold text-accent mr-2">📞</span>
+                      <span><span className="font-medium text-white">Voice-Based Interaction:</span> Patients can call the bot and converse naturally, thanks to <span className="font-medium text-white">Eleven Labs</span> for high-quality speech synthesis.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">✍️</span>
-                      <span><span className="font-medium text-white">Personalized Message Generator:</span> NLP models generate tailored outreach messages using smart templates.</span>
+                      <span className="font-semibold text-accent mr-2">🤖</span>
+                      <span><span className="font-medium text-white">AI-Powered Query Resolution:</span> The bot answers common patient questions, reducing the workload on receptionists.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="font-semibold text-accent mr-2">📧</span>
-                      <span><span className="font-medium text-white">Email Delivery:</span> The system automatically sends out these messages through integrated email channels.</span>
+                      <span className="font-semibold text-accent mr-2">🔄</span>
+                      <span><span className="font-medium text-white">Seamless Integration:</span> Built using <span className="font-medium text-white">n8n</span>, the chatbot integrates with existing clinic management systems for smooth operations.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">⏰</span>
+                      <span><span className="font-medium text-white">Reminders & Follow-Ups:</span> The bot automatically reminds patients about their appointments and follow-ups via calls or WhatsApp.</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -142,9 +148,10 @@ export default function ProjectDetail() {
                     🚀 Transformational impact:
                   </p>
                   <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li><span className="font-semibold text-white">90% reduction</span> in time spent on manual tasks</li>
-                    <li><span className="font-semibold text-white">Significant cost savings</span> on staffing and resources</li>
-                    <li><span className="font-semibold text-white">Increased outreach success</span> with faster, more personalized communication</li>
+                    <li><span className="font-semibold text-white">50% reduction</span> in receptionist workload.</li>
+                    <li><span className="font-semibold text-white">Faster appointment scheduling</span>, reducing wait times significantly.</li>
+                    <li><span className="font-semibold text-white">Enhanced patient experience</span> with 24/7 availability.</li>
+                    <li><span className="font-semibold text-white">Lower operational costs</span> by automating repetitive tasks.</li>
                   </ul>
                 </CardContent>
               </Card>
@@ -786,15 +793,4 @@ export default function ProjectDetail() {
                 </Button>
               )}
             </div>
-          </FadeInView>
-        </div>
-      </main>
-      
-      <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
-        <div className="container">
-          <p>© {new Date().getFullYear()} AI Agency. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
-  );
-}
+          </FadeInView

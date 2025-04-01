@@ -38,9 +38,9 @@ const projects: Project[] = [
   },
   {
     id: "whatsapp-chatbot",
-    title: "WhatsApp Chatbot for a Clinic",
-    description: "Created an automated WhatsApp chatbot that handles appointment scheduling, reminders, and basic patient queries for a medical clinic.",
-    tags: ["Python", "Twilio API", "NLP", "Healthcare"],
+    title: "AI-Powered Calling Chatbot for a Clinic",
+    description: "Created an automated AI calling chatbot that handles appointment scheduling, reminders, and patient queries for a medical clinic.",
+    tags: ["Python", "Eleven Labs", "n8n", "Twilio API", "NLP"],
     image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
   },
   {
