@@ -61,7 +61,7 @@ export default function Navbar() {
 
         {/* Centered Logo */}
         <div className="w-1/3 flex justify-center">
-          <a href="#home" className="font-bold font-display relative">
+          <a href="#home" className="font-bold font-display">
             <img src="/lovable-uploads/0f1410d9-2ff8-40c3-b3d3-c20b389d378b.png" alt="PhazeAI Logo" className="h-6 md:h-7 w-auto object-cover" />
           </a>
         </div>
