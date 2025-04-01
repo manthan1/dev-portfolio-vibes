@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from "react";
-import ThemeToggle from "./ThemeToggle";
 import { Menu, X } from "lucide-react";
 
 interface NavItem {
@@ -60,7 +59,7 @@ export default function Navbar() {
           className="font-bold font-display relative h-12"
         >
           <img 
-            src="/lovable-uploads/b545691d-a883-44ea-9795-5710916f1033.png" 
+            src="/lovable-uploads/0f1410d9-2ff8-40c3-b3d3-c20b389d378b.png" 
             alt="PhazeAI Logo" 
             className="h-10 md:h-12 w-auto object-contain"
           />
@@ -80,12 +79,10 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <ThemeToggle />
         </nav>
 
         {/* Mobile Navigation */}
         <div className="flex items-center gap-4 md:hidden">
-          <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-1 bg-background/80 rounded-md backdrop-blur-sm border border-border/30"
