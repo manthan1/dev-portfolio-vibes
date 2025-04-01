@@ -14,10 +14,10 @@ export default function ConversationalFeedbackBot() {
         <Button 
           variant="ghost" 
           className="flex items-center gap-2 mb-4 hover:bg-background/80"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/#projects")}
         >
           <ArrowLeft size={18} />
-          <span>Back to Home</span>
+          <span>Back to Projects</span>
         </Button>
       </div>
       

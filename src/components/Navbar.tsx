@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface NavItem {
   label: string;
@@ -29,6 +30,8 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,11 +56,37 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  const handleNavigation = (href: string) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      // Add a small delay to ensure navigation completes before scrolling
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "py-3 glass" : "py-5 bg-transparent"} ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
       <div className="container max-w-[95%] mx-auto flex items-center justify-between">
         {/* Logo on left with less padding */}
-        <a href="#home" className="flex items-center font-bold font-display pl-1">
+        <a 
+          href="#home" 
+          className="flex items-center font-bold font-display pl-1"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavigation("#home");
+          }}
+        >
           <img 
             alt="PhazeAI Logo" 
             src="/lovable-uploads/948e89d2-a6b7-4de3-af06-8130d4feb947.jpg" 
@@ -70,7 +99,14 @@ export default function Navbar() {
           <ul className="flex items-center gap-6">
             {navItems.map(item => (
               <li key={item.label}>
-                <a href={item.href} className="font-medium text-sm text-muted-foreground hover:text-foreground transition-colors link-underline">
+                <a 
+                  href={item.href} 
+                  className="font-medium text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigation(item.href);
+                  }}
+                >
                   {item.label}
                 </a>
               </li>
@@ -99,7 +135,10 @@ export default function Navbar() {
                 <a 
                   href={item.href} 
                   className="block font-medium py-2 text-muted-foreground hover:text-foreground transition-colors" 
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigation(item.href);
+                  }}
                 >
                   {item.label}
                 </a>
