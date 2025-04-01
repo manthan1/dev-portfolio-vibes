@@ -6,6 +6,8 @@ import WhatsAppChatbot from "../components/projects/WhatsAppChatbot";
 import QuotationAssistant from "../components/projects/QuotationAssistant";
 import ConversationalFeedbackBot from "../components/projects/ConversationalFeedbackBot";
 import AIRecruitmentBot from "../components/projects/AIRecruitmentBot";
+import VideoChatbot from "../components/projects/VideoChatbot";
+import AIJobRecommendation from "../components/projects/AIJobRecommendation";
 
 export default function ProjectDetail() {
   const { projectId } = useParams<{ projectId: string }>();
@@ -17,9 +19,9 @@ export default function ProjectDetail() {
       // Replace this with your actual data fetching logic
       const projects = [
         {
-          id: "whatsapp-chatbot",
-          name: "WhatsApp Chatbot",
-          description: "Details about WhatsApp Chatbot project.",
+          id: "ai-job-recommendation",
+          name: "AI Outreach Automation System",
+          description: "Details about AI Outreach Automation System project.",
         },
         {
           id: "quotation-assistant",
@@ -36,6 +38,11 @@ export default function ProjectDetail() {
           id: "ai-recruitment-bot",
           name: "AI-Powered Telegram Payment Bot",
           description: "Details about AI-Powered Telegram Payment Bot project.",
+        },
+        {
+          id: "video-chatbot",
+          name: "Video Chatbot for Business Services",
+          description: "Details about Video Chatbot for Business Services project.",
         },
       ];
 
@@ -58,15 +65,49 @@ export default function ProjectDetail() {
         </main>
         <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
           <div className="container">
-            <p>© {new Date().getFullYear()} PhazeAI — Elevate Your Business to the Next Phaze.</p>
+            <p>PhazeAI — Elevate Your Business to the Next Phaze.</p>
           </div>
         </footer>
       </div>
     );
   }
 
-  // For all the custom project sections (whatsapp-chatbot, quotation-assistant, etc.), we need to update the footer
-  // I'll update the last part of each section where the footer appears
+  // For all the custom project sections, we need to update the footer
+  // Handle AI Job Recommendation project
+  if (projectId === "ai-job-recommendation") {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1 pt-24">
+          <AIJobRecommendation />
+        </main>
+        
+        <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
+          <div className="container">
+            <p>PhazeAI — Elevate Your Business to the Next Phaze.</p>
+          </div>
+        </footer>
+      </div>
+    );
+  }
+  
+  // Handle Video Chatbot project
+  if (projectId === "video-chatbot") {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1 pt-24">
+          <VideoChatbot />
+        </main>
+        
+        <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
+          <div className="container">
+            <p>PhazeAI — Elevate Your Business to the Next Phaze.</p>
+          </div>
+        </footer>
+      </div>
+    );
+  }
 
   // Update footer for WhatsApp Chatbot project
   if (projectId === "whatsapp-chatbot") {
@@ -153,7 +194,7 @@ export default function ProjectDetail() {
       
       <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
         <div className="container">
-          <p>© {new Date().getFullYear()} PhazeAI — Elevate Your Business to the Next Phaze.</p>
+          <p>PhazeAI — Elevate Your Business to the Next Phaze.</p>
         </div>
       </footer>
     </div>
