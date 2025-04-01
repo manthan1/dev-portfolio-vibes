@@ -88,7 +88,7 @@ export default function Schedule() {
                 ) : (
                   <div className="calendly-inline-widget" 
                     data-url="https://calendly.com/manthanjethwani02/consultancy-call" 
-                    style={{ minWidth: "320px", height: "700px" }}>
+                    style={{ minWidth: "320px", height: "600px" }}>
                   </div>
                 )}
               </Card>

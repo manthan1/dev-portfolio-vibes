@@ -95,12 +95,12 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <FadeInView animation="fade-in-right">
-            <Card className="overflow-hidden shadow-md border border-border/50 h-full">
-              <CardContent className="p-0">
+            <Card className="overflow-hidden shadow-md border border-border/50 h-full flex flex-col">
+              <CardContent className="p-0 flex-1 flex flex-col">
                 <div className="bg-secondary/30 px-6 py-4 border-b border-border/50">
                   <h3 className="text-xl font-semibold text-cyan-400">Schedule a Meeting</h3>
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex-1 flex flex-col">
                   {isMobile ? (
                     <div className="text-center space-y-4">
                       <p className="text-muted-foreground">Book a 30-minute consultation call to discuss your project requirements.</p>
@@ -113,9 +113,9 @@ export default function ContactSection() {
                       </Button>
                     </div>
                   ) : (
-                    <div className="calendly-inline-widget" 
+                    <div className="calendly-inline-widget flex-1" 
                       data-url="https://calendly.com/manthanjethwani2803/30min" 
-                      style={{ minWidth: "320px", height: "500px" }}>
+                      style={{ minWidth: "320px", height: "450px" }}>
                     </div>
                   )}
                 </div>
@@ -123,15 +123,15 @@ export default function ContactSection() {
             </Card>
           </FadeInView>
 
-          <div className="space-y-8">
-            <FadeInView animation="fade-in-left">
-              <Card className="overflow-hidden shadow-md border border-border/50">
-                <CardContent className="p-0">
+          <div className="flex flex-col space-y-6 h-full">
+            <FadeInView animation="fade-in-left" className="flex-grow">
+              <Card className="overflow-hidden shadow-md border border-border/50 h-full">
+                <CardContent className="p-0 h-full">
                   <div className="bg-secondary/30 px-6 py-4 border-b border-border/50">
                     <h3 className="text-xl font-semibold text-cyan-400">Contact Information</h3>
                   </div>
-                  <div className="p-6">
-                    <div className="grid grid-cols-1 gap-4">
+                  <div className="p-6 h-full flex flex-col justify-between">
+                    <div className="space-y-4">
                       {contactInfo.map((info, index) => (
                         <div key={info.label}>
                           <div className="flex items-start gap-4 p-3 rounded-lg hover:bg-secondary/20 transition-colors">
@@ -174,28 +174,22 @@ export default function ContactSection() {
                         </div>
                       ))}
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </FadeInView>
 
-            <FadeInView animation="fade-in" delay={200}>
-              <Card className="shadow-md border border-border/50">
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <MapPin className="h-5 w-5 text-cyan-400" />
-                      <div>
-                        <h4 className="font-medium">Location</h4>
-                        <p className="text-sm text-muted-foreground">Based in <span className="font-medium text-cyan-400">Mumbai, India</span></p>
+                    <div className="mt-auto space-y-4 pt-4">
+                      <div className="flex items-center gap-3">
+                        <MapPin className="h-5 w-5 text-cyan-400" />
+                        <div>
+                          <h4 className="font-medium">Location</h4>
+                          <p className="text-sm text-muted-foreground">Based in <span className="font-medium text-cyan-400">Mumbai, India</span></p>
+                        </div>
                       </div>
-                    </div>
-                    <Separator className="opacity-30" />
-                    <div className="flex items-center gap-3">
-                      <Globe className="h-5 w-5 text-cyan-400" />
-                      <div>
-                        <h4 className="font-medium">Work Availability</h4>
-                        <p className="text-sm text-muted-foreground">Available for remote work worldwide</p>
+                      <Separator className="opacity-30" />
+                      <div className="flex items-center gap-3">
+                        <Globe className="h-5 w-5 text-cyan-400" />
+                        <div>
+                          <h4 className="font-medium">Work Availability</h4>
+                          <p className="text-sm text-muted-foreground">Available for remote work worldwide</p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -203,7 +197,7 @@ export default function ContactSection() {
               </Card>
             </FadeInView>
             
-            <FadeInView animation="fade-in" delay={300}>
+            <FadeInView animation="fade-in" delay={300} className="hidden lg:block">
               <Card className="shadow-md border border-border/50 bg-gradient-to-br from-secondary/40 to-background">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold mb-3 text-cyan-400">Why Work With Me</h3>
