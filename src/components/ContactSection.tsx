@@ -15,8 +15,8 @@ interface ContactInfoType {
 const contactInfo: ContactInfoType[] = [{
   icon: <Mail className="h-5 w-5" />,
   label: "Email",
-  value: "manthanjethwani@phazeai.com",
-  href: "mailto:manthanjethwani@phazeai.com",
+  value: "contactus@phazeai.com",
+  href: "mailto:contactus@phazeai.com",
   copyable: true
 }, {
   icon: <Phone className="h-5 w-5" />,
