@@ -123,10 +123,10 @@ export default function Navbar() {
         <div className="flex items-center md:hidden">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            className="p-1 bg-background/60 rounded-md backdrop-blur-sm border border-border/30" 
+            className="p-1 bg-background rounded-md backdrop-blur-sm border border-border/30" 
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="opacity-70" /> : <Menu className="opacity-40" />}
+            {mobileMenuOpen ? <X className="opacity-100" /> : <Menu className="opacity-100" />}
           </button>
         </div>
       </div>
