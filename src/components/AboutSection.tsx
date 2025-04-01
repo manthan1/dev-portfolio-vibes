@@ -28,23 +28,23 @@ export default function AboutSection() {
   return (
     <section id="about" className="bg-background py-24">
       <div className="container max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center px-6 lg:px-0">
           <div className="space-y-8">
             <div className="inline-block pill bg-accent/20 text-accent mb-4">
-              <span className="font-medium">About Us</span>
+              <span className="font-medium px-1">About Us</span>
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">
               PhazeAI – Your Partner in AI-Powered Business Transformation
             </h2>
             
             <div className="space-y-4 text-gray-300">
-              <p>
+              <p className="leading-relaxed">
                 We don't just build AI tools—we create intelligent solutions that think, learn, and deliver results. 
                 Whether you're a startup or a scaling enterprise, our AI-driven systems help you automate, 
                 optimize, and accelerate your workflow.
               </p>
-              <p>
+              <p className="leading-relaxed">
                 At PhazeAI, we combine deep technical expertise with strategic business thinking to develop AI 
                 solutions that drive real value. We work closely with you to understand your challenges and build 
                 custom AI systems that fuel growth and efficiency.
@@ -62,8 +62,8 @@ export default function AboutSection() {
                   <div className="p-2 w-fit rounded-md bg-accent/20 text-accent">
                     {feature.icon}
                   </div>
-                  <h3 className="font-semibold text-white">{feature.title}</h3>
-                  <p className="text-sm text-gray-300">
+                  <h3 className="font-semibold text-white text-lg">{feature.title}</h3>
+                  <p className="text-sm text-gray-300 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
