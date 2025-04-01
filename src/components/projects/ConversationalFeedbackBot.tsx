@@ -1,10 +1,26 @@
 
 import React from "react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function ConversationalFeedbackBot() {
+  const navigate = useNavigate();
+  
   return (
     <div className="container max-w-4xl mx-auto">
+      <div className="mb-8">
+        <Button 
+          variant="ghost" 
+          className="flex items-center gap-2 mb-4 hover:bg-background/80"
+          onClick={() => navigate("/")}
+        >
+          <ArrowLeft size={18} />
+          <span>Back to Home</span>
+        </Button>
+      </div>
+      
       <div className="mb-12 text-center">
         <h1 className="text-3xl md:text-4xl font-bold mb-4 text-cyan-400">AI-Powered Conversational Feedback Bot</h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
