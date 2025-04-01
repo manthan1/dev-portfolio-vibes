@@ -8,13 +8,23 @@ import { useNavigate } from "react-router-dom";
 export default function VideoChatbot() {
   const navigate = useNavigate();
   
+  const handleBackClick = () => {
+    navigate("/");
+    setTimeout(() => {
+      const projectsSection = document.querySelector("#projects");
+      if (projectsSection) {
+        projectsSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  };
+  
   return (
     <div className="container max-w-4xl mx-auto">
       <div className="mb-8">
         <Button 
           variant="ghost" 
           className="flex items-center gap-2 mb-4 hover:bg-background/80"
-          onClick={() => navigate("/#projects")}
+          onClick={handleBackClick}
         >
           <ArrowLeft size={18} />
           <span>Back to Projects</span>
