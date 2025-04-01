@@ -44,6 +44,11 @@ export default function ProjectDetail() {
           name: "Video Chatbot for Business Services",
           description: "Details about Video Chatbot for Business Services project.",
         },
+        {
+          id: "whatsapp-chatbot",
+          name: "AI-Powered Calling Chatbot for a Clinic",
+          description: "Details about AI-Powered Calling Chatbot for a Clinic project.",
+        }
       ];
 
       const foundProject = projects.find((p) => p.id === projectId);
@@ -72,7 +77,6 @@ export default function ProjectDetail() {
     );
   }
 
-  // For all the custom project sections, we need to update the footer
   // Handle AI Job Recommendation project
   if (projectId === "ai-job-recommendation") {
     return (
@@ -109,7 +113,7 @@ export default function ProjectDetail() {
     );
   }
 
-  // Update footer for WhatsApp Chatbot project
+  // Update for WhatsApp Chatbot project
   if (projectId === "whatsapp-chatbot") {
     return (
       <div className="min-h-screen flex flex-col">
@@ -127,7 +131,7 @@ export default function ProjectDetail() {
     );
   }
   
-  // Update footer for AI-Powered Quotation Assistant
+  // Update for AI-Powered Quotation Assistant
   if (projectId === "quotation-assistant") {
     return (
       <div className="min-h-screen flex flex-col">
@@ -145,7 +149,7 @@ export default function ProjectDetail() {
     );
   }
   
-  // Update footer for AI-Powered Conversational Feedback Bot
+  // Update for AI-Powered Conversational Feedback Bot
   if (projectId === "conversational-feedback-bot") {
     return (
       <div className="min-h-screen flex flex-col">
@@ -163,7 +167,7 @@ export default function ProjectDetail() {
     );
   }
   
-  // Update footer for AI-Powered Telegram Payment Bot
+  // Update for AI-Powered Telegram Payment Bot
   if (projectId === "ai-recruitment-bot") {
     return (
       <div className="min-h-screen flex flex-col">
@@ -181,7 +185,7 @@ export default function ProjectDetail() {
     );
   }
   
-  // Update footer for default project page
+  // Update for default project page
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
