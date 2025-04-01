@@ -5,22 +5,22 @@ const features = [
   {
     icon: <Cpu className="h-5 w-5" />,
     title: "AI-Powered Automation",
-    description: "Streamline operations, eliminate repetitive tasks, and let AI handle the busywork—so you can focus on what truly matters.",
+    description: "Streamline operations and eliminate repetitive tasks. Let AI handle the busywork so you can focus on what matters.",
   },
   {
     icon: <Code className="h-5 w-5" />,
     title: "AI Consulting & Strategy",
-    description: "Not sure where AI fits into your business? We analyze your processes, identify AI opportunities, and craft a tailored strategy to maximize ROI.",
+    description: "We analyze your processes, identify AI opportunities, and craft tailored strategies to maximize ROI.",
   },
   {
     icon: <Server className="h-5 w-5" />,
     title: "Custom AI Development",
-    description: "From chatbots to predictive analytics, we build AI solutions tailored to your business needs—ensuring seamless integration and high performance.",
+    description: "From chatbots to predictive analytics, we build AI solutions tailored to your specific business needs.",
   },
   {
     icon: <Zap className="h-5 w-5" />,
     title: "AI Agents & Virtual Assistants",
-    description: "Enhance customer experience and internal workflows with autonomous AI-powered assistants capable of handling complex tasks and decision-making.",
+    description: "Enhance customer experience with AI assistants capable of handling complex tasks and decision-making.",
   },
 ];
 
