@@ -55,9 +55,9 @@ export default function Navbar() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "py-3 glass" : "py-5 bg-transparent"} ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
-      <div className="container max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6">
-        {/* Logo on left */}
-        <a href="#home" className="flex items-center font-bold font-display">
+      <div className="container max-w-[95%] mx-auto flex items-center justify-between">
+        {/* Logo on left with less padding */}
+        <a href="#home" className="flex items-center font-bold font-display pl-1">
           <img 
             alt="PhazeAI Logo" 
             src="/lovable-uploads/948e89d2-a6b7-4de3-af06-8130d4feb947.jpg" 
@@ -65,8 +65,8 @@ export default function Navbar() {
           />
         </a>
 
-        {/* Desktop Navigation on right */}
-        <nav className="hidden md:flex items-center">
+        {/* Desktop Navigation on right with less padding */}
+        <nav className="hidden md:flex items-center pr-1">
           <ul className="flex items-center gap-6">
             {navItems.map(item => (
               <li key={item.label}>
