@@ -27,7 +27,7 @@ const projects: Project[] = [
     title: "AI-Powered Quotation Assistant",
     description: "Developed an AI system that analyzes engineering drawings, extracts specifications, and automatically generates accurate price quotations.",
     tags: ["Computer Vision", "NLP", "Automation", "B2B Sales"],
-    image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
   },
   {
     id: "conversational-feedback-bot",
@@ -55,7 +55,7 @@ const projects: Project[] = [
     title: "AI-Powered Telegram Payment Bot",
     description: "Built an intelligent bot that manages installment payments via voice commands, integrated with Google Sheets and Tasks for a jewelry business.",
     tags: ["Telegram Bot API", "NLP", "Google Sheets", "Finance"],
-    image: "https://images.unsplash.com/photo-1564410267841-45d7842ff5d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
   },
 ];
 

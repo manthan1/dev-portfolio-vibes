@@ -793,4 +793,4 @@ export default function ProjectDetail() {
                 </Button>
               )}
             </div>
-          </FadeInView>
+          </FadeInView
