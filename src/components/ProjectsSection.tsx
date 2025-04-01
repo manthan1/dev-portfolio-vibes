@@ -52,10 +52,10 @@ const projects: Project[] = [
   },
   {
     id: "ai-recruitment-bot",
-    title: "AI-driven Recruitment Bot",
-    description: "Built an intelligent recruitment assistant that screens candidates, conducts initial interviews, and ranks applicants based on job fit.",
-    tags: ["Python", "NLP", "ML", "PostgreSQL"],
-    image: "https://images.unsplash.com/photo-1573497620053-ea5300f8f378?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+    title: "AI-Powered Telegram Payment Bot",
+    description: "Built an intelligent bot that manages installment payments via voice commands, integrated with Google Sheets and Tasks for a jewelry business.",
+    tags: ["Telegram Bot API", "NLP", "Google Sheets", "Finance"],
+    image: "https://images.unsplash.com/photo-1564410267841-45d7842ff5d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
   },
 ];
 

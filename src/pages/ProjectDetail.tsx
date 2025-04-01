@@ -501,6 +501,159 @@ export default function ProjectDetail() {
     );
   }
   
+  // Custom content for AI-Powered Telegram Payment Bot
+  if (projectId === "ai-recruitment-bot") {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1 pt-24">
+          <div className="container max-w-5xl mx-auto pb-16">
+            <Breadcrumb className="mb-8">
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/">Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/#projects">Projects</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{project.title}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+            
+            <FadeInView animation="fade-in">
+              <h1 className="text-4xl font-bold mb-6">🤖 {project.title}</h1>
+              <p className="text-lg mb-8">
+                <span className="font-semibold">Tech Stack:</span> Telegram Bot API, NLP, Speech-to-Text, Google Sheets, Google Tasks | 
+                <span className="font-semibold ml-2">Industries:</span> Jewelry, Small Businesses, Finance
+              </p>
+              
+              <div className="aspect-video overflow-hidden rounded-lg mb-8 border border-border">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              <Card className="mb-8">
+                <CardContent className="pt-6">
+                  <h2 className="text-2xl font-semibold mb-4">Project Overview</h2>
+                  <p className="text-muted-foreground mb-4">
+                    A silver business relied on traditional pen-and-paper methods to track installment payments. 
+                    They found existing finance apps too complex and wanted a simpler solution.
+                  </p>
+                  <p className="text-muted-foreground">
+                    We built an AI-powered Telegram bot that allows them to manage payments effortlessly using voice commands.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="mb-8">
+                <CardContent className="pt-6">
+                  <h2 className="text-2xl font-semibold mb-4">Solution & Implementation</h2>
+                  <p className="text-muted-foreground mb-4">
+                    Our intelligent Telegram bot automated the payment tracking process with a user-friendly approach:
+                  </p>
+                  <ul className="list-none pl-6 space-y-4 text-muted-foreground">
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">🗣</span>
+                      <span><span className="font-medium text-white">Voice-Based Input:</span> Users simply send a voice note in Hindi or English (e.g., "Manthan ne mujhe 500 rs diye"), and the bot automatically extracts transaction details.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">📊</span>
+                      <span><span className="font-medium text-white">Google Sheets Integration:</span> Payment records are instantly updated in a shared Google Sheet, ensuring real-time tracking.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">🔔</span>
+                      <span><span className="font-medium text-white">Timely Payment Reminders:</span> The bot periodically notifies users about pending payments and overdue installments.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">📅</span>
+                      <span><span className="font-medium text-white">Google Tasks Automation:</span> For overdue payments, tasks are automatically created in Google Tasks, reminding the user to follow up.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="font-semibold text-accent mr-2">🔄</span>
+                      <span><span className="font-medium text-white">Update & Follow-ups:</span> Users can update payment statuses directly via Telegram, ensuring seamless management.</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <Card className="mb-8">
+                <CardContent className="pt-6">
+                  <h2 className="text-2xl font-semibold mb-4">Results</h2>
+                  <p className="text-muted-foreground mb-4">
+                    🚀 Streamlined payment tracking:
+                  </p>
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+                    <li><span className="font-semibold text-white">Eliminated manual record-keeping</span>, reducing errors and effort.</li>
+                    <li><span className="font-semibold text-white">Saved significant time</span> by automating payment reminders and follow-ups.</li>
+                    <li><span className="font-semibold text-white">Improved financial organization</span>, ensuring timely collections and better cash flow.</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+                <Button asChild className="w-full sm:w-auto">
+                  <Link to="/#contact">
+                    💡 Request a Similar Solution
+                  </Link>
+                </Button>
+                
+                <Button variant="outline" asChild className="w-full sm:w-auto">
+                  <Link to="/">
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Back to Projects
+                  </Link>
+                </Button>
+                
+                {project.links?.github && (
+                  <Button variant="outline" asChild className="w-full sm:w-auto">
+                    <a 
+                      href={project.links.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="mr-2 h-4 w-4" />
+                      View Source
+                    </a>
+                  </Button>
+                )}
+                
+                {project.links?.live && (
+                  <Button variant="outline" asChild className="w-full sm:w-auto">
+                    <a 
+                      href={project.links.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      View Live Demo
+                    </a>
+                  </Button>
+                )}
+              </div>
+            </FadeInView>
+          </div>
+        </main>
+        
+        <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50">
+          <div className="container">
+            <p>© {new Date().getFullYear()} AutoScale — Helping biz scale with AI.</p>
+          </div>
+        </footer>
+      </div>
+    );
+  }
+  
   // Default content for other projects
   return (
     <div className="min-h-screen flex flex-col">
