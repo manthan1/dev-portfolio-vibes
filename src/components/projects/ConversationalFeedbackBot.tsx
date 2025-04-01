@@ -63,13 +63,24 @@ export default function ConversationalFeedbackBot() {
         </Card>
 
         <Card className="p-6 border border-border/50">
-          <h2 className="text-xl font-semibold mb-4 text-cyan-400">Results</h2>
-          <ul className="space-y-2 list-disc pl-5">
-            <li>Increased feedback completion rate from 12% to 45%</li>
-            <li>Average feedback length increased by 300% compared to form submissions</li>
-            <li>Identified 3 major service improvement opportunities in the first month</li>
-            <li>Customer satisfaction score improved by 18% after implementing changes based on feedback</li>
-          </ul>
+          <h2 className="text-xl font-semibold mb-4 text-cyan-400">Project Details and Explanations</h2>
+          <div className="space-y-4">
+            <p>
+              This project was created for a company that struggled with low response rates on traditional feedback forms and surveys. The feedback they did receive was often brief and lacked the detail needed to make meaningful improvements.
+            </p>
+            <p>
+              The conversational approach we developed fundamentally changes how feedback is collected. Instead of presenting customers with a form to fill out, the bot engages them in a conversation that feels more natural and less like a task.
+            </p>
+            <p>
+              A key technical innovation in this project is the dynamic conversation flow. If a customer mentions they were disappointed with response times, the bot automatically asks follow-up questions specific to that issue, such as "How long did you wait for a response?" and "What would you consider an acceptable response time?"
+            </p>
+            <p>
+              The sentiment analysis component goes beyond simple positive/negative classification. It identifies emotional nuances in responses (frustration, delight, confusion) and adjusts the conversation tone accordingly. This emotional intelligence helps maintain engagement and draws out more honest feedback.
+            </p>
+            <p>
+              For business stakeholders, we created a comprehensive analytics dashboard that transforms raw feedback into actionable insights. The dashboard highlights emerging issues before they become widespread problems and tracks improvement over time as changes are implemented based on feedback.
+            </p>
+          </div>
         </Card>
       </div>
     </div>

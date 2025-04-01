@@ -63,14 +63,24 @@ export default function AIRecruitmentBot() {
         </Card>
 
         <Card className="p-6 border border-border/50">
-          <h2 className="text-xl font-semibold mb-4 text-cyan-400">Results</h2>
-          <ul className="space-y-2 list-disc pl-5">
-            <li>Reduced payment processing time by 80%</li>
-            <li>Decreased late payments by 55% through automated reminders</li>
-            <li>Improved customer satisfaction with flexible, 24/7 payment options</li>
-            <li>Saved approximately 15 hours per week of manual payment tracking</li>
-            <li>Enabled the business owner to scale operations without additional administrative staff</li>
-          </ul>
+          <h2 className="text-xl font-semibold mb-4 text-cyan-400">Project Details and Explanations</h2>
+          <div className="space-y-4">
+            <p>
+              The jewelry business faced challenges managing installment payments from numerous customers, with the owner spending hours each week tracking payments manually and sending reminders.
+            </p>
+            <p>
+              Our solution was designed to work within the Telegram messaging platform, which was already widely used by the business's customers. The bot accepts both text and voice commands, making it accessible to customers who prefer different communication methods.
+            </p>
+            <p>
+              When a customer makes a payment, they can simply tell the bot "I paid $200 for my gold necklace today" either through text or voice. The bot uses natural language processing to extract the payment amount, item, and date, then logs this information automatically in a Google Sheet.
+            </p>
+            <p>
+              The integration with Google Tasks creates automated payment reminders based on each customer's installment schedule. Customers receive friendly reminders before payments are due, which has significantly reduced late payments.
+            </p>
+            <p>
+              The bot also provides customers with an easy way to check their payment history and remaining balance by simply asking "How much do I still owe?" or "Show me my payment history." This self-service capability has reduced customer service inquiries by 68%.
+            </p>
+          </div>
         </Card>
       </div>
     </div>

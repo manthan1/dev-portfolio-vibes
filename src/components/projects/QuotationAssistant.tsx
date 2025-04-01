@@ -63,14 +63,24 @@ export default function QuotationAssistant() {
         </Card>
 
         <Card className="p-6 border border-border/50">
-          <h2 className="text-xl font-semibold mb-4 text-cyan-400">Results</h2>
-          <ul className="space-y-2 list-disc pl-5">
-            <li>Reduced quotation preparation time from 3 days to 2 hours on average</li>
-            <li>Improved quotation accuracy by 28%</li>
-            <li>Increased quote-to-sale conversion rate by 15%</li>
-            <li>Standardized pricing across the organization</li>
-            <li>Enabled engineers to focus on technical problem-solving rather than administrative tasks</li>
-          </ul>
+          <h2 className="text-xl font-semibold mb-4 text-cyan-400">Project Details and Explanations</h2>
+          <div className="space-y-4">
+            <p>
+              This project tackled a significant bottleneck in the engineering firm's operations: the quotation process. Previously, engineers were spending up to 30% of their time analyzing drawings and creating quotes rather than focusing on engineering work.
+            </p>
+            <p>
+              The AI system we built combines computer vision and natural language processing to "understand" engineering drawings and specifications. It can identify components, materials, dimensions, and special requirements from both visual CAD files and accompanying text documents.
+            </p>
+            <p>
+              One of the most challenging aspects was teaching the system to account for manufacturing complexity. We developed a complexity scoring algorithm that evaluates factors like tolerances, material properties, and fabrication difficulty to provide accurate labor estimates.
+            </p>
+            <p>
+              The pricing engine incorporates real-time material costs from suppliers, historical data on similar projects, and adjustable profit margins based on client relationships and market conditions. This dynamic pricing approach ensures quotes remain competitive while maintaining profitability.
+            </p>
+            <p>
+              While the system is highly automated, we designed it with a human-in-the-loop approach. The AI generates the initial quote, but engineers can review, adjust, and approve before it's sent to clients. This maintains quality control while still saving significant time compared to the manual process.
+            </p>
+          </div>
         </Card>
       </div>
     </div>
