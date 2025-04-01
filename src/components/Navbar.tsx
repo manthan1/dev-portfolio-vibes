@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 interface NavItem {
@@ -50,16 +49,12 @@ export default function Navbar() {
   }, [lastScrollY]);
   return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "py-3 glass" : "py-5 bg-transparent"} ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
       <div className="container max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <div className="w-1/3 md:w-1/4">
-          {/* Empty div for left side spacing */}
-        </div>
-        
-        <a href="#home" className="flex items-center justify-center w-1/3 md:w-2/4">
-          <img src="/lovable-uploads/0f1410d9-2ff8-40c3-b3d3-c20b389d378b.png" alt="PhazeAI Logo" className="h-7 md:h-8 w-auto object-contain my-auto" />
+        <a href="#home" className="font-bold font-display relative h-10">
+          <img src="/lovable-uploads/0f1410d9-2ff8-40c3-b3d3-c20b389d378b.png" alt="PhazeAI Logo" className="h-7 md:h-8 w-auto object-cover" />
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center w-1/3 md:w-1/4 justify-end">
+        <nav className="hidden md:flex items-center gap-8">
           <ul className="flex items-center gap-6">
             {navItems.map(item => <li key={item.label}>
                 <a href={item.href} className="font-medium text-sm text-muted-foreground hover:text-foreground transition-colors link-underline">
@@ -70,7 +65,7 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile Navigation */}
-        <div className="flex items-center justify-end w-1/3 md:w-1/4 md:hidden">
+        <div className="flex items-center gap-4 md:hidden">
           <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-1 bg-background/80 rounded-md backdrop-blur-sm border border-border/30" aria-label="Toggle menu">
             {mobileMenuOpen ? <X className="opacity-100" /> : <Menu className="opacity-60" />}
           </button>
