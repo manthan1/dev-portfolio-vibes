@@ -3,7 +3,7 @@ import { Hero } from "./ui/component";
 import ChatbotWidget from "./ChatbotWidget";
 import { SplineScene } from "./ui/splite";
 import { Button } from "./ui/button";
-import { MoveRight, PhoneCall, MessageSquare } from "lucide-react";
+import { MoveRight, PhoneCall, Bot } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useMemo, useState, useRef } from "react";
 import { openChatbot } from "./ChatbotWidget";
@@ -44,27 +44,41 @@ export default function HeroSection() {
     }
   };
 
+  const handleOpenAIAssistant = () => {
+    openChatbot();
+  };
+
   return (
     <>
       <section id="home" className="pt-0 pb-0 min-h-screen flex items-center justify-center relative bg-transparent overflow-hidden">
-        <Spotlight fill="white" size={800} fullScreen={true} className="z-0" />
+        <Spotlight fill="white" size={1200} fullScreen={true} className="z-0" />
         
         <div className="container mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-12 lg:py-20">
             {/* Left side - Text content */}
             <div className="flex flex-col items-start justify-center gap-6 order-2 lg:order-1">
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
                 <Button 
-                  variant="secondary" 
-                  size="sm" 
-                  className="gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300"
-                  onClick={openChatbot}
+                  variant="outline" 
+                  size="lg" 
+                  className="gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300 border-cyan-400/50"
+                  onClick={handleOpenAIAssistant}
                 >
-                  <span className="text-xs sm:text-sm">Talk to our AI assistant</span> <MessageSquare className="w-4 h-4 text-cyan-400" />
+                  <span className="text-xs sm:text-sm">Talk to our AI assistant</span> 
+                  <Bot className="w-4 h-4 text-cyan-400" />
                 </Button>
-              </div>
+              </motion.div>
               
-              <div className="flex flex-col gap-2 items-start">
+              <motion.div 
+                className="flex flex-col gap-2 items-start"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
                 <h1 className="text-4xl sm:text-5xl md:text-7xl max-w-2xl tracking-tighter font-regular">
                   <span className="text-primary">The AI Agency Built to Automate</span>
                   <div className="relative flex overflow-hidden h-[clamp(50px,12vw,90px)] mt-1">
@@ -91,8 +105,13 @@ export default function HeroSection() {
                 <p className="text-base sm:text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl">
                   We build custom AI tools that automate the boring stuff — so you can focus on what actually matters.
                 </p>
-              </div>
-              <div className="flex flex-row gap-3 mt-2">
+              </motion.div>
+              <motion.div 
+                className="flex flex-row gap-3 mt-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
                 <Button 
                   size="lg" 
                   className="bg-transparent border border-input text-white gap-2 sm:gap-4 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300 text-xs sm:text-sm" 
@@ -108,19 +127,26 @@ export default function HeroSection() {
                 >
                   Our Work <MoveRight className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Button>
-              </div>
+              </motion.div>
             </div>
             
             {/* Right side - 3D Avatar */}
-            <div className="relative w-full h-[500px] rounded-lg overflow-hidden shadow-lg order-1 lg:order-2 bg-black/[0.96]">
+            <motion.div 
+              className="relative w-full h-[500px] rounded-lg overflow-hidden shadow-lg order-1 lg:order-2 bg-black/[0.96]"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+            >
               <SplineScene 
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                 className="w-full h-full"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Floating AI Assistant Button */}
       <ChatbotWidget />
     </>
   );

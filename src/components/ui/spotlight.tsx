@@ -29,7 +29,7 @@ export function Spotlight({
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       setPosition({ x, y });
-      opacity.set(0.2);
+      opacity.set(0.3); // Increased opacity for more visible effect
     };
 
     const handleMouseLeave = () => {

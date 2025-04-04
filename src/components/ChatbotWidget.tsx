@@ -1,7 +1,7 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, X, Minimize2, Maximize2 } from "lucide-react";
+import { MessageSquare, X, Minimize2, Maximize2, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Create a global context for opening the chatbot from anywhere
@@ -46,12 +46,12 @@ function ChatbotWidget() {
   };
 
   // Register the global open function
-  useState(() => {
+  useEffect(() => {
     globalOpenChatbot = () => {
       setIsOpen(true);
       setIsMinimized(false);
     };
-  });
+  }, []);
   
   const toggleChat = () => {
     if (isMinimized) {
@@ -76,9 +76,9 @@ function ChatbotWidget() {
         >
           <Button 
             onClick={toggleChat} 
-            className="rounded-full h-12 w-12 p-0 bg-gradient-to-r from-blue-500 to-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300"
+            className="rounded-full h-14 w-14 p-0 bg-gradient-to-r from-blue-500 to-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-shadow duration-300"
           >
-            <MessageSquare className="h-5 w-5" />
+            <Bot className="h-6 w-6" />
           </Button>
         </motion.div>
       )}
@@ -96,7 +96,7 @@ function ChatbotWidget() {
               className="p-3 cursor-pointer flex items-center justify-between bg-secondary/20 hover:bg-secondary/30 transition-colors rounded-xl border border-border/50 shadow-lg"
               onClick={() => setIsMinimized(false)}
             >
-              <span className="text-sm font-medium">Chat with MJ AI</span>
+              <span className="text-sm font-medium">Chat with AI Assistant</span>
               <div className="flex gap-2">
                 <Maximize2 className="h-4 w-4 text-muted-foreground" />
               </div>
@@ -108,10 +108,13 @@ function ChatbotWidget() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="bg-background border border-border/50 rounded-xl overflow-hidden shadow-lg flex flex-col h-[320px] w-[350px]"
+              className="bg-background border border-border/50 rounded-xl overflow-hidden shadow-lg flex flex-col h-[400px] w-[380px]"
             >
               <div className="p-3 border-b border-border/50 bg-secondary/20 flex justify-between items-center">
-                <h3 className="text-md font-semibold text-white">Chat with MJ AI</h3>
+                <div className="flex items-center gap-2">
+                  <Bot className="h-5 w-5 text-cyan-400" />
+                  <h3 className="text-md font-semibold text-white">AI Assistant</h3>
+                </div>
                 <div className="flex gap-2">
                   <Button variant="ghost" size="icon" className="h-6 w-6" onClick={minimizeChat}>
                     <Minimize2 className="h-4 w-4 text-muted-foreground" />
@@ -122,9 +125,10 @@ function ChatbotWidget() {
                 </div>
               </div>
               
-              <div className="flex-1 p-6 flex items-center justify-center text-center">
+              <div className="flex-1 p-6 flex flex-col items-center justify-center text-center">
+                <Bot className="h-16 w-16 mb-4 text-cyan-400 opacity-70" />
                 <p className="text-lg text-white max-w-[85%]">
-                  Thanks for reaching out! We're currently fine-tuning our chatbot to make it the best it can be. Hang tight—we'll be ready to chat by April 3rd!
+                  Hey there! I'm your AI assistant. How can I help you automate your business today?
                 </p>
               </div>
             </motion.div>
