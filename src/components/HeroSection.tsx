@@ -47,7 +47,9 @@ export default function HeroSection() {
   return (
     <>
       <section id="home" className="pt-0 pb-0 min-h-screen flex items-center justify-center relative bg-transparent overflow-hidden">
-        <div className="container mx-auto">
+        <Spotlight fill="white" size={800} fullScreen={true} className="z-0" />
+        
+        <div className="container mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-12 lg:py-20">
             {/* Left side - Text content */}
             <div className="flex flex-col items-start justify-center gap-6 order-2 lg:order-1">
@@ -111,10 +113,6 @@ export default function HeroSection() {
             
             {/* Right side - 3D Avatar */}
             <div className="relative w-full h-[500px] rounded-lg overflow-hidden shadow-lg order-1 lg:order-2 bg-black/[0.96]">
-              <Spotlight
-                className="-top-40 left-0 md:left-60 md:-top-20"
-                fill="white"
-              />
               <SplineScene 
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                 className="w-full h-full"

@@ -7,15 +7,18 @@ interface SpotlightProps {
   children?: React.ReactNode;
   className?: string;
   fill?: string;
+  size?: number;
+  fullScreen?: boolean;
 }
 
 export function Spotlight({
   children,
   className,
   fill = "white",
+  size = 500,
+  fullScreen = false,
 }: SpotlightProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const size = 500;
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const opacity = useMotionValue(0);
 
@@ -48,7 +51,7 @@ export function Spotlight({
     <div
       ref={ref}
       className={cn(
-        "h-full w-full overflow-hidden absolute inset-0 z-0",
+        fullScreen ? "fixed inset-0 z-0" : "h-full w-full overflow-hidden absolute inset-0 z-0",
         className
       )}
     >
