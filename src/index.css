@@ -93,6 +93,11 @@
   .neon-outline-button {
     @apply bg-transparent text-white hover:bg-transparent transition-all duration-300;
   }
+  
+  /* Links page card hover effect */
+  .links-card {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(34,211,238,0.2)];
+  }
 }
 
 /* Custom scroll behavior */
@@ -128,3 +133,18 @@ html.smooth-scroll {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Links page specific animations */
+@keyframes subtle-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float {
+  animation: subtle-float 4s ease-in-out infinite;
+}
+
